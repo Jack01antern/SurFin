@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SurFin</string>
+    <string name="login_title">請登入會員</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+
+</resources>

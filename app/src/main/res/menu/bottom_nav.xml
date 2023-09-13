@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:title=""
+        android:icon="@drawable/baseline_tsunami_24"
+        app:labelVisibilityMode="unlabeled"/>
+
+    <item
+        android:id="@+id/weather"
+        android:title=""
+        android:icon="@drawable/baseline_light_mode_24"/>
+
+    <item
+        android:id="@+id/map"
+        android:title=""
+        android:icon="@drawable/baseline_location_on_24"/>
+
+    <item
+        android:id="@+id/account"
+        android:title=""
+        android:icon="@drawable/baseline_account_circle_24"/>
+</menu>
