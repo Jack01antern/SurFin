@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         val toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
         setupBottomNav()
     }
 
@@ -39,13 +38,13 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.weather -> {
-                    findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_navigate_to_weather_fragment)
+                R.id.explore -> {
+                    findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_navigate_to_explore_fragment)
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.map -> {
-                    findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_navigate_to_map_fragment)
+                R.id.weather -> {
+                    findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_navigate_to_weather_fragment)
                     return@setOnItemSelectedListener true
                 }
 

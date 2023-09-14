@@ -10,11 +10,7 @@
         android:name="com.example.surfin.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/mapFragment"
-        android:name="com.example.surfin.map.MapFragment"
-        android:label="fragment_map"
-        tools:layout="@layout/fragment_map" />
+
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.example.surfin.account.AccountFragment"
@@ -31,6 +27,12 @@
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login"/>
 
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.example.surfin.explore.ExploreFragment"
+        android:label="ExploreFragment"
+        tools:layout="@layout/fragment_explore"/>
+
     <action
         android:id="@+id/action_navigate_to_home_fragment" app:destination="@id/homeFragment" />
 
@@ -38,13 +40,14 @@
         android:id="@+id/action_navigate_to_weather_fragment" app:destination="@id/weatherFragment" />
 
     <action
-        android:id="@+id/action_navigate_to_map_fragment" app:destination="@id/mapFragment" />
+        android:id="@+id/action_navigate_to_explore_fragment" app:destination="@id/exploreFragment" />
 
     <action
         android:id="@+id/action_navigate_to_account_fragment" app:destination="@id/accountFragment" />
 
     <action
         android:id="@+id/action_navigate_to_login_fragment" app:destination="@id/loginFragment" />
+
 
 
 </navigation>
