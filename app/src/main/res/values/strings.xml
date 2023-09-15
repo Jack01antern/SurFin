@@ -3,6 +3,6 @@
     <string name="login_title">請登入會員</string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
-
-    <string name="google_maps_api_key">AIzaSyBNSGwP0BlC7-4ab2j43mnusnowT27Ezb8</string>
+<!--google api-->
+    <string name="google_maps_api_key">AIzaSyCSQ0lDQZIFiBkm7_vaRaMKtYrM5aRuJNc</string>
 </resources>

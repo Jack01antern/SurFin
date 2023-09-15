@@ -17,10 +17,6 @@ private const val CWA_KEY = "CWB-35714F4C-C162-403B-BF09-664E4C82C664"
 private const val CWA_TIDE_LIMIT = "10"
 private const val CWA_TIDE_BASE_URL = "https://$CWA_HOST_NAME/api/$CWA_API_VERSION/"
 
-// google maps api
-private const val GOOGLE_KEY = "AIzaSyBNSGwP0BlC7-4ab2j43mnusnowT27Ezb8"
-
-
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
 //cwa tide api
