@@ -21,11 +21,6 @@
         android:name="com.example.surfin.weather.WeatherFragment"
         android:label="fragment_weather"
         tools:layout="@layout/fragment_weather" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.surfin.login.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login"/>
 
     <fragment
         android:id="@+id/exploreFragment"
@@ -44,9 +39,6 @@
 
     <action
         android:id="@+id/action_navigate_to_account_fragment" app:destination="@id/accountFragment" />
-
-    <action
-        android:id="@+id/action_navigate_to_login_fragment" app:destination="@id/loginFragment" />
 
 
 

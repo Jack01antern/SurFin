@@ -2,7 +2,6 @@ package com.example.surfin.explore
 
 import android.content.pm.PackageManager
 import androidx.fragment.app.Fragment
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +11,14 @@ import androidx.core.app.ActivityCompat
 import com.example.surfin.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+
+
+private const val REQUEST_CODE_LOCATION_PERMISSION = 0x00
 
 class ExploreFragment : Fragment() {
 
@@ -29,9 +33,13 @@ class ExploreFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-//        val sydney = LatLng(-34.0, 151.0)
-//        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val school = LatLng(25.0385, 121.5324)
+        googleMap.addMarker(MarkerOptions().position(school).title("Marker in School").snippet("The Best School Ever"))
+        val mcCauleyBeach = LatLng(25.21014, 121.66092)
+        googleMap.addMarker(MarkerOptions().position(mcCauleyBeach).title("McCauley Beach").snippet("The Most Famous Spot in North"))
+        val baiShaWan = LatLng(25.28496, 121.51806)
+        googleMap.addMarker(MarkerOptions().position(baiShaWan).title("Bai Sha Bay").snippet("24hr surveillance: https://youtu.be/St4GHsJzfg4"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school,10f))
     }
 
     override fun onCreateView(
@@ -41,9 +49,12 @@ class ExploreFragment : Fragment() {
     ): View? {
 
 
+
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
         fetchLocation()
+
+
         return inflater.inflate(R.layout.fragment_explore, container, false)
     }
 
@@ -67,7 +78,7 @@ class ExploreFragment : Fragment() {
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                101
+                REQUEST_CODE_LOCATION_PERMISSION
             )
             return
         }

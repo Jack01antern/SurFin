@@ -19,11 +19,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 //        return inflater.inflate(R.layout.fragment_home, container, false)
-        binding = FragmentHomeBinding.inflate(inflater)
+        binding = FragmentHomeBinding.inflate(inflater,container,false)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        binding.loginBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_navigate_to_login_fragment)
-        }
         return binding.root
     }
 

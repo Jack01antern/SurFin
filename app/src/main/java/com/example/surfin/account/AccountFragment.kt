@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.surfin.R
+import com.example.surfin.home.HomeViewModel
 
 class AccountFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = AccountFragment()
-    }
 
     private lateinit var viewModel: AccountViewModel
 
@@ -20,13 +18,12 @@ class AccountFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
+
+        viewModel.getCwaTide()
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+
 
 }
