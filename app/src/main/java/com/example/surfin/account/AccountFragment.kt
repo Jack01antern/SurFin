@@ -20,7 +20,6 @@ class AccountFragment : Fragment() {
     ): View? {
         viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
 
-        viewModel.getCwaTide()
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
 

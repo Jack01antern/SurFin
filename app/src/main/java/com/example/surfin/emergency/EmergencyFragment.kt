@@ -1,4 +1,4 @@
-package com.example.surfin.weather
+package com.example.surfin.emergency
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,17 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.surfin.R
 
-class WeatherFragment : Fragment() {
+class EmergencyFragment : Fragment() {
 
-    private lateinit var viewModel: WeatherViewModel
+    private lateinit var viewModel: EmergencyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(EmergencyViewModel::class.java)
 
-
-        return inflater.inflate(R.layout.fragment_weather, container, false)
+        return inflater.inflate(R.layout.fragment_emergency, container, false)
     }
 }

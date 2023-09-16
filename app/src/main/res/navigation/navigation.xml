@@ -16,11 +16,13 @@
         android:name="com.example.surfin.account.AccountFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_account" />
+
     <fragment
-        android:id="@+id/weatherFragment"
-        android:name="com.example.surfin.weather.WeatherFragment"
-        android:label="fragment_weather"
-        tools:layout="@layout/fragment_weather" />
+        android:id="@+id/emergencyFragment"
+        android:name="com.example.surfin.emergency.EmergencyFragment"
+        android:label="EmergencyFragment"
+        tools:layout="@layout/fragment_emergency"/>
+
 
     <fragment
         android:id="@+id/exploreFragment"
@@ -28,11 +30,17 @@
         android:label="ExploreFragment"
         tools:layout="@layout/fragment_explore"/>
 
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.example.surfin.weather.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" />
+
     <action
         android:id="@+id/action_navigate_to_home_fragment" app:destination="@id/homeFragment" />
 
     <action
-        android:id="@+id/action_navigate_to_weather_fragment" app:destination="@id/weatherFragment" />
+        android:id="@+id/action_navigate_to_emergency_fragment" app:destination="@id/emergencyFragment" />
 
     <action
         android:id="@+id/action_navigate_to_explore_fragment" app:destination="@id/exploreFragment" />
@@ -40,6 +48,7 @@
     <action
         android:id="@+id/action_navigate_to_account_fragment" app:destination="@id/accountFragment" />
 
-
+    <action
+        android:id="@+id/action_navigate_to_weather_fragment" app:destination="@id/weatherFragment" />
 
 </navigation>

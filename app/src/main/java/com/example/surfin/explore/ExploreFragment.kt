@@ -1,5 +1,6 @@
 package com.example.surfin.explore
 
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import androidx.fragment.app.Fragment
 import android.os.Bundle
@@ -12,6 +13,8 @@ import com.example.surfin.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.GoogleMapOptions
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -35,11 +38,14 @@ class ExploreFragment : Fragment() {
          */
         val school = LatLng(25.0385, 121.5324)
         googleMap.addMarker(MarkerOptions().position(school).title("Marker in School").snippet("The Best School Ever"))
+
         val mcCauleyBeach = LatLng(25.21014, 121.66092)
         googleMap.addMarker(MarkerOptions().position(mcCauleyBeach).title("McCauley Beach").snippet("The Most Famous Spot in North"))
+
         val baiShaWan = LatLng(25.28496, 121.51806)
         googleMap.addMarker(MarkerOptions().position(baiShaWan).title("Bai Sha Bay").snippet("24hr surveillance: https://youtu.be/St4GHsJzfg4"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school,10f))
+
     }
 
     override fun onCreateView(
@@ -60,10 +66,21 @@ class ExploreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val options = GoogleMapOptions()
+            .mapId(getString(R.string.map_id))
+
+//        val mapFragment = SupportMapFragment.newInstance(options)
+//
+//        childFragmentManager.beginTransaction()
+//            .replace(R.id.explore, mapFragment) // R.id.mapContainer 应该是包含地图的布局元素
+//            .commit()
         val mapFragment = childFragmentManager.findFragmentById(R.id.explore) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
 
+
+    //get user's current location
     private fun fetchLocation() {
         val task = fusedLocationProviderClient.lastLocation
         if (ActivityCompat.checkSelfPermission(

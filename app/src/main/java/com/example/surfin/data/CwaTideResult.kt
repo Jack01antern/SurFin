@@ -4,49 +4,49 @@ import com.squareup.moshi.Json
 
 
 data class CwaTideResult(
-    @Json(name = "Success") val success: String = "",
-    @Json(name = "Result") val result: Result = Result(),
-    @Json(name = "Records") val records: Records = Records()
+    @Json(name = "Success") val success: String? = null,
+    @Json(name = "Result") val result: TideResult = TideResult(),
+    @Json(name = "Records") val records: TideRecords = TideRecords()
 )
 
-data class Result(
-    @Json(name = "ResourceId") val resourceId: String = "",
-    @Json(name = "Fields") val fields: List<Field> = listOf()
+data class TideResult(
+    @Json(name = "ResourceId") val resourceId: String? = null,
+    @Json(name = "Fields") val fields: List<TideField> = listOf()
 )
 
-data class Field(
-    @Json(name = "Id") val id: String = "",
-    @Json(name = "Type") val type: String = ""
+data class TideField(
+    @Json(name = "Id") val id: String? = null,
+    @Json(name = "Type") val type: String? = null
 )
 
-data class Records(
-    @Json(name = "SeaSurfaceObs") val seaSurfaceObs: SeaSurfaceObs = SeaSurfaceObs()
+data class TideRecords(
+    @Json(name = "SeaSurfaceObs") val seaSurfaceObs: TideSeaSurfaceObs = TideSeaSurfaceObs()
 )
 
-data class SeaSurfaceObs(
-    @Json(name = "Location") val location: List<Location> = listOf()
+data class TideSeaSurfaceObs(
+    @Json(name = "Location") val location: List<TideLocation> = listOf()
 )
 
-data class Location(
-    @Json(name = "Station") val station: Station = Station(),
-    @Json(name = "StationObsTimes") val stationObsTimes: StationObsTimes = StationObsTimes()
+data class TideLocation(
+    @Json(name = "Station") val station: TideStation = TideStation(),
+    @Json(name = "StationObsTimes") val stationObsTimes: TideStationObsTimes = TideStationObsTimes()
 )
 
-data class Station(
-    @Json(name = "StationID") val stationId: String = ""
+data class TideStation(
+    @Json(name = "StationID") val stationId: String? = null
 )
 
-data class StationObsTimes(
-    @Json(name = "StationObsTime") val stationObsTime: List<StationObsTime> = listOf()
+data class TideStationObsTimes(
+    @Json(name = "StationObsTime") val stationObsTime: List<TideStationObsTime> = listOf()
 )
 
-data class StationObsTime(
-    @Json(name = "DateTime") val dateTime: String = "",
-    @Json(name = "WeatherElements") val weatherElements: WeatherElements = WeatherElements()
+data class TideStationObsTime(
+    @Json(name = "DateTime") val dateTime: String? = null,
+    @Json(name = "WeatherElements") val weatherElements: TideWeatherElements = TideWeatherElements()
 )
 
-data class WeatherElements(
-    @Json(name = "TideHeight") val tideHeight: String = ""
+data class TideWeatherElements(
+    @Json(name = "TideHeight") val tideHeight: String? = null,
 )
 
 //fun CwaTideResult.toA():(StationObsTime,WeatherElements){

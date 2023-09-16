@@ -11,20 +11,7 @@ import kotlinx.coroutines.launch
 
 class AccountViewModel : ViewModel() {
 
-    private var _cwaTideResult = MutableLiveData<List<CwaTideResult>>()
-    val cwaTideResult: LiveData<List<CwaTideResult>>
-        get() = _cwaTideResult
 
-    fun getCwaTide(){
-        viewModelScope.launch {
-            try {
-                Log.i("Tide","Tide: called")
-                val dataList = listOf(SurfinApi.retrofitService.getCwaTide())
-                _cwaTideResult.value = dataList
-                Log.i("Tide","Tide success: $dataList")
-            }catch (e:Exception){
-                Log.i("Tide","Tide:fail ${e.message}")
-            }
-        }
-    }
+
+
 }

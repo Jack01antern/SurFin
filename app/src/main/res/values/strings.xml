@@ -5,4 +5,9 @@
     <string name="login_password">Password</string>
 <!--google api-->
     <string name="google_maps_api_key">AIzaSyCSQ0lDQZIFiBkm7_vaRaMKtYrM5aRuJNc</string>
+    <string name="recommended_spots">推薦地點</string>
+    <string name="search_spots">搜尋地點</string>
+    <string name="call_118">撥打118海巡署</string>
+    <string name="call_112">撥打112緊急救難專線</string>
+    <string name="map_id">06a039c0-49c4-4a95-bc79-894689a3a69f</string>
 </resources>
