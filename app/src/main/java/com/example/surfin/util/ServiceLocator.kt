@@ -21,4 +21,8 @@ object ServiceLocator {
         return SurfinDataSource(SurfinDatabase.getInstance(context).surfinDatabaseDao)
     }
 
+    private fun createLocalDataSource(context: Context): SurfinDataSource {
+        return SurfinDataSource(SurfinDatabase.getInstance(context).surfinDatabaseDao)
+    }
+
 }

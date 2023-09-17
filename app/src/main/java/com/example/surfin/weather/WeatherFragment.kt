@@ -6,19 +6,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.surfin.R
+import com.example.surfin.SurfinApplication
+import com.example.surfin.databinding.FragmentWeatherBinding
 
 class WeatherFragment : Fragment() {
 
     private lateinit var viewModel: WeatherViewModel
-
+    private lateinit var binding:FragmentWeatherBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
 
+        binding = FragmentWeatherBinding.inflate(inflater)
+        return binding.root
+    }
 
-        return inflater.inflate(R.layout.fragment_weather, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
+        viewModel = ViewModelProvider(this,WeatherFactory(repository)).get(WeatherViewModel::class.java)
+
     }
 }

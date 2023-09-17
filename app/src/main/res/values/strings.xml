@@ -10,4 +10,10 @@
     <string name="call_118">撥打118海巡署</string>
     <string name="call_112">撥打112緊急救難專線</string>
     <string name="map_id">06a039c0-49c4-4a95-bc79-894689a3a69f</string>
+    <string name="activity_history">活動紀錄</string>
+    <string name="collection">收藏清單</string>
+    <string name="switch_language">切換語言</string>
+    <string name="provide_spots">提供浪點</string>
+    <string name="contact_us">聯絡我們</string>
+    <string name="report_problem">問題回報</string>
 </resources>

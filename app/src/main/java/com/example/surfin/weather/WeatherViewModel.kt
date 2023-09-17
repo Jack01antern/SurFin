@@ -8,10 +8,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
+import com.example.surfin.data.SurfinRepository
 import com.example.surfin.network.SurfinApi
+import com.example.surfin.util.SurfinDataSource
 import kotlinx.coroutines.launch
 
-class WeatherViewModel : ViewModel() {
+class WeatherViewModel(private val repository: SurfinRepository) : ViewModel() {
+
     private var _cwaTideResult = MutableLiveData<List<CwaTideResult>>()
     val cwaTideResult: LiveData<List<CwaTideResult>>
         get() = _cwaTideResult
@@ -20,56 +23,61 @@ class WeatherViewModel : ViewModel() {
     val cwaTempResult: LiveData<List<CwaTempResult>>
         get() = _cwaTempResult
 
+    private var _cwaWdsdResult = MutableLiveData<List<CwaTempResult>>()
+    val cwaWdsdResult: LiveData<List<CwaTempResult>>
+        get() = _cwaWdsdResult
+
 
     private var _cwaUviResult = MutableLiveData<List<CwaUviResult>>()
     val cwaUviResult: LiveData<List<CwaUviResult>>
         get() = _cwaUviResult
-    fun getCwaTide(){
+
+    private fun getCwaTide() {
         viewModelScope.launch {
             try {
-                val dataList = listOf(SurfinApi.retrofitService.getCwaTide())
-                _cwaTideResult.value = dataList
-                Log.i("Tide","Tide success: $dataList")
-            }catch (e:Exception){
-                Log.i("Tide","Tide:fail ${e.message}")
+                val dataList = repository.getCwaTide()
+                _cwaTideResult.value = listOf(dataList)
+                Log.i("Tide", "Tide success: $dataList")
+            } catch (e: Exception) {
+                Log.i("Tide", "Tide:fail ${e.message}")
             }
         }
     }
 
 
-    fun getCwaTemp(){
+    private fun getCwaTemp() {
         viewModelScope.launch {
             try {
-                val dataList = listOf(SurfinApi.retrofitService.getCwaTemp())
-                _cwaTempResult.value = dataList
-                Log.i("temp","temp success: $dataList")
-            }catch (e:Exception){
-                Log.i("temp","temp:fail ${e.message}")
+                val dataList = repository.getCwaTemp()
+                _cwaTempResult.value = listOf(dataList)
+                Log.i("temp", "temp success: $dataList")
+            } catch (e: Exception) {
+                Log.i("temp", "temp:fail ${e.message}")
             }
         }
     }
 
-    fun getCwaWdsd(){
+    private fun getCwaWdsd() {
         viewModelScope.launch {
             try {
-                val dataList = listOf(SurfinApi.retrofitService.getCwaWdsd())
-                _cwaTempResult.value = dataList
-                Log.i("wdsd","wdsd success: $dataList")
-            }catch (e:Exception){
-                Log.i("wdsd","wdsd:fail ${e.message}")
+                val dataList = repository.getCwaWdsd()
+                _cwaWdsdResult.value = listOf(dataList)
+                Log.i("wdsd", "wdsd success: $dataList")
+            } catch (e: Exception) {
+                Log.i("wdsd", "wdsd:fail ${e.message}")
             }
         }
     }
 
 
-    fun getCwaUvi(){
+    private fun getCwaUvi() {
         viewModelScope.launch {
             try {
-                val dataList = listOf(SurfinApi.retrofitService.getCwaUvi())
-                _cwaUviResult.value = dataList
-                Log.i("uvi","uvi success: $dataList")
-            }catch (e:Exception){
-                Log.i("uvi","uvi:fail ${e.message}")
+                val dataList = repository.getCwaUvi()
+                _cwaUviResult.value = listOf(dataList)
+                Log.i("uvi", "uvi success: $dataList")
+            } catch (e: Exception) {
+                Log.i("uvi", "uvi:fail ${e.message}")
             }
         }
     }

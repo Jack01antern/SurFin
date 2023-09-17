@@ -5,27 +5,26 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.surfin.data.User
+import com.example.surfin.data.UserActivityHistory
 
 @Dao
 interface SurfinDatabaseDao {
     @Insert
-    fun insert(user: User)
+    fun insert(userActivityHistory: UserActivityHistory)
 
     @Update
-    fun update(user:User)
+    fun update(userActivityHistory: UserActivityHistory)
 
-    @Query("DELETE from user_info WHERE user_id = :id")
-    fun delete(id:String)
+    @Query("DELETE from user_history WHERE location_title = :id AND date = :date")
+    fun delete(id:String, date:Long)
 
-    @Query("DELETE FROM user_info")
+    @Query("DELETE FROM user_history")
     fun clear()
 
-    @Query("SELECT * FROM user_info ORDER BY user_id ASC")
+    @Query("SELECT * FROM user_history ORDER BY date ASC")
     fun getAllInfo():
-            LiveData<List<User>>
+            LiveData<List<UserActivityHistory>>
 
-    @Query("SELECT * from user_info WHERE user_id = :id")
-    fun get(id: String): User?
+
 
 }
