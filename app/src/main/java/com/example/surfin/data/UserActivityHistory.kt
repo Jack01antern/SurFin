@@ -3,6 +3,7 @@ package com.example.surfin.data
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 
@@ -18,9 +19,11 @@ import kotlinx.parcelize.Parcelize
 //) : Parcelable
 
 
-@Entity(tableName = "user_history", primaryKeys = ["location_title","date"])
+@Entity(tableName = "user_history")
 @Parcelize
 data class UserActivityHistory(
+    @PrimaryKey(autoGenerate = true)
+    val activityId:Long,
     @ColumnInfo(name = "location_title")
     val locationTitle: String,
     @ColumnInfo(name = "date")
@@ -29,10 +32,8 @@ data class UserActivityHistory(
     val content: String,
     @ColumnInfo(name = "heart_rate")
     val heartRate: String,
-    @ColumnInfo(name = "start_time")
-    val startTime: Long,
-    @ColumnInfo(name = "end_time")
-    val endTime: Long,
+    @ColumnInfo(name = "time_duration")
+    val timeDuration: String,
     @ColumnInfo(name = "calories")
     val calories: String,
     @ColumnInfo(name = "photo")

@@ -22,7 +22,7 @@ interface SurfinDatabaseDao {
     fun clear()
 
     @Query("SELECT * FROM user_history ORDER BY date ASC")
-    fun getAllInfo():
+    fun getAllHistory():
             LiveData<List<UserActivityHistory>>
 
 

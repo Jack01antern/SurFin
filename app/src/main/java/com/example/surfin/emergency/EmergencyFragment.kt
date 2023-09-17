@@ -13,18 +13,18 @@ import com.example.surfin.databinding.FragmentEmergencyBinding
 class EmergencyFragment : Fragment() {
 
     private lateinit var viewModel: EmergencyViewModel
-    private lateinit var binding:FragmentEmergencyBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentEmergencyBinding.inflate(inflater)
-        viewModel = ViewModelProvider(this).get(EmergencyViewModel::class.java)
-//        binding.btnSubmit.setOnClickListener {
-//            SurfinDatabaseDao
-//        }
+        val binding = FragmentEmergencyBinding.inflate(inflater)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(EmergencyViewModel::class.java)
     }
 }

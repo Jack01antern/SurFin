@@ -29,47 +29,5 @@
             app:layout_constraintTop_toBottomOf="@id/btn_call_118" />
 
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_user_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="id"
-            app:layout_constraintTop_toBottomOf="@id/btn_call_112" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="title"
-            app:layout_constraintTop_toBottomOf="@id/input_user_id" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="date"
-            app:layout_constraintTop_toBottomOf="@id/input_title" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="content"
-            app:layout_constraintTop_toBottomOf="@id/input_date" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="photo"
-            app:layout_constraintTop_toBottomOf="@id/input_content" />
-
-        <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="submit"
-            app:layout_constraintTop_toBottomOf="@id/input_photo"
-            android:background="@color/primary_navy"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

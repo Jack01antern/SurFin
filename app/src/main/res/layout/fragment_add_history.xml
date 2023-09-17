@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".history.AddHistoryFragment">
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/input_user_id"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="id"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/input_location_title" />-->
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_location_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_location_title"
+            app:layout_constraintBottom_toTopOf="@id/input_date" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_date"
+            app:layout_constraintBottom_toTopOf="@id/input_content" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_content"
+            app:layout_constraintBottom_toTopOf="@id/input_heart_rate" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_heart_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_heart_rate"
+            app:layout_constraintBottom_toTopOf="@id/input_time_duration" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_time_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_time_duration"
+            app:layout_constraintBottom_toTopOf="@id/input_calories" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_calories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_calories"
+            app:layout_constraintBottom_toTopOf="@id/input_photo" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/upload_photo"
+            app:layout_constraintBottom_toTopOf="@id/btn_submit" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_navy"
+            android:text="submit"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_navy"
+            android:text="clear"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

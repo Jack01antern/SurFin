@@ -1,5 +1,6 @@
 package com.example.surfin.util
 
+import androidx.lifecycle.LiveData
 import com.example.surfin.data.UserActivityHistory
 import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
@@ -31,4 +32,11 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao) : SurfinRepository {
         return dao.insert(user)
     }
 
+    override suspend fun clear() {
+        return dao.clear()
+    }
+
+    override fun getAllHistory(): LiveData<List<UserActivityHistory>> {
+        return dao.getAllHistory()
+    }
 }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.surfin.SurfinApplication
 import com.example.surfin.databinding.FragmentWeatherBinding
+import com.example.surfin.factory.WeatherFactory
 
 class WeatherFragment : Fragment() {
 
@@ -25,7 +26,7 @@ class WeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
-        viewModel = ViewModelProvider(this,WeatherFactory(repository)).get(WeatherViewModel::class.java)
+        viewModel = ViewModelProvider(this, WeatherFactory(repository)).get(WeatherViewModel::class.java)
 
     }
 }

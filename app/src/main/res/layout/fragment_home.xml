@@ -12,24 +12,19 @@
         android:layout_height="match_parent"
         tools:context=".home.HomeFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_input_text"
+
+        <SearchView
+            android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/search_spots"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/recommended_spots"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:text="@string/recommended_spots"
-            app:layout_constraintTop_toBottomOf="@id/search_input_text" />
+            app:layout_constraintTop_toBottomOf="@id/search_view" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_recycler_view"

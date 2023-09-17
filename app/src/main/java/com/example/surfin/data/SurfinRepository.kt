@@ -1,5 +1,6 @@
 package com.example.surfin.data
 
+import androidx.lifecycle.LiveData
 import com.example.surfin.network.SurfinApi
 
 interface SurfinRepository {
@@ -26,4 +27,8 @@ interface SurfinRepository {
 
     //local db
     suspend fun insert(user: UserActivityHistory)
+
+    suspend fun clear()
+
+    fun getAllHistory(): LiveData<List<UserActivityHistory>>
 }
