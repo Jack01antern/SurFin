@@ -27,6 +27,12 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
+        val adapter = HomeAdapter()
+        binding.homeRecyclerView.adapter = adapter
+
+
+
+
         binding.callApi.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_weather_fragment)
         }
