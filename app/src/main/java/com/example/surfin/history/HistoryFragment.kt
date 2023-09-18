@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.example.surfin.R
 import com.example.surfin.SurfinApplication
 import com.example.surfin.databinding.FragmentHistoryBinding
 import com.example.surfin.factory.HistoryFactory
@@ -30,12 +32,11 @@ class HistoryFragment : Fragment() {
             adapter.submitList(viewModel.activityHistory.value)
         })
 
+        binding.btnAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_navigate_to_add_history_fragment)
+        }
+
 
         return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
     }
 }

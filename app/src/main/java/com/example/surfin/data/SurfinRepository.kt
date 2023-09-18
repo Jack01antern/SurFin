@@ -2,10 +2,11 @@ package com.example.surfin.data
 
 import androidx.lifecycle.LiveData
 import com.example.surfin.network.SurfinApi
+import kotlinx.coroutines.flow.Flow
 
 interface SurfinRepository {
 
-    //remote
+    //remote api
     suspend fun getCwaTide(): CwaTideResult {
         return SurfinApi.retrofitService.getCwaTide()
     }
@@ -15,15 +16,19 @@ interface SurfinRepository {
     }
 
 
-    suspend fun getCwaWdsd(): CwaTempResult {
-        return SurfinApi.retrofitService.getCwaWdsd()
+    suspend fun getCwaWdsd(locationName:String): CwaTempResult {
+        return SurfinApi.retrofitService.getCwaWdsd(locationName = locationName)
     }
 
 
-    suspend fun getCwaUvi(): CwaUviResult {
+    suspend fun getCwaUvi(): Flow<CwaUviResult> {
         return SurfinApi.retrofitService.getCwaUvi()
     }
 
+    //firebase
+    fun getFirebaseSpotInfo()
+
+    fun setFirebaseSpotInfo(spots: Spots)
 
     //local db
     suspend fun insert(user: UserActivityHistory)

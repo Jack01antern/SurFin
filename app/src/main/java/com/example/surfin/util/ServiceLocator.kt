@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.VisibleForTesting
 import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.localsource.SurfinDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 object ServiceLocator {
     @Volatile
@@ -18,11 +19,12 @@ object ServiceLocator {
     }
 
     private fun createSurfinRepository(context: Context): SurfinRepository {
-        return SurfinDataSource(SurfinDatabase.getInstance(context).surfinDatabaseDao)
+        return SurfinDataSource(SurfinDatabase.getInstance(context).surfinDatabaseDao,
+            FirebaseFirestore.getInstance())
     }
 
-    private fun createLocalDataSource(context: Context): SurfinDataSource {
-        return SurfinDataSource(SurfinDatabase.getInstance(context).surfinDatabaseDao)
-    }
-
+//    private fun createLocalDataSource(context: Context): SurfinDataSource {
+//        return SurfinDataSource(SurfinDatabase.getInstance(context).surfinDatabaseDao,
+//            FirebaseFirestore.getInstance())
+//    }
 }

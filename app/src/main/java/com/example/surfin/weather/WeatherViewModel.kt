@@ -9,8 +9,9 @@ import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
 import com.example.surfin.data.SurfinRepository
-import com.example.surfin.network.SurfinApi
-import com.example.surfin.util.SurfinDataSource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(private val repository: SurfinRepository) : ViewModel() {
@@ -60,7 +61,7 @@ class WeatherViewModel(private val repository: SurfinRepository) : ViewModel() {
     private fun getCwaWdsd() {
         viewModelScope.launch {
             try {
-                val dataList = repository.getCwaWdsd()
+                val dataList = repository.getCwaWdsd("CAB050")
                 _cwaWdsdResult.value = listOf(dataList)
                 Log.i("wdsd", "wdsd success: $dataList")
             } catch (e: Exception) {
@@ -70,12 +71,14 @@ class WeatherViewModel(private val repository: SurfinRepository) : ViewModel() {
     }
 
 
-    private fun getCwaUvi() {
+    private fun getCwaUvi(): Flow<CwaUviResult> = flow{
         viewModelScope.launch {
             try {
-                val dataList = repository.getCwaUvi()
-                _cwaUviResult.value = listOf(dataList)
-                Log.i("uvi", "uvi success: $dataList")
+                val response = repository.getCwaUvi()
+                emitAll(response)
+
+//                _cwaUviResult.value = listOf(response)
+                Log.i("uvi", "uvi success: $response")
             } catch (e: Exception) {
                 Log.i("uvi", "uvi:fail ${e.message}")
             }

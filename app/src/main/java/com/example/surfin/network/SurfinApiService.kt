@@ -5,6 +5,7 @@ import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -17,7 +18,7 @@ private const val CWA_API_VERSION = "v1"
 private const val CWA_KEY = "CWB-35714F4C-C162-403B-BF09-664E4C82C664"
 private const val CWA_BASE_URL = "https://$CWA_HOST_NAME/api/$CWA_API_VERSION/"
 
-//cwa tide api
+//cwa data source
 private const val CWA_TIDE_SOURCE = "O-B0075-001"
 private const val CWA_TEMP_SOURCE = "O-A0003-001"
 private const val CWA_UVI_SOURCE = "O-A0005-001"
@@ -50,6 +51,7 @@ interface SurfinApiService {
     @GET("rest/datastore/$CWA_TEMP_SOURCE")
     suspend fun getCwaWdsd(
         @Query("Authorization") apiKey: String = CWA_KEY,
+        @Query("locationName") locationName: String = "",
         @Query("elementName") elementName: String = "WDSD",
         @Query("parameterName") parameterName: String = "CITY"
     ): CwaTempResult
@@ -57,7 +59,7 @@ interface SurfinApiService {
     @GET("rest/datastore/$CWA_UVI_SOURCE")
     suspend fun getCwaUvi(
         @Query("Authorization") apiKey: String = CWA_KEY
-    ): CwaUviResult
+    ): Flow<CwaUviResult>
 }
 
 // cwa tide
