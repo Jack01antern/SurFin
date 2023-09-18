@@ -21,16 +21,13 @@ class EmergencyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentEmergencyBinding.inflate(inflater)
-        val num118 = "118"
-        val num112 = "112"
-        val intent = Intent(Intent.ACTION_DIAL)
+
         binding.btnCall118.setOnClickListener {
-            intent.setData(Uri.parse("tel:$num118"))
-            startActivity(intent)
+            startActivity(viewModel.dial118())
         }
+
         binding.btnCall112.setOnClickListener {
-            intent.setData(Uri.parse("tel:$num112"))
-            startActivity(intent)
+            startActivity(viewModel.dial112())
         }
 
         return binding.root
