@@ -34,19 +34,24 @@
         android:id="@+id/weatherFragment"
         android:name="com.example.surfin.weather.WeatherFragment"
         android:label="fragment_weather"
-        tools:layout="@layout/fragment_weather" />
+        tools:layout="@layout/fragment_weather">
+        <argument
+            android:name="tempId"
+            app:argType="com.example.surfin.data.Spots"
+            app:nullable="false" />
+    </fragment>
 
     <fragment
         android:id="@+id/addHistoryFragment"
         android:name="com.example.surfin.history.AddHistoryFragment"
         android:label="AddHistoryFragment"
-        tools:layout="@layout/fragment_add_history"/>
+        tools:layout="@layout/fragment_add_history" />
 
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.surfin.history.HistoryFragment"
         android:label="HistoryFragment"
-        tools:layout="@layout/fragment_history"/>
+        tools:layout="@layout/fragment_history" />
 
     <action
         android:id="@+id/action_navigate_to_home_fragment"

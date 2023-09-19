@@ -2,6 +2,7 @@ package com.example.surfin.util
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import com.example.surfin.data.CwaEarthquakeResult
 import com.example.surfin.data.UserActivityHistory
 import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
@@ -26,25 +27,34 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         return super.getCwaTemp()
     }
 
-    override suspend fun getCwaWdsd(locationName:String): CwaTempResult {
+    override suspend fun getCwaWdsd(locationName: String): CwaTempResult {
         return super.getCwaWdsd(locationName = locationName)
     }
 
-    override suspend fun getCwaUvi(): Flow<CwaUviResult> {
+    override suspend fun getCwaUvi(): CwaUviResult {
         return super.getCwaUvi()
     }
 
+    override suspend fun getCwaEarthquake(): CwaEarthquakeResult {
+        return super.getCwaEarthquake()
+    }
 
     //firebase
-    override fun getFirebaseSpotInfo() {
+    override fun getFirebaseSpotData() {
         TODO("Not yet implemented")
     }
 
+    override fun observeFirebaseSpotData() {
+        db.collection("spots").addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.w("retrieve??", e)
+                return@addSnapshotListener
+            }
+        }
+    }
+
     override fun setFirebaseSpotInfo(spots: Spots) {
-        db.collection("spots").document("LA")
-            .set(spots)
-            .addOnSuccessListener { Log.d("firebase", "DocumentSnapshot successfully written!") }
-            .addOnFailureListener { e -> Log.w("firebase ", "Error writing document", e) }
+        TODO("Not yet implemented")
     }
 
 

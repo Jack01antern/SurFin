@@ -14,78 +14,40 @@ import com.example.surfin.R
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.Spots
 import com.example.surfin.factory.ExploreFactory
+import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.firebase.firestore.FirebaseFirestore
 
 
 private const val REQUEST_CODE_LOCATION_PERMISSION = 0x00
-private const val ZOOM_IN = 10F
 
 
 class ExploreFragment : Fragment() {
 
     private lateinit var viewModel: ExploreViewModel
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private val db = FirebaseFirestore.getInstance()
-    var spotsInfo = mutableListOf<Spots>()
-    private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        val school = LatLng(25.0385, 121.5324)
-        googleMap.addMarker(
-            MarkerOptions().position(school).title("Marker in School")
-                .snippet("The Best School Ever")
-        )
-
-        try {
-            db.collection("spots").addSnapshotListener { snapshot, e ->
-                if (e != null) {
-                    Log.w("retrieve??", e)
-                    return@addSnapshotListener
-                }
-                googleMap.clear()
-                spotsInfo.clear()
-                spotsInfo.addAll(snapshot!!.toObjects(Spots::class.java))
-
-                for (spot in spotsInfo) {
-                    val latLong = LatLng(spot.lat, spot.long)
-                    googleMap.addMarker(
-                        MarkerOptions().position(latLong).title(spot.title).snippet(spot.content)
-                    )
-                }
-                Log.i("retrieve!!", " MSG: $spotsInfo")
-            }
-
-        } catch (e: Exception) {
-            Log.i("retrieve failed", " MSG: ${e.message}")
-        }
-
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school, ZOOM_IN))
-
-    }
+    private lateinit var autocomplete: AutocompleteSupportFragment
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
         fetchLocation()
-
 
         return inflater.inflate(R.layout.fragment_explore, container, false)
     }
@@ -100,8 +62,13 @@ class ExploreFragment : Fragment() {
         ).get(ExploreViewModel::class.java)
 
 
+//        Places.initialize(requireContext(),getString(R.string.google_maps_api_key))
+//        autocomplete = childFragmentManager.findFragmentById(R.id.search_map) as AutocompleteSupportFragment
+//        autocomplete.setPlaceFields(listOf(Place.Field.ID, Place.Field.ADDRESS,Place.Field.LAT_LNG))
+
+
         val mapFragment = childFragmentManager.findFragmentById(R.id.explore) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
+        mapFragment?.getMapAsync(viewModel.callback)
 
     }
 

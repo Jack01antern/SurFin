@@ -1,5 +1,6 @@
 package com.example.surfin.network
 
+import com.example.surfin.data.CwaEarthquakeResult
 import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
@@ -22,6 +23,10 @@ private const val CWA_BASE_URL = "https://$CWA_HOST_NAME/api/$CWA_API_VERSION/"
 private const val CWA_TIDE_SOURCE = "O-B0075-001"
 private const val CWA_TEMP_SOURCE = "O-A0003-001"
 private const val CWA_UVI_SOURCE = "O-A0005-001"
+private const val CWA_EARTHQUAKE_SOURCE = "E-A0015-001"
+
+
+
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
@@ -51,7 +56,7 @@ interface SurfinApiService {
     @GET("rest/datastore/$CWA_TEMP_SOURCE")
     suspend fun getCwaWdsd(
         @Query("Authorization") apiKey: String = CWA_KEY,
-        @Query("locationName") locationName: String = "",
+//        @Query("locationName") locationName: String = "",
         @Query("elementName") elementName: String = "WDSD",
         @Query("parameterName") parameterName: String = "CITY"
     ): CwaTempResult
@@ -59,7 +64,12 @@ interface SurfinApiService {
     @GET("rest/datastore/$CWA_UVI_SOURCE")
     suspend fun getCwaUvi(
         @Query("Authorization") apiKey: String = CWA_KEY
-    ): Flow<CwaUviResult>
+    ): CwaUviResult
+
+    @GET("rest/datastore/$CWA_EARTHQUAKE_SOURCE")
+    suspend fun getCwaEarthquake(
+        @Query("Authorization") apiKey: String = CWA_KEY,
+    ): CwaEarthquakeResult
 }
 
 // cwa tide

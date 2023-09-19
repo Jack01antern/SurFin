@@ -5,13 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.surfin.data.CwaEarthquakeResult
 import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
 import com.example.surfin.data.SurfinRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flow
+import com.example.surfin.network.SurfinApi
+import com.example.surfin.util.SurfinDataSource
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(private val repository: SurfinRepository) : ViewModel() {
@@ -33,14 +33,18 @@ class WeatherViewModel(private val repository: SurfinRepository) : ViewModel() {
     val cwaUviResult: LiveData<List<CwaUviResult>>
         get() = _cwaUviResult
 
+    private var _cwaEarthquakeResult = MutableLiveData<List<CwaEarthquakeResult>>()
+    val cwaEarthquakeResult: LiveData<List<CwaEarthquakeResult>>
+        get() = _cwaEarthquakeResult
+
     private fun getCwaTide() {
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaTide()
                 _cwaTideResult.value = listOf(dataList)
-                Log.i("Tide", "Tide success: $dataList")
+                Log.i("cwa", "tide success: $dataList")
             } catch (e: Exception) {
-                Log.i("Tide", "Tide:fail ${e.message}")
+                Log.i("cwa", "tide:fail ${e.message}")
             }
         }
     }
@@ -51,9 +55,9 @@ class WeatherViewModel(private val repository: SurfinRepository) : ViewModel() {
             try {
                 val dataList = repository.getCwaTemp()
                 _cwaTempResult.value = listOf(dataList)
-                Log.i("temp", "temp success: $dataList")
+                Log.i("cwa", "temp success: $dataList")
             } catch (e: Exception) {
-                Log.i("temp", "temp:fail ${e.message}")
+                Log.i("cwa", "temp:fail ${e.message}")
             }
         }
     }
@@ -61,26 +65,37 @@ class WeatherViewModel(private val repository: SurfinRepository) : ViewModel() {
     private fun getCwaWdsd() {
         viewModelScope.launch {
             try {
-                val dataList = repository.getCwaWdsd("CAB050")
+                val dataList = repository.getCwaWdsd("CAB505")
                 _cwaWdsdResult.value = listOf(dataList)
-                Log.i("wdsd", "wdsd success: $dataList")
+                Log.i("cwa", "wdsd success: $dataList")
             } catch (e: Exception) {
-                Log.i("wdsd", "wdsd:fail ${e.message}")
+                Log.i("cwa", "wdsd:fail ${e.message}")
             }
         }
     }
 
 
-    private fun getCwaUvi(): Flow<CwaUviResult> = flow{
+    private fun getCwaUvi() {
         viewModelScope.launch {
             try {
-                val response = repository.getCwaUvi()
-                emitAll(response)
-
-//                _cwaUviResult.value = listOf(response)
-                Log.i("uvi", "uvi success: $response")
+                val dataList = repository.getCwaUvi()
+                _cwaUviResult.value = listOf(dataList)
+                Log.i("cwa", "uvi success: $dataList")
             } catch (e: Exception) {
-                Log.i("uvi", "uvi:fail ${e.message}")
+                Log.i("cwa", "uvi:fail ${e.message}")
+            }
+        }
+    }
+
+
+    private fun getCwaEarthquake() {
+        viewModelScope.launch {
+            try {
+                val dataList = repository.getCwaEarthquake()
+                _cwaEarthquakeResult.value = listOf(dataList)
+                Log.i("cwa", "earthquake success: $dataList")
+            } catch (e: Exception) {
+                Log.i("cwa", "earthquake:fail ${e.message}")
             }
         }
     }
@@ -90,5 +105,7 @@ class WeatherViewModel(private val repository: SurfinRepository) : ViewModel() {
         getCwaTide()
         getCwaWdsd()
         getCwaUvi()
+        getCwaEarthquake()
+
     }
 }

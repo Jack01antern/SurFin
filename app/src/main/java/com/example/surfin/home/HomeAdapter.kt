@@ -10,14 +10,17 @@ import com.example.surfin.data.UserActivityHistory
 import com.example.surfin.databinding.ItemHomeBinding
 import com.example.surfin.databinding.ItemUserHistoryBinding
 
-class HomeAdapter :
+class HomeAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Spots, HomeAdapter.HomeViewHolder>(DiffCallback) {
 
     class HomeViewHolder(private var binding: ItemHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(spots: Spots) {
+        fun bind(spots: Spots, onClickListener: OnClickListener) {
             spots.let {
                 binding.viewModel = it
+                binding.root.setOnClickListener {
+                    onClickListener.onClick(spots)
+                }
                 binding.executePendingBindings()
             }
         }
@@ -51,7 +54,11 @@ class HomeAdapter :
      * Replaces the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position),onClickListener)
+    }
+
+    class OnClickListener(val clickListener: (spots:Spots) -> Unit) {
+        fun onClick(spots: Spots) = clickListener(spots)
     }
 }
 

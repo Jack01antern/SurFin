@@ -1,47 +1,42 @@
 package com.example.surfin.data
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class CwaTempResult(
    val success: String?=null,
-    val result: TempWeatherResult,
     val records: TempWeatherRecords
-)
+):Parcelable
 
-data class TempWeatherResult(
-    @Json(name = "resource_id")val resourceId: String,
-    val fields: List<TempWeatherField>
-)
 
-data class TempWeatherField(
-    val id: String,
-    val type: String
-)
-
+@Parcelize
 data class TempWeatherRecords(
     val location: List<TempWeatherLocation>
-)
+):Parcelable
 
+@Parcelize
 data class TempWeatherLocation(
-    val lat: String,
-    val lon: String,
     val locationName: String,
     val stationId: String,
     val time: TempWeatherObsTime,
     val weatherElement: List<TempWeatherElement>,
     val parameter: List<TempWeatherParameter>
-)
+):Parcelable
 
+@Parcelize
 data class TempWeatherObsTime(
     val obsTime: String
-)
+):Parcelable
 
+@Parcelize
 data class TempWeatherElement(
     val elementName: String,
     val elementValue: String
-)
+):Parcelable
 
+@Parcelize
 data class TempWeatherParameter(
-    val parameterName: String,
     val parameterValue: String
-)
+):Parcelable

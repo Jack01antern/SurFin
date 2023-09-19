@@ -30,19 +30,10 @@
             android:id="@+id/home_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/recommended_spots"
             app:layout_constraintBottom_toBottomOf="parent"
             />
-
-        <Button
-            android:id="@+id/call_api"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
-            android:text="Call API"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

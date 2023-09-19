@@ -1,37 +1,28 @@
 package com.example.surfin.data
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class CwaUviResult(
     val success: String,
-    val result: UviResult,
     val records: UviRecords
-)
+):Parcelable
 
-data class UviResult(
-    @Json(name = "resource_id") val resourceId: String,
-    val fields: List<UviField>
-)
-
-data class UviField(
-    val id: String,
-    val type: String
-)
-
+@Parcelize
 data class UviRecords(
     val weatherElement: UviWeatherElement
-)
+):Parcelable
 
+@Parcelize
 data class UviWeatherElement(
-    val elementName: String,
-    val time: UviTime
-)
+    val location: List<UviLocation>
+):Parcelable
 
-data class UviTime(
-    @Json(name = "dataTime") val dataTime: String
-)
 
-data class LocationData(
-    @Json(name = "locationCode") val locationCode: String,
-    @Json(name = "value") val value: Float
-)
+@Parcelize
+data class UviLocation(
+    val locationCode: String,
+    val value: Float
+):Parcelable
