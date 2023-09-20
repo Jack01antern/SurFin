@@ -27,11 +27,40 @@ class HomeViewModel(private val repository: SurfinRepository) : ViewModel() {
                     val result = document.toObject<Spots>()
                     resultList.add(result)
                 }
-                _fireResult.postValue(resultList)
-                Log.d("Fire store", "resultList:  ${resultList}")
+                _fireResult.value = resultList
+                Log.d("Fire store", "resultList:  ${_fireResult.value}")
             }
             .addOnFailureListener { exception ->
                 Log.w("Fire store", "Error getting documents.", exception)
+            }
+    }
+
+
+    fun searchFirebase(spotName: String) {
+        db.collection("spots")
+            .whereEqualTo("title", spotName)
+            .get()
+            .addOnSuccessListener { documents ->
+                val resultList = mutableListOf<Spots>()
+                for (document in documents) {
+
+//                    if (document.contains(spotName)) {
+//
+//                    } else {
+//                        System.out.println("字符串不包含关键字");
+//                    }
+                    val result = document.toObject<Spots>()
+//                    Log.d("Fire store", "result search:  ${result}")
+
+                    resultList.add(result)
+                    Log.d("Fire store", "resultList search:  ${resultList}")
+
+                }
+                _fireResult.value = resultList
+                Log.d("Fire store", "fireResult search:  ${_fireResult.value}")
+            }
+            .addOnFailureListener { exception ->
+                Log.w("firebase", "Error getting documents: ", exception)
             }
     }
 

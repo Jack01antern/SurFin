@@ -9,14 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.surfin.R
 import com.example.surfin.SurfinApplication
 import com.example.surfin.databinding.FragmentHomeBinding
 import com.example.surfin.factory.HomeFactory
+import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Locale
+import java.util.UUID
 import java.util.regex.Pattern
 
 class HomeFragment : Fragment() {
@@ -34,7 +37,7 @@ class HomeFragment : Fragment() {
 
 
         val adapter = HomeAdapter(HomeAdapter.OnClickListener {
-            findNavController().navigate(R.id.action_navigate_to_weather_fragment)
+            findNavController().navigate(HomeFragmentDirections.actionNavigateToWeatherFragment(it))
         })
 
 
@@ -42,6 +45,21 @@ class HomeFragment : Fragment() {
         viewModel.fireResult.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
+
+
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                viewModel.searchFirebase(p0!!)
+                Log.i("fire store","p0: $p0")
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return false
+            }
+        })
+
 
         return binding.root
     }

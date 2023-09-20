@@ -10,8 +10,6 @@ import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
 import com.example.surfin.data.SurfinRepository
-import com.example.surfin.network.SurfinApi
-import com.example.surfin.util.SurfinDataSource
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(private val repository: SurfinRepository) : ViewModel() {

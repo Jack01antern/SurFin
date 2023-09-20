@@ -1,5 +1,9 @@
 package com.example.surfin.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Spots(
     val id: String = "",
     val lat: Double = 0.0,
@@ -11,4 +15,4 @@ data class Spots(
     val title: String="",
     val content: String="",
     val photo: List<String> = listOf()
-)
+):Parcelable
