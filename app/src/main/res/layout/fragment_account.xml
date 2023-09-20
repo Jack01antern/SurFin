@@ -1,13 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".account.AccountFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="account" />
+        tools:context=".account.AccountFragment">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="account" />
+
+        <Button
+            android:id="@+id/btn_activity_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_navy"
+            android:text="@string/activity_history"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_navy"
+            android:text="@string/collection"
+            app:layout_constraintStart_toEndOf="@id/btn_activity_history"
+            app:layout_constraintTop_toTopOf="@id/btn_activity_history" />
+
+
+        <Button
+            android:id="@+id/btn_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_navy"
+            android:text="@string/switch_language"
+            app:layout_constraintStart_toEndOf="@id/btn_collection"
+            app:layout_constraintTop_toTopOf="@id/btn_collection" />
+
+        <Button
+            android:id="@+id/btn_provide_spots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_navy"
+            android:text="@string/provide_spots"
+            app:layout_constraintStart_toEndOf="@id/btn_language"
+            app:layout_constraintTop_toTopOf="@id/btn_language"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_contact_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_navy"
+            android:text="@string/contact_us"
+            app:layout_constraintStart_toStartOf="@id/btn_activity_history"
+            app:layout_constraintTop_toBottomOf="@id/btn_activity_history" />
+
+
+        <Button
+            android:id="@+id/btn_report_problem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_navy"
+            android:text="@string/report_problem"
+            app:layout_constraintStart_toEndOf="@id/btn_contact_us"
+            app:layout_constraintTop_toTopOf="@id/btn_contact_us" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

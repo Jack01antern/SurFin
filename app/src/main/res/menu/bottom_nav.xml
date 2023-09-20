@@ -13,8 +13,8 @@
         android:title="" />
 
     <item
-        android:id="@+id/weather"
-        android:icon="@drawable/baseline_light_mode_24"
+        android:id="@+id/emergency"
+        android:icon="@drawable/baseline_wb_twilight_24"
         android:title="" />
 
     <item

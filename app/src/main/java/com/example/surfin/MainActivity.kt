@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.weather -> {
-                    findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_navigate_to_weather_fragment)
+                R.id.emergency -> {
+                    findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_navigate_to_emergency_fragment)
                     return@setOnItemSelectedListener true
                 }
 
@@ -56,4 +56,6 @@ class MainActivity : AppCompatActivity() {
             false
         }
     }
+
+
 }

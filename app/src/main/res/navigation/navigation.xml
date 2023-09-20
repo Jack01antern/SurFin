@@ -16,38 +16,77 @@
         android:name="com.example.surfin.account.AccountFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_account" />
+
     <fragment
-        android:id="@+id/weatherFragment"
-        android:name="com.example.surfin.weather.WeatherFragment"
-        android:label="fragment_weather"
-        tools:layout="@layout/fragment_weather" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.surfin.login.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login"/>
+        android:id="@+id/emergencyFragment"
+        android:name="com.example.surfin.emergency.EmergencyFragment"
+        android:label="EmergencyFragment"
+        tools:layout="@layout/fragment_emergency" />
+
 
     <fragment
         android:id="@+id/exploreFragment"
         android:name="com.example.surfin.explore.ExploreFragment"
         android:label="ExploreFragment"
-        tools:layout="@layout/fragment_explore"/>
+        tools:layout="@layout/fragment_explore" />
+
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.example.surfin.weather.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather">
+        <argument
+            android:name="tempId"
+            app:argType="com.example.surfin.data.Spots"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addHistoryFragment"
+        android:name="com.example.surfin.history.AddHistoryFragment"
+        android:label="AddHistoryFragment"
+        tools:layout="@layout/fragment_add_history" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.surfin.history.HistoryFragment"
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history" />
 
     <action
-        android:id="@+id/action_navigate_to_home_fragment" app:destination="@id/homeFragment" />
+        android:id="@+id/action_navigate_to_home_fragment"
+        app:destination="@id/homeFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
 
     <action
-        android:id="@+id/action_navigate_to_weather_fragment" app:destination="@id/weatherFragment" />
+        android:id="@+id/action_navigate_to_emergency_fragment"
+        app:destination="@id/emergencyFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
 
     <action
-        android:id="@+id/action_navigate_to_explore_fragment" app:destination="@id/exploreFragment" />
+        android:id="@+id/action_navigate_to_explore_fragment"
+        app:destination="@id/exploreFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
 
     <action
-        android:id="@+id/action_navigate_to_account_fragment" app:destination="@id/accountFragment" />
+        android:id="@+id/action_navigate_to_account_fragment"
+        app:destination="@id/accountFragment"
+        app:popUpTo="@id/navigation"
+        app:popUpToInclusive="true" />
 
     <action
-        android:id="@+id/action_navigate_to_login_fragment" app:destination="@id/loginFragment" />
+        android:id="@+id/action_navigate_to_weather_fragment"
+        app:destination="@id/weatherFragment" />
 
+    <action
+        android:id="@+id/action_navigate_to_history_fragment"
+        app:destination="@id/historyFragment" />
 
+    <action
+        android:id="@+id/action_navigate_to_add_history_fragment"
+        app:destination="@id/addHistoryFragment" />
 
 </navigation>

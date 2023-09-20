@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>台灣浪點地圖 Taiwan surf spots by Net Surfer</name>
+    <description><![CDATA[目前累積浪點數：170 spots in 2023/Jun<br>任何意見或提供新浪點，歡迎在此表單提出。<br>https://goo.gl/forms/6Xwli1qtdqk9ufb33<br><br>這份台灣衝浪點整理地圖，是由一群喜愛衝浪及熱愛分享衝浪的人所整理而成。曾經有位衝浪前輩說：讓衝浪變成一個全民運動，讓全台灣海邊都充滿衝浪的人，這張地圖就是抱著這樣的想法誕生了。<br><br>地點是透過網路及衝浪人蒐集而來的，故不保證資訊正確與否，僅供大家參考，也請浪人要注意安全，某些浪點並不適合新手，下浪請自身評估安全對自己生命負責。也歡迎大家分享、修正新浪點，目的是希望透過分享浪點，衝浪運動能更普及，也更不會同一個浪點人擠人。<br><br>相關資料 Related Information：<br>海域水質監測 Water Quality : https://wq.epa.gov.tw/Code/Default.aspx?Water=Sea<br>查看風&浪 Windy : https://www.windy.com<br>中央氣象局 潮汐預測 Tide Forcast : <br>https://www.cwb.gov.tw/V8/C/M/tide.html<br><br><br>]]></description>
+    <NetworkLink>
+      <name>台灣浪點地圖 Taiwan surf spots by Net Surfer</name>
+      <Link>
+        <href><![CDATA[https://www.google.com/maps/d/u/0/kml?forcekml=1&mid=1Tmx-N1h9ZELKdrtxT7RxT4oK1m0bhSoq]]></href>
+      </Link>
+    </NetworkLink>
+  </Document>
+</kml>
