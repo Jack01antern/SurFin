@@ -7,10 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.surfin.SurfinApplication
-import com.example.surfin.data.Spots
 import com.example.surfin.databinding.FragmentWeatherBinding
 import com.example.surfin.factory.WeatherFactory
 

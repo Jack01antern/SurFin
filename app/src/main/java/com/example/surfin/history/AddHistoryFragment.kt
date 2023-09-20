@@ -2,17 +2,16 @@ package com.example.surfin.history
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.UserActivityHistory
-import com.example.surfin.databinding.FragmentAddHistoryBinding
+import com.example.surfin.databinding.DialogAddHistoryBinding
 import com.example.surfin.factory.AddHistoryFactory
-import com.example.surfin.factory.WeatherFactory
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class AddHistoryFragment : Fragment() {
+class AddHistoryFragment : BottomSheetDialogFragment() {
 
     private lateinit var viewModel: AddHistoryViewModel
 
@@ -20,12 +19,14 @@ class AddHistoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentAddHistoryBinding.inflate(inflater)
-        val historyTitle = binding.inputLocationTitle.text
-        val historyDate = binding.inputDate.text
-        val historyContent = binding.inputContent.text
-        val historyPhoto = binding.inputPhoto.text
-
+        val binding = DialogAddHistoryBinding.inflate(inflater)
+        val locationTitle = binding.inputLocationTitle.text.toString()
+        val date = binding.inputDate.text.toString()
+        val content = binding.inputContent.text.toString()
+        val heartRate = binding.inputHeartRate.text.toString()
+        val timeDuration = binding.inputTimeDuration.text.toString()
+        val calories = binding.inputCalories.text.toString()
+        val photo = binding.inputPhoto.text.toString()
 
         //mockData
         val history = UserActivityHistory(

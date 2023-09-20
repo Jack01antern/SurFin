@@ -24,6 +24,14 @@ class AccountFragment : Fragment() {
         binding.btnActivityHistory.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_history_fragment)
         }
+        binding.btnCollection.setOnClickListener {
+            findNavController().navigate(R.id.action_navigate_to_collection_fragment)
+        }
+        binding.btnLanguage.setOnClickListener {
+            findNavController().navigate(R.id.action_navigate_to_language_fragment)
+        }
+
+
         return binding.root
     }
 
