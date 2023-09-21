@@ -6,13 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.surfin.R
 
-class LanguageFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = LanguageFragment()
-    }
+class LanguageDialog : AppCompatDialogFragment() {
 
     private lateinit var viewModel: LanguageViewModel
 
@@ -20,13 +17,9 @@ class LanguageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_language, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(LanguageViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        return inflater.inflate(R.layout.dialog_language, container, false)
     }
 
 }

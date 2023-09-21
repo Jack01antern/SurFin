@@ -11,7 +11,7 @@ import com.example.surfin.databinding.DialogAddHistoryBinding
 import com.example.surfin.factory.AddHistoryFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class AddHistoryFragment : BottomSheetDialogFragment() {
+class AddHistoryDialog : BottomSheetDialogFragment() {
 
     private lateinit var viewModel: AddHistoryViewModel
 

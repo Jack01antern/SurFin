@@ -17,7 +17,7 @@ import com.example.surfin.util.CurrentFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel : MainViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
 
 
         //button navigation
@@ -93,20 +92,28 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.historyFragment -> binding.toolbarTitle.text =
                     CurrentFragment.HISTORY.value
+
+                R.id.collectionFragment -> binding.toolbarTitle.text =
+                    CurrentFragment.COLLECTION.value
+
+                R.id.languageFragment -> binding.toolbarTitle.text =
+                    CurrentFragment.LANGUAGE.value
             }
             Log.i("toolbar", "toolbar value: ${viewModel.currentFragment.value}")
         }
     }
 
-    private fun setupToolbar(){
+    private fun setupToolbar() {
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { navController: NavController, _: NavDestination, _: Bundle? ->
             when (navController.currentDestination?.id) {
-                R.id.homeFragment -> binding.toolbar.visibility = View.GONE
-                R.id.weatherFragment -> binding.toolbar.visibility = View.GONE
-                R.id.exploreFragment -> binding.toolbar.visibility = View.GONE
+                R.id.homeFragment -> binding.toolbar.visibility = View.VISIBLE
+                R.id.weatherFragment -> binding.toolbar.visibility = View.VISIBLE
+                R.id.exploreFragment -> binding.toolbar.visibility = View.VISIBLE
                 R.id.emergencyFragment -> binding.toolbar.visibility = View.VISIBLE
                 R.id.accountFragment -> binding.toolbar.visibility = View.VISIBLE
-
+                R.id.historyFragment -> binding.toolbar.visibility = View.VISIBLE
+                R.id.collectionFragment -> binding.toolbar.visibility = View.VISIBLE
+                R.id.languageFragment -> binding.toolbar.visibility = View.VISIBLE
             }
             Log.i("toolbar", "toolbar value: ${viewModel.currentFragment.value}")
         }

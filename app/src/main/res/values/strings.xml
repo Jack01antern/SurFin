@@ -12,8 +12,8 @@
     <string name="weather_forecast">天氣預報</string>
     <string name="account">個人</string>
     <string name="emergency">緊急救難</string>
+    <string name="explore">探索</string>
 
-    
     <!--    home-->
     <string name="recommended_spots">推薦地點</string>
     <string name="search_spots">搜尋地點</string>
@@ -40,12 +40,13 @@
     <string name="upload_photo">請上傳照片</string>
 
 
-<!--    switch language-->
+    <!--    switch language-->
     <string name="english">English</string>
     <string name="simplified_chinese">简体中文</string>
     <string name="japanese">日本語</string>
     <string name="thai">ภาษาไทย</string>
     <string name="traditional_chinese">繁體中文</string>
+    <string name="locate_myself">顯示定位</string>
 
 
 </resources>

@@ -62,11 +62,6 @@ class ExploreFragment : Fragment() {
         ).get(ExploreViewModel::class.java)
 
 
-//        Places.initialize(requireContext(),getString(R.string.google_maps_api_key))
-//        autocomplete = childFragmentManager.findFragmentById(R.id.search_map) as AutocompleteSupportFragment
-//        autocomplete.setPlaceFields(listOf(Place.Field.ID, Place.Field.ADDRESS,Place.Field.LAT_LNG))
-
-
         val mapFragment = childFragmentManager.findFragmentById(R.id.explore) as SupportMapFragment?
         mapFragment?.getMapAsync(viewModel.callback)
 

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.surfin.R
 
-class DetailFragment : Fragment() {
+class DetailDialog : Fragment() {
 
 
     private lateinit var viewModel: DetailViewModel
@@ -17,7 +17,7 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        return inflater.inflate(R.layout.dialog_detail, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

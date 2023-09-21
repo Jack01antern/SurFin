@@ -43,7 +43,7 @@
 
     <dialog
         android:id="@+id/addHistoryFragment"
-        android:name="com.example.surfin.history.AddHistoryFragment"
+        android:name="com.example.surfin.history.AddHistoryDialog"
         android:label="AddHistoryFragment"
         tools:layout="@layout/dialog_add_history" />
 
@@ -59,11 +59,11 @@
         android:label="fragment_collection"
         tools:layout="@layout/fragment_collection" />
 
-    <fragment
+    <dialog
         android:id="@+id/languageFragment"
-        android:name="com.example.surfin.language.LanguageFragment"
+        android:name="com.example.surfin.language.LanguageDialog"
         android:label="fragment_language"
-        tools:layout="@layout/fragment_language" />
+        tools:layout="@layout/dialog_language" />
 
     <action
         android:id="@+id/action_navigate_to_home_fragment"

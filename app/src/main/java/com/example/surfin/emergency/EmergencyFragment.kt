@@ -1,26 +1,33 @@
 package com.example.surfin.emergency
 
-import android.content.Intent
-import android.net.Uri
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.surfin.R
-import com.example.surfin.data.localsource.SurfinDatabaseDao
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.surfin.databinding.FragmentEmergencyBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
 class EmergencyFragment : Fragment() {
 
     private lateinit var viewModel: EmergencyViewModel
-
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var binding: FragmentEmergencyBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentEmergencyBinding.inflate(inflater)
+        binding = FragmentEmergencyBinding.inflate(inflater)
+
+        val locationContent = binding.locationTextView
 
         binding.btnCall118.setOnClickListener {
             startActivity(viewModel.dial118())
@@ -30,11 +37,70 @@ class EmergencyFragment : Fragment() {
             startActivity(viewModel.dial112())
         }
 
+        binding.btnLocate.setOnClickListener {
+            checkPermission()
+        }
+
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
+
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(EmergencyViewModel::class.java)
+    }
+
+    private fun checkPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+                1
+            )
+        } else {
+            getLocations()
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getLocations() {
+        fusedLocationProviderClient.lastLocation?.addOnSuccessListener {
+            if (it == null) {
+                sequenceOf(
+                    Toast.makeText(
+                        requireContext(),
+                        "Sorry can't get location",
+                        Toast.LENGTH_SHORT
+                    )
+                )
+            } else it.apply {
+                val latitude = it.latitude
+                val longitude = it.longitude
+                binding.locationTextView.text = "$latitude, $longitude"
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == 1) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(requireContext(), "Permission Granted", Toast.LENGTH_SHORT).show()
+                getLocations()
+            } else {
+                Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT).show()
+
+            }
+        }
     }
 }
