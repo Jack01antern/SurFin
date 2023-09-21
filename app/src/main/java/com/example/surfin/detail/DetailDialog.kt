@@ -2,28 +2,37 @@ package com.example.surfin.detail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.example.surfin.R
+import com.example.surfin.databinding.DialogDetailBinding
+import com.example.surfin.factory.DetailFactory
+import com.example.surfin.weather.WeatherFragmentArgs
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class DetailDialog : Fragment() {
-
+class DetailDialog : BottomSheetDialogFragment() {
 
     private lateinit var viewModel: DetailViewModel
+    private lateinit var binding: DialogDetailBinding
+    private val args by navArgs<DetailDialogArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.dialog_detail, container, false)
-    }
+        binding = DialogDetailBinding.inflate(inflater)
+        viewModel = ViewModelProvider(this, DetailFactory(args)).get(DetailViewModel::class.java)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+        binding.locationTitle.text = args.tempId.title
+        Log.i("explore detail","$args")
 
+
+
+        return binding.root
+    }
 }

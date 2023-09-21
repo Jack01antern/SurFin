@@ -26,9 +26,7 @@ class EmergencyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEmergencyBinding.inflate(inflater)
-
-        val locationContent = binding.locationTextView
-
+        
         binding.btnCall118.setOnClickListener {
             startActivity(viewModel.dial118())
         }

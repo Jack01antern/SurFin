@@ -42,6 +42,17 @@
     </fragment>
 
     <dialog
+        android:id="@+id/detailDialog"
+        android:name="com.example.surfin.detail.DetailDialog"
+        android:label="dialog_detail"
+        tools:layout="@layout/dialog_detail">
+        <argument
+            android:name="tempId"
+            app:argType="com.example.surfin.data.Spots"
+            app:nullable="false" />
+    </dialog>
+
+    <dialog
         android:id="@+id/addHistoryFragment"
         android:name="com.example.surfin.history.AddHistoryDialog"
         android:label="AddHistoryFragment"
@@ -108,5 +119,10 @@
     <action
         android:id="@+id/action_navigate_to_language_fragment"
         app:destination="@id/languageFragment" />
+
+    <action
+        android:id="@+id/action_navigate_to_detail_fragment"
+        app:destination="@id/detailDialog" />
+
 
 </navigation>
