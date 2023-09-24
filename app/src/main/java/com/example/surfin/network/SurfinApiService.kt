@@ -22,6 +22,8 @@ private const val CWA_BASE_URL = "https://$CWA_HOST_NAME/api/$CWA_API_VERSION/"
 private const val CWA_TIDE_SOURCE = "O-B0075-001"
 private const val CWA_TEMP_SOURCE = "O-A0003-001"
 private const val CWA_UVI_SOURCE = "O-A0005-001"
+private const val CWA_WEATHER_SOURCE = "O-A0001-001"
+
 private const val CWA_EARTHQUAKE_SOURCE = "E-A0015-001"
 
 
@@ -58,6 +60,15 @@ interface SurfinApiService {
         @Query("elementName") elementName: String = "WDSD",
         @Query("parameterName") parameterName: String = "CITY"
     ): CwaTempResult
+
+    @GET("rest/datastore/$CWA_TEMP_SOURCE")
+    suspend fun getCwaWeather(
+        @Query("Authorization") apiKey: String = CWA_KEY,
+        @Query("stationId") stationId: String ,
+        @Query("elementName") elementName: String = "Weather",
+        @Query("parameterName") parameterName: String = "CITY"
+    ): CwaTempResult
+
 
     @GET("rest/datastore/$CWA_UVI_SOURCE")
     suspend fun getCwaUvi(

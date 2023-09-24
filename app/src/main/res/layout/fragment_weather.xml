@@ -16,6 +16,14 @@
         tools:context=".weather.WeatherFragment">
 
 
+        <TextView
+            android:id="@+id/weather"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text=""
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/temp_title"
@@ -23,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@string/temperature"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weather"
             />
 
         <TextView
@@ -40,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="@string/uvi"
             app:layout_constraintStart_toEndOf="@id/wdsd_title"
-            app:layout_constraintBottom_toTopOf="@id/temp_title"/>
+            app:layout_constraintTop_toTopOf="@id/temp_title"/>
         <TextView
             android:id="@+id/temp_value"
             android:layout_width="0dp"

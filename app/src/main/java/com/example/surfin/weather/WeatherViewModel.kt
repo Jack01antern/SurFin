@@ -5,12 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.surfin.data.CwaEarthquakeResult
 import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
 import com.example.surfin.data.SurfinRepository
-import io.grpc.android.BuildConfig
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(
@@ -35,6 +33,10 @@ class WeatherViewModel(
     private var _cwaUviResult = MutableLiveData<CwaUviResult>()
     val cwaUviResult: LiveData<CwaUviResult>
         get() = _cwaUviResult
+
+    private var _cwaWeatherResult = MutableLiveData<CwaTempResult>()
+    val cwaWeatherResult: LiveData<CwaTempResult>
+        get() = _cwaWeatherResult
 
 //    private var _cwaEarthquakeResult = MutableLiveData<List<CwaEarthquakeResult>>()
 //    val cwaEarthquakeResult: LiveData<List<CwaEarthquakeResult>>
@@ -95,6 +97,21 @@ class WeatherViewModel(
     }
 
 
+    private fun getCwaWeather() {
+        viewModelScope.launch {
+            try {
+                val dataList = repository.getCwaWeather(
+                    apiKey,
+                    args.tempId.weatherStationId
+                )
+                _cwaWeatherResult.value = dataList
+                Log.i("cwa", "weather success: $dataList")
+            } catch (e: Exception) {
+                Log.i("cwa", "weather:fail ${e.message}")
+            }
+        }
+    }
+
 //    private fun getCwaEarthquake() {
 //        viewModelScope.launch {
 //            try {
@@ -112,6 +129,7 @@ class WeatherViewModel(
         getCwaTide()
         getCwaWdsd()
         getCwaUvi()
+        getCwaWeather()
 //        getCwaEarthquake()
 
     }

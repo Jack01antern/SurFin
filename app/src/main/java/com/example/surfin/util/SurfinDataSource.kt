@@ -25,11 +25,15 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         return super.getCwaTemp(apiKey,locationName)
     }
 
-//    override suspend fun getCwaWdsd(locationName: String): CwaTempResult {
-//        return super.getCwaWdsd(locationName)
-//    }
+    override suspend fun getCwaWdsd(apiKey: String, locationName: String): CwaTempResult {
+        return super.getCwaWdsd(apiKey, locationName)
+    }
 
-    override suspend fun getCwaUvi(apiKey: String,locationName: String): CwaUviResult {
+    override suspend fun getCwaWeather(apiKey: String, locationName: String): CwaTempResult {
+        return super.getCwaWeather(apiKey, locationName)
+    }
+
+    override suspend fun getCwaUvi(apiKey: String, locationName: String): CwaUviResult {
         return super.getCwaUvi(apiKey,locationName)
     }
 

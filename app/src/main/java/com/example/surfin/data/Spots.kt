@@ -22,6 +22,8 @@ data class Spots(
     val tideStationId: String="",
 //    @ColumnInfo(name = "tempStationId")
     val tempStationId: String="",
+    //    @ColumnInfo(name = "tempStationId")
+    val weatherStationId: String="",
 //    @ColumnInfo(name = "wdsdStationId")
     val wdsdStationId: String="",
 //    @ColumnInfo(name = "uviStationId")

@@ -44,6 +44,10 @@ class WeatherFragment : Fragment() {
             binding.wdsdValue.text = it.records.location[0].weatherElement[0].elementValue
         })
 
+        viewModel.cwaWeatherResult.observe(viewLifecycleOwner, Observer {
+            binding.weather.text = it.records.location[0].weatherElement[0].elementValue
+        })
+
         return binding.root
     }
 
