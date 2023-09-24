@@ -1,5 +1,6 @@
 package com.example.surfin.network
 
+import com.example.surfin.BuildConfig
 import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
@@ -14,7 +15,7 @@ import retrofit2.http.Query
 //cwa base api
 private const val CWA_HOST_NAME = "opendata.cwa.gov.tw"
 private const val CWA_API_VERSION = "v1"
-private const val CWA_KEY = "CWB-35714F4C-C162-403B-BF09-664E4C82C664"
+private const val CWA_KEY = BuildConfig.API_KEY
 private const val CWA_BASE_URL = "https://$CWA_HOST_NAME/api/$CWA_API_VERSION/"
 
 //cwa data source

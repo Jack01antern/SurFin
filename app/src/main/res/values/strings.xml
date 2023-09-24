@@ -3,13 +3,6 @@
     <string name="login_title">請登入會員</string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
-    <!--google api-->
-    <string name="google_maps_api_key">AIzaSyCSQ0lDQZIFiBkm7_vaRaMKtYrM5aRuJNc</string>
-    <string name="map_id">06a039c0-49c4-4a95-bc79-894689a3a69f</string>
-
-
-    <!--    cwa api-->
-    <string name="cwa_api">CWB-35714F4C-C162-403B-BF09-664E4C82C664</string>
 
     <!--    toolbar-->
     <string name="weather_forecast">天氣預報</string>

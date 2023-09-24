@@ -10,12 +10,15 @@ import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
 import com.example.surfin.data.SurfinRepository
+import io.grpc.android.BuildConfig
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(
     private val args: WeatherFragmentArgs,
     private val repository: SurfinRepository
 ) : ViewModel() {
+
+    private val apiKey = com.example.surfin.BuildConfig.API_KEY
 
     private var _cwaTideResult = MutableLiveData<List<CwaTideResult>>()
     val cwaTideResult: LiveData<List<CwaTideResult>>
@@ -40,7 +43,7 @@ class WeatherViewModel(
     private fun getCwaTide() {
         viewModelScope.launch {
             try {
-                val dataList = repository.getCwaTide("CWB-35714F4C-C162-403B-BF09-664E4C82C664",args.tempId.tideStationId)
+                val dataList = repository.getCwaTide(apiKey,args.tempId.tideStationId)
                 _cwaTideResult.value = listOf(dataList)
                 Log.i("cwa", "tide success: $dataList")
             } catch (e: Exception) {
@@ -53,7 +56,7 @@ class WeatherViewModel(
     private fun getCwaTemp() {
         viewModelScope.launch {
             try {
-                val dataList = repository.getCwaTemp("CWB-35714F4C-C162-403B-BF09-664E4C82C664",args.tempId.tempStationId)
+                val dataList = repository.getCwaTemp(apiKey,args.tempId.tempStationId)
                 _cwaTempResult.value = dataList
                 Log.i("cwa", "temp success: $dataList")
             } catch (e: Exception) {
@@ -66,7 +69,7 @@ class WeatherViewModel(
     private fun getCwaWdsd() {
         viewModelScope.launch {
             try {
-                val dataList = repository.getCwaWdsd("CWB-35714F4C-C162-403B-BF09-664E4C82C664",args.tempId.wdsdStationId)
+                val dataList = repository.getCwaWdsd(apiKey,args.tempId.wdsdStationId)
                 _cwaWdsdResult.value = dataList
                 Log.i("cwa", "wdsd success: $dataList")
             } catch (e: Exception) {
@@ -80,7 +83,7 @@ class WeatherViewModel(
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaUvi(
-                    "CWB-35714F4C-C162-403B-BF09-664E4C82C664",
+                    apiKey,
                     args.tempId.uviStationId
                 )
                 _cwaUviResult.value = dataList
