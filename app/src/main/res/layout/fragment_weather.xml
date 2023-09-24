@@ -1,13 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".weather.WeatherFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.surfin.weather.WeatherViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        tools:context=".weather.WeatherFragment">
 
-</FrameLayout>
+
+
+        <TextView
+            android:id="@+id/temp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temperature"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/wdsd_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wdsd"
+            app:layout_constraintStart_toEndOf="@id/temp_title"
+            app:layout_constraintTop_toTopOf="@id/temp_title"/>
+
+        <TextView
+            android:id="@+id/uvi_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/uvi"
+            app:layout_constraintStart_toEndOf="@id/wdsd_title"
+            app:layout_constraintBottom_toTopOf="@id/temp_title"/>
+        <TextView
+            android:id="@+id/temp_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/temp_title"
+            app:layout_constraintEnd_toStartOf="@id/wdsd_value"
+            tools:text="3"/>
+
+
+        <TextView
+            android:id="@+id/wdsd_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintStart_toEndOf="@id/temp_value"
+            app:layout_constraintTop_toTopOf="@id/temp_value"
+            app:layout_constraintEnd_toStartOf="@id/uvi_value"
+            app:layout_constraintBottom_toBottomOf="@id/temp_value"
+            tools:text="3"/>
+
+        <TextView
+            android:id="@+id/uvi_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintStart_toEndOf="@id/wdsd_value"
+            app:layout_constraintTop_toTopOf="@id/temp_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/temp_value"
+            tools:text="11.05"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -8,6 +8,9 @@
     <string name="map_id">06a039c0-49c4-4a95-bc79-894689a3a69f</string>
 
 
+    <!--    cwa api-->
+    <string name="cwa_api">CWB-35714F4C-C162-403B-BF09-664E4C82C664</string>
+
     <!--    toolbar-->
     <string name="weather_forecast">天氣預報</string>
     <string name="account">個人</string>
@@ -47,6 +50,10 @@
     <string name="thai">ภาษาไทย</string>
     <string name="traditional_chinese">繁體中文</string>
     <string name="locate_myself">顯示定位</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="temperature">溫度：</string>
+    <string name="wdsd">風速：</string>
+    <string name="uvi">紫外線：</string>
 
 
 </resources>

@@ -17,19 +17,20 @@
         tools:context=".detail.DetailDialog">
 
         <ImageView
-            android:id="@+id/btn_star"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:src="@drawable/baseline_turned_in_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
             android:id="@+id/btn_starred"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:src="@drawable/baseline_turned_in_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_unstarred"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+
             android:src="@drawable/outline_turned_in_not_24"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -37,36 +38,38 @@
             android:id="@+id/location_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.selectedDetail.tempId.title}"
-            app:layout_constraintBottom_toBottomOf="@id/btn_star"
-            app:layout_constraintStart_toEndOf="@id/btn_star"
-            app:layout_constraintTop_toTopOf="@id/btn_star"
-            tools:text="McCauley Beach "/>
+            android:text="@{viewModel.selectedDetail.spotInfo.title}"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_unstarred"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_unstarred"
+            tools:text="McCauley Beach " />
 
         <TextView
             android:id="@+id/location_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.selectedDetail.tempId.content}"
-            app:layout_constraintStart_toStartOf="@id/btn_star"
-            app:layout_constraintTop_toBottomOf="@id/btn_star"
-            tools:text="The place where surfers first surfed. (hearsay)"/>
+            android:text="@{viewModel.selectedDetail.spotInfo.content}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/location_title"
+            app:layout_constraintTop_toBottomOf="@id/btn_unstarred"
+            tools:text="The place where surfers first surfed. (hearsay)" />
 
         <ImageView
             android:id="@+id/spot_image_1"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            app:srcCompat="@drawable/outline_hide_image_24"
-            app:layout_constraintStart_toStartOf="@id/btn_star"
-            app:layout_constraintTop_toBottomOf="@id/location_content"/>
+            app:layout_constraintStart_toStartOf="@id/location_title"
+            app:layout_constraintTop_toBottomOf="@id/location_content"
+            app:srcCompat="@drawable/outline_hide_image_24" />
 
         <ImageView
             android:id="@+id/spot_image_2"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            app:srcCompat="@drawable/outline_hide_image_24"
             app:layout_constraintStart_toEndOf="@id/spot_image_1"
-            app:layout_constraintTop_toBottomOf="@id/location_content"/>
+            app:layout_constraintTop_toBottomOf="@id/location_content"
+            app:srcCompat="@drawable/outline_hide_image_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

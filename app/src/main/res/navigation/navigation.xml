@@ -47,7 +47,7 @@
         android:label="dialog_detail"
         tools:layout="@layout/dialog_detail">
         <argument
-            android:name="tempId"
+            android:name="spotInfo"
             app:argType="com.example.surfin.data.Spots"
             app:nullable="false" />
     </dialog>

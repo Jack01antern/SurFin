@@ -17,7 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SurFin"
         tools:targetApi="31" >
-
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.SurFin" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

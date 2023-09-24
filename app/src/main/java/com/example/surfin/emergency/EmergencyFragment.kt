@@ -26,7 +26,7 @@ class EmergencyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEmergencyBinding.inflate(inflater)
-        
+
         binding.btnCall118.setOnClickListener {
             startActivity(viewModel.dial118())
         }
