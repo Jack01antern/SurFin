@@ -36,7 +36,7 @@ android {
     buildFeatures {
         viewBinding true
         dataBinding true
-        compose true
+//        compose true
         buildConfig = true
     }
 
@@ -187,5 +187,7 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-firestore-ktx")
 
-
+    //likne chart
+//    implementation 'com.diogobernardino:williamchart:3.10.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }

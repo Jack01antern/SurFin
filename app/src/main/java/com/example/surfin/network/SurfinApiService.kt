@@ -19,12 +19,10 @@ private const val CWA_KEY = BuildConfig.API_KEY
 private const val CWA_BASE_URL = "https://$CWA_HOST_NAME/api/$CWA_API_VERSION/"
 
 //cwa data source
-private const val CWA_TIDE_SOURCE = "O-B0075-001"
+private const val CWA_TIDE_SOURCE = "F-A0021-001"
 private const val CWA_TEMP_SOURCE = "O-A0003-001"
 private const val CWA_UVI_SOURCE = "O-A0005-001"
-private const val CWA_WEATHER_SOURCE = "O-A0001-001"
 
-private const val CWA_EARTHQUAKE_SOURCE = "E-A0015-001"
 
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
@@ -41,9 +39,9 @@ interface SurfinApiService {
     @GET("rest/datastore/$CWA_TIDE_SOURCE")
     suspend fun getCwaTide(
         @Query("Authorization") apiKey: String = CWA_KEY,
-        @Query("StationID") stationId: String ,
-        @Query("WeatherElement") weatherElement: String = "TideHeight",
-        @Query("sort") sort: String = "DataTime"
+        @Query("LocationId") stationId: String ,
+        @Query("WeatherElement") weatherElement: String = "TideHeights",
+        @Query("sort") sort: String = "Date"
     ): CwaTideResult
 
     @GET("rest/datastore/$CWA_TEMP_SOURCE")
@@ -77,10 +75,6 @@ interface SurfinApiService {
         @Query("locationCode") locationCode: String
     ): CwaUviResult
 
-//    @GET("rest/datastore/$CWA_EARTHQUAKE_SOURCE")
-//    suspend fun getCwaEarthquake(
-//        @Query("Authorization") apiKey: String = CWA_KEY,
-//    ): CwaEarthquakeResult
 }
 
 // cwa tide

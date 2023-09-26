@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
 
         val adapter = HomeAdapter(HomeAdapter.OnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigateToWeatherFragment(it))
+            Log.i("cwa args","${it}")
         })
 
 
