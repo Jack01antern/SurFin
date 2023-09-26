@@ -48,10 +48,10 @@ interface SurfinRepository {
 
     fun getAllHistory(): LiveData<List<UserActivityHistory>>
 
-//    fun addToCollection(spots: Spots)
-//
-//    fun getAllCollection(): LiveData<List<Spots>>
-//
-//    fun removeCollection(lat: Double, long: Double)
+    fun addToCollection(spots: Spots)
+
+    fun getAllCollection(): LiveData<List<Spots>>
+
+    fun removeCollection(lat: Double, longitude: Double)
 
 }

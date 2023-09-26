@@ -58,7 +58,7 @@ class ExploreFragment : Fragment() {
                 spotsInfo.addAll(snapshot!!.toObjects(Spots::class.java))
 
                 for (spot in spotsInfo) {
-                    val latLong = LatLng(spot.lat, spot.long)
+                    val latLong = LatLng(spot.lat, spot.longitude)
                     googleMap.addMarker(
                         MarkerOptions().position(latLong).title(spot.title).snippet(spot.content)
                     )

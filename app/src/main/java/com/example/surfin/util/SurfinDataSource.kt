@@ -73,15 +73,15 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         return dao.getAllHistory()
     }
 
-//    override fun addToCollection(spots: Spots) {
-//        return dao.addToCollection(spots)
-//    }
-//
-//    override fun getAllCollection(): LiveData<List<Spots>> {
-//        return dao.getAllCollection()
-//    }
-//
-//    override fun removeCollection(lat: Double, long: Double) {
-//        return dao.removeCollection(lat, long)
-//    }
+    override fun addToCollection(spots: Spots) {
+        return dao.addToCollection(spots)
+    }
+
+    override fun getAllCollection(): LiveData<List<Spots>> {
+        return dao.getAllCollection()
+    }
+
+    override fun removeCollection(lat: Double, longitude: Double) {
+        return dao.removeCollection(lat, longitude)
+    }
 }

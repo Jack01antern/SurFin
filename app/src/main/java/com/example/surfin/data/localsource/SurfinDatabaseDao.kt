@@ -26,15 +26,15 @@ interface SurfinDatabaseDao {
     fun getAllHistory():
             LiveData<List<UserActivityHistory>>
 
-//    @Insert
-//    fun addToCollection(spots: Spots)
-//
+    @Insert
+    fun addToCollection(spots: Spots)
 
-//    @Query("SELECT * FROM user_collection ORDER BY id ASC")
-//    fun getAllCollection():
-//            LiveData<List<Spots>>
-//
-//    @Query("DELETE from user_collection WHERE lat = :lat AND long = :long")
-//    fun removeCollection(lat: Double, long: Double)
+
+    @Query("SELECT * FROM user_collection ORDER BY id ASC")
+    fun getAllCollection():
+            LiveData<List<Spots>>
+
+    @Query("DELETE from user_collection WHERE lat = :lat AND longitude = :longitude")
+    fun removeCollection(lat: Double, longitude: Double)
 
 }

@@ -45,9 +45,13 @@ class WeatherFragment : Fragment() {
         })
 
         viewModel.cwaWeatherResult.observe(viewLifecycleOwner, Observer {
-            binding.weather.text = it.records.location[0].weatherElement[0].elementValue
+            binding.weatherValue.text = it.records.location[0].weatherElement[0].elementValue
         })
 
+
+        viewModel.cwaTideResult.observe(viewLifecycleOwner, Observer {
+            binding.tideValue.text = it.toString()
+        })
         return binding.root
     }
 

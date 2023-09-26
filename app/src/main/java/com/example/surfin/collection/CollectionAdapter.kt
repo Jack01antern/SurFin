@@ -27,7 +27,7 @@ class CollectionAdapter :
         override fun areItemsTheSame(
             oldItem: Spots, newItem: Spots
         ): Boolean {
-            return oldItem.long == newItem.long && oldItem.lat == newItem.lat
+            return oldItem.longitude == newItem.longitude && oldItem.lat == newItem.lat
         }
 
         override fun areContentsTheSame(

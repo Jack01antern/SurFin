@@ -41,6 +41,7 @@ interface SurfinApiService {
     @GET("rest/datastore/$CWA_TIDE_SOURCE")
     suspend fun getCwaTide(
         @Query("Authorization") apiKey: String = CWA_KEY,
+        @Query("StationID") stationId: String ,
         @Query("WeatherElement") weatherElement: String = "TideHeight",
         @Query("sort") sort: String = "DataTime"
     ): CwaTideResult
