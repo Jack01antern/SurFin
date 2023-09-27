@@ -7,26 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.navArgs
 import com.example.surfin.SurfinApplication
-import com.example.surfin.data.SurfinRepository
 import com.example.surfin.databinding.DialogDetailBinding
 import com.example.surfin.factory.DetailFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 
 class DetailDialog : BottomSheetDialogFragment() {
 
     private lateinit var viewModel: DetailViewModel
     private lateinit var binding: DialogDetailBinding
-    private val args by navArgs<DetailDialogArgs>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val args = DetailDialogArgs.fromBundle(requireArguments()).spotInfo
+
         binding = DialogDetailBinding.inflate(inflater)
         val repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
         viewModel = ViewModelProvider(
@@ -36,6 +33,14 @@ class DetailDialog : BottomSheetDialogFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+
+        //photo recycler view
+        val adapter = DetailAdapter()
+        binding.detailRecyclerView.adapter = adapter
+        viewModel.selectedDetail.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it.photo)
+            Log.i("selected detail args info","${it.photo}")
+        })
 
         //star function
         val starredBtn = binding.btnStarred
@@ -55,15 +60,15 @@ class DetailDialog : BottomSheetDialogFragment() {
         unStarredBtn.setOnClickListener {
             unStarredBtn.visibility = View.GONE
             starredBtn.visibility = View.VISIBLE
-            viewModel.addToCollection(repository, args.spotInfo)
-            Log.i("STARRED3", "${args.spotInfo}")
+            viewModel.addToCollection(repository, args)
+            Log.i("STARRED3", "${args}")
         }
 
         starredBtn.setOnClickListener {
             starredBtn.visibility = View.GONE
             unStarredBtn.visibility = View.VISIBLE
-            viewModel.removeFromCollection(repository, args.spotInfo)
-            Log.i("STARRED4", "${args.spotInfo}")
+            viewModel.removeFromCollection(repository, args)
+            Log.i("STARRED4", "${args}")
         }
 
 

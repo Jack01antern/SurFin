@@ -23,38 +23,43 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
 
-        <TextView
+        <ImageView
             android:id="@+id/weather_value"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text=""
+            app:srcCompat="@drawable/outline_hide_image_24"
+            app:layout_constraintDimensionRatio="3:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line_chart" />
+            app:layout_constraintTop_toBottomOf="@id/line_chart"
+            tools:text="晴"/>
 
         <TextView
             android:id="@+id/temp_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/temperature"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weather_value"
             app:layout_constraintEnd_toStartOf="@id/wdsd_title"/>
 
         <TextView
             android:id="@+id/wdsd_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/wdsd"
+            android:textAlignment="center"
             app:layout_constraintStart_toEndOf="@id/temp_title"
             app:layout_constraintTop_toTopOf="@id/temp_title"
             app:layout_constraintEnd_toStartOf="@id/uvi_value"/>
 
         <TextView
             android:id="@+id/uvi_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/uvi"
+            android:textAlignment="center"
             app:layout_constraintStart_toEndOf="@id/wdsd_title"
             app:layout_constraintTop_toTopOf="@id/temp_title"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -64,6 +69,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
+            android:textAlignment="center"
             app:layout_constraintEnd_toStartOf="@id/wdsd_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/temp_title"
@@ -75,6 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@id/temp_value"
             app:layout_constraintEnd_toStartOf="@id/uvi_value"
             app:layout_constraintStart_toEndOf="@id/temp_value"
@@ -86,6 +93,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@id/temp_value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/wdsd_value"

@@ -20,15 +20,16 @@ class AccountFragment : Fragment() {
 
 
     private lateinit var viewModel: AccountViewModel
-    lateinit var locale: Locale
+    private lateinit var locale: Locale
+    private lateinit var binding: FragmentAccountBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentAccountBinding.inflate(inflater)
+        binding = FragmentAccountBinding.inflate(inflater)
 
         var languageList = ArrayList<String>()
-        languageList.add("Select")
+        languageList.add("")
         languageList.add("English")
         languageList.add("Chinese")
 
@@ -38,6 +39,7 @@ class AccountFragment : Fragment() {
             com.bumptech.glide.R.layout.support_simple_spinner_dropdown_item,
             languageList
         )
+
         binding.spinner.adapter = adapter
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -66,7 +68,7 @@ class AccountFragment : Fragment() {
             findNavController().navigate(R.id.action_navigate_to_collection_fragment)
         }
         binding.btnLanguage.setOnClickListener {
-            findNavController().navigate(R.id.action_navigate_to_language_fragment)
+                binding.spinner.visibility = View.VISIBLE
         }
 
         binding.btnProvideSpots.setOnClickListener {
@@ -90,6 +92,8 @@ class AccountFragment : Fragment() {
 
         var refresh = Intent(requireContext(), MainActivity::class.java)
         startActivity(refresh)
+        binding.spinner.visibility = View.GONE
+
     }
 
 

@@ -53,12 +53,12 @@ class WeatherFragment : Fragment() {
         })
 
         viewModel.cwaWeatherResult.observe(viewLifecycleOwner, Observer {
-            binding.weatherValue.text = viewModel.cwaWeatherResult.value.toString()
+//            binding.weatherValue.text = viewModel.cwaWeatherResult.value.toString()
         })
 
 
 //        viewModel.cwaTideResult.observe(viewLifecycleOwner, Observer {
-            setLineChartData()
+//            setLineChartData()
 //
 //        })
 
@@ -69,11 +69,11 @@ class WeatherFragment : Fragment() {
 
 
         val entries = ArrayList<Entry>()
-        entries.add(Entry(0f, 3f))
-        entries.add(Entry(1f, 1f))
-        entries.add(Entry(2f, 6f))
-        entries.add(Entry(3f, 3f))
-        entries.add(Entry(4f, 5f))
+//        entries.add(Entry(0f, 3f))
+//        entries.add(Entry(1f, 1f))
+//        entries.add(Entry(2f, 6f))
+//        entries.add(Entry(3f, 3f))
+//        entries.add(Entry(4f, 5f))
 
 
 
@@ -86,6 +86,4 @@ class WeatherFragment : Fragment() {
         binding.lineChart.animateXY(3000, 3000)
 
     }
-
-
 }

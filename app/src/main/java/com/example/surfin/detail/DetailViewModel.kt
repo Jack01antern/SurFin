@@ -11,12 +11,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DetailViewModel(repository: SurfinRepository, args: DetailDialogArgs) : ViewModel() {
+class DetailViewModel(repository: SurfinRepository, args: Spots) : ViewModel() {
 
-    private val _selectedDetail = MutableLiveData<DetailDialogArgs>()
-    val selectedDetail: LiveData<DetailDialogArgs>
-        get() = _selectedDetail
+    var selectedDetail = MutableLiveData<Spots>()
+//    var selectedDetail LiveData<Spots>
+//        get() = _selectedDetail
 
+
+//    private var _detailPhoto = MutableLiveData<MutableList<String>>()
+//    val detailPhoto:LiveData<MutableList<String>>
+//        get() = _detailPhoto
 //    private val _spotCollection: LiveData<List<Spots>> = repository.getAllCollection()
 //
 //    val spotCollection: LiveData<List<Spots>>
@@ -29,19 +33,19 @@ class DetailViewModel(repository: SurfinRepository, args: DetailDialogArgs) : Vi
 
 
     init {
-        _selectedDetail.value = args
-        Log.i("selectedProduct", "$args")
+        selectedDetail.value =  args
+        Log.i("selectedDetail", "$args")
         checkIfStarred(repository,args)
     }
 
 
     //set up star function
-    private fun checkIfStarred(repository: SurfinRepository, args: DetailDialogArgs) {
+    private fun checkIfStarred(repository: SurfinRepository, args: Spots) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
                     val list = repository.getAllCollection()
-                    _isStarred.value = list.value?.any { it.lat == args.spotInfo.lat && it.longitude == args.spotInfo.longitude } == true
+                    _isStarred.value = list.value?.any { it.lat == args.lat && it.longitude == args.longitude } == true
                 } catch (e: Exception) {
                     Log.i("detail db", "failed: ${e.message}")
                 }

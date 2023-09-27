@@ -1,4 +1,18 @@
 package com.example.surfin.util
 
-class BindingAdapter {
+import android.widget.ImageView
+import androidx.core.net.toUri
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+
+
+
+@BindingAdapter("imageUrl")
+fun bindImageMain(imageView: ImageView, mainImage: String?) {
+    mainImage?.let {
+        var imgUri = it.toUri().buildUpon().scheme("https").build()
+        Glide.with(imageView.context)
+            .load(imgUri)
+            .into(imageView)
+    }
 }
