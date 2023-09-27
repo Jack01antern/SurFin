@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -57,23 +58,24 @@ class WeatherFragment : Fragment() {
         })
 
 
-//        viewModel.cwaTideResult.observe(viewLifecycleOwner, Observer {
-//            setLineChartData()
-//
-//        })
+        viewModel.cwaTideResult.observe(viewLifecycleOwner, Observer {
+            viewModel.cwaTideResult.value?.let { it1 -> setLineChartData(it1) }
+
+        })
 
         return binding.root
     }
 
-    private fun setLineChartData() {
+    private fun setLineChartData(entries: List<Entry>) {
 
+        Log.i("line chart", "$entries")
 
-        val entries = ArrayList<Entry>()
-//        entries.add(Entry(0f, 3f))
-//        entries.add(Entry(1f, 1f))
-//        entries.add(Entry(2f, 6f))
-//        entries.add(Entry(3f, 3f))
-//        entries.add(Entry(4f, 5f))
+//        val entries = ArrayList<Entry>()
+////        entries.add(Entry(0f, 3f))
+////        entries.add(Entry(1f, 1f))
+////        entries.add(Entry(2f, 6f))
+////        entries.add(Entry(3f, 3f))
+////        entries.add(Entry(4f, 5f))
 
 
 

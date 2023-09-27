@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.surfin.data.SurfinRepository
+import com.example.surfin.data.TideTime
 import kotlinx.coroutines.launch
 import java.security.KeyStore.Entry
 import java.text.SimpleDateFormat
@@ -19,8 +20,8 @@ class WeatherViewModel(
 
     private val apiKey = com.example.surfin.BuildConfig.API_KEY
 
-    private var _cwaTideResult = MutableLiveData<MutableList<Entry>>()
-    val cwaTideResult: LiveData<MutableList<Entry>>
+    private var _cwaTideResult = MutableLiveData<List<com.github.mikephil.charting.data.Entry>>()
+    val cwaTideResult: LiveData<List<com.github.mikephil.charting.data.Entry>>
         get() = _cwaTideResult
 
     private var _cwaTempResult = MutableLiveData<String>()
@@ -39,52 +40,33 @@ class WeatherViewModel(
     val cwaWeatherResult: LiveData<String>
         get() = _cwaWeatherResult
 
+    private fun List<TideTime>.toEntryList(): List<com.github.mikephil.charting.data.Entry> {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+
+        return this.map {
+            val dateTime = dateFormat.parse(it.dateTime)
+            val dateTimeMillis = dateTime.time.toFloat()
+            com.github.mikephil.charting.data.Entry(
+                dateTimeMillis,
+                it.tideHeights.aboveTWVD.toFloat()
+            )
+        }
+    }
+
 
     private fun getCwaTide() {
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaTide(apiKey, args.tempId.tideStationId)
-                val dailyDataList = mutableListOf<Entry>()
-
-                dataList.records.tideForecasts[0].location.timePeriods.daily.take(3).forEach {
-
-
-                    it.tideTime.forEach { it ->
-                        val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.TAIWAN)
-                        val dateTime = format.parse(it.dateTime).time.toFloat()
-
-
-                        val aboveTWVD = it.tideHeights.aboveTWVD.toFloat()
-
-                    }
-                    _cwaTideResult.value = dailyDataList
-
-                }
-
-                Log.i("cwa", "tide success: ${_cwaTideResult.value}")
-
+                val entry =
+                    dataList.records.tideForecasts[0].location.timePeriods.daily[0].tideTime.toEntryList()
+                _cwaTideResult.value = entry
             } catch (e: Exception) {
                 Log.i("cwa", "tide:fail ${e.message}")
             }
         }
     }
 
-
-    private fun getCwaTideDate() {
-        viewModelScope.launch {
-            try {
-                val dataList = repository.getCwaTide(apiKey, args.tempId.tideStationId)
-                val dateList = mutableListOf<String>()
-                dataList.records.tideForecasts[0].location.timePeriods.daily[0].tideTime.forEach {
-                    dateList.add(it.dateTime)
-                }
-//                _cwaDateResult.value = dateList
-                Log.i("cwa", "tide success: ${_cwaTideResult.value}")
-            } catch (e: Exception) {
-                Log.i("cwa", "tide:fail ${e.message}")
-            }
-        }
-    }
 
     private fun getCwaTemp() {
         viewModelScope.launch {
@@ -156,6 +138,8 @@ class WeatherViewModel(
         getCwaWdsd()
         getCwaUvi()
         getCwaWeather()
-        getCwaTideDate()
     }
 }
+
+
+
