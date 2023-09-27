@@ -13,7 +13,7 @@ import retrofit2.http.Query
 
 
 //cwa base api
-private const val CWA_HOST_NAME = "opendata.cwa.gov.tw"
+private const val CWA_HOST_NAME = "opendata.cwb.gov.tw"
 private const val CWA_API_VERSION = "v1"
 private const val CWA_KEY = BuildConfig.API_KEY
 private const val CWA_BASE_URL = "https://$CWA_HOST_NAME/api/$CWA_API_VERSION/"

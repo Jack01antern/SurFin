@@ -76,6 +76,12 @@
         android:label="fragment_language"
         tools:layout="@layout/dialog_language" />
 
+    <dialog
+        android:id="@+id/recommendDialog"
+        android:name="com.example.surfin.account.RecommendDialog"
+        android:label="fragment_provide"
+        tools:layout="@layout/dialog_recommend"/>
+
     <action
         android:id="@+id/action_navigate_to_home_fragment"
         app:destination="@id/homeFragment"
@@ -124,5 +130,8 @@
         android:id="@+id/action_navigate_to_detail_fragment"
         app:destination="@id/detailDialog" />
 
+    <action
+        android:id="@+id/action_navigate_to_recommend_fragment"
+        app:destination="@id/recommendDialog" />
 
 </navigation>
