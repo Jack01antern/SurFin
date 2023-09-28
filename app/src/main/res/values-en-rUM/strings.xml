@@ -45,9 +45,10 @@
     <string name="thai">ภาษาไทย</string>
     <string name="traditional_chinese">繁體中文</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="temperature">溫度：</string>
-    <string name="wdsd">風速：</string>
-    <string name="uvi">紫外線：</string>
+    <string name="temperature">溫度</string>
+    <string name="wdsd">風速</string>
+    <string name="uvi">紫外線</string>
+    <string name="recommend_spot">請輸入推薦浪點</string>
 
 
 </resources>

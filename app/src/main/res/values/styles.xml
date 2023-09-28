@@ -7,4 +7,10 @@
         <item name="android:windowBackground">@color/translucent_40</item>
         <item name="android:animation">@null</item>
     </style>
+    <style name="round_image_view">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+        <item name="color">@color/translucent_40</item>
+        <item name="android:animation">@null</item>
+    </style>
 </resources>

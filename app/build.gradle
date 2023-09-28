@@ -5,7 +5,6 @@ plugins {
     id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
-//    id 'com.google.dagger.hilt.android'
     id 'com.google.gms.google-services'
 }
 
@@ -15,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.surfin"
-        minSdk 28
+        minSdk 24
         targetSdk 32
         versionCode 3
         versionName "1.2.0"
@@ -36,7 +35,6 @@ android {
     buildFeatures {
         viewBinding true
         dataBinding true
-//        compose true
         buildConfig = true
     }
 
@@ -187,7 +185,11 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-firestore-ktx")
 
-    //likne chart
+    //line chart
 //    implementation 'com.diogobernardino:williamchart:3.10.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+
+    //zoom in pinch
+    implementation 'com.github.MikeOrtiz:TouchImageView:1.4.1'
 }

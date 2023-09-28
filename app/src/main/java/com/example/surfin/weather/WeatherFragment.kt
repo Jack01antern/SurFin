@@ -70,19 +70,12 @@ class WeatherFragment : Fragment() {
 
         Log.i("line chart", "$entries")
 
-//        val entries = ArrayList<Entry>()
-////        entries.add(Entry(0f, 3f))
-////        entries.add(Entry(1f, 1f))
-////        entries.add(Entry(2f, 6f))
-////        entries.add(Entry(3f, 3f))
-////        entries.add(Entry(4f, 5f))
-
-
-
         val lineDataSet = LineDataSet(entries, "")
         val dataSets = listOf(lineDataSet)
         binding.lineChart.data = LineData(dataSets)
 
+        lineDataSet.circleColors = listOf( ContextCompat.getColor(requireContext(),R.color.primary_navy))
+        binding.lineChart.xAxis.isEnabled = false
         lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
         lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.primary_navy)
         binding.lineChart.animateXY(3000, 3000)

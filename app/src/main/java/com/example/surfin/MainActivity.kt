@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             when (navController.currentDestination?.id) {
                 R.id.homeFragment -> binding.toolbar.visibility = View.VISIBLE
                 R.id.weatherFragment -> binding.toolbar.visibility = View.VISIBLE
-                R.id.exploreFragment -> binding.toolbar.visibility = View.VISIBLE
+                R.id.exploreFragment -> binding.toolbar.visibility = View.GONE
                 R.id.emergencyFragment -> binding.toolbar.visibility = View.VISIBLE
                 R.id.accountFragment -> binding.toolbar.visibility = View.VISIBLE
                 R.id.historyFragment -> binding.toolbar.visibility = View.VISIBLE
