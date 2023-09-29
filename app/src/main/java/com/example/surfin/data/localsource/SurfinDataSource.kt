@@ -1,4 +1,4 @@
-package com.example.surfin.util
+package com.example.surfin.data.localsource
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,6 +10,8 @@ import com.example.surfin.data.Spots
 import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.localsource.SurfinDatabaseDao
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: FirebaseFirestore) :
     SurfinRepository {
@@ -63,9 +65,10 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         return dao.insertHistory(user)
     }
 
-
-    override suspend fun getCertainHistory(activityId:Long): LiveData<UserActivityHistory> {
-        return dao.getCertainHistory(activityId)
+    override suspend fun updateHistory(user: UserActivityHistory) {
+        withContext(Dispatchers.IO) {
+        dao.updateHistory(user)
+    }
     }
 
     override suspend fun clearHistory() {

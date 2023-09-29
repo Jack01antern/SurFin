@@ -27,9 +27,9 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
 
         val binding = DialogAddHistoryBinding.inflate(inflater)
         var locationTitle = ""
-        binding.inputLocationTitle.doAfterTextChanged {locationTitle  = it.toString() }
-        var content =""
-        binding.inputContent.doAfterTextChanged { content =it.toString() }
+        binding.inputLocationTitle.doAfterTextChanged { locationTitle = it.toString() }
+        var content = ""
+        binding.inputContent.doAfterTextChanged { content = it.toString() }
         var heartRate = ""
         binding.inputHeartRate.doAfterTextChanged { heartRate = it.toString() }
         var timeDuration = ""
@@ -43,7 +43,8 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
             val year = Calendar.getInstance().get(Calendar.YEAR)
             val month = Calendar.getInstance().get(Calendar.MONTH)
             val day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-            val dpd = DatePickerDialog(requireContext(),
+            val dpd = DatePickerDialog(
+                requireContext(),
                 DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
                     date = ("" + mDay + "/" + mMonth + "/" + mYear)
                     binding.inputDate.setText(date)
@@ -56,14 +57,14 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
         binding.btnSubmit.setOnClickListener {
             viewModel.addHistory(
                 UserActivityHistory(
-                    activityId=0,
-                    locationTitle = locationTitle,
-                    date = date,
-                    content = content,
-                    heartRate = heartRate,
-                    timeDuration = timeDuration,
-                    calories = calories,
-                    photo = photo
+                    0,
+                    locationTitle,
+                    date,
+                    content,
+                    heartRate,
+                    timeDuration,
+                    calories,
+                    photo
                 )
             )
             Log.i("history edit ", "$")

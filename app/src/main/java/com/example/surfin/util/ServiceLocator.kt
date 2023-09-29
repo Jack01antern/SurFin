@@ -3,6 +3,7 @@ package com.example.surfin.util
 import android.content.Context
 import androidx.annotation.VisibleForTesting
 import com.example.surfin.data.SurfinRepository
+import com.example.surfin.data.localsource.SurfinDataSource
 import com.example.surfin.data.localsource.SurfinHistoryDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 

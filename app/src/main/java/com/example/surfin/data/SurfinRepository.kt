@@ -45,7 +45,7 @@ interface SurfinRepository {
     suspend fun insertHistory(user: UserActivityHistory)
 
 
-    suspend fun getCertainHistory(activityId:Long):LiveData<UserActivityHistory>
+    suspend fun updateHistory(user:UserActivityHistory)
 
 
     suspend fun clearHistory()

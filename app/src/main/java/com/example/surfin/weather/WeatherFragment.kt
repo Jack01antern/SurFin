@@ -54,12 +54,19 @@ class WeatherFragment : Fragment() {
         })
 
         viewModel.cwaWeatherResult.observe(viewLifecycleOwner, Observer {
-//            binding.weatherValue.text = viewModel.cwaWeatherResult.value.toString()
+            when (it) {
+                "晴" -> binding.weatherValue.setImageResource(R.drawable.sun)
+                "多雲" -> binding.weatherValue.setImageResource(R.drawable.cloudy)
+                "陰" -> binding.weatherValue.setImageResource(R.drawable.cloud)
+                "多雲有雨" -> binding.weatherValue.setImageResource(R.drawable.rainy_cloudy)
+                "陰有雨" -> binding.weatherValue.setImageResource(R.drawable.rain)
+                else -> binding.weatherValue.setImageResource(R.drawable.cloud)
+            }
         })
 
 
         viewModel.cwaTideResult.observe(viewLifecycleOwner, Observer {
-            viewModel.cwaTideResult.value?.let { it1 -> setLineChartData(it1) }
+            viewModel.cwaTideResult.value?.let { setLineChartData(it) }
 
         })
 
@@ -74,7 +81,8 @@ class WeatherFragment : Fragment() {
         val dataSets = listOf(lineDataSet)
         binding.lineChart.data = LineData(dataSets)
 
-        lineDataSet.circleColors = listOf( ContextCompat.getColor(requireContext(),R.color.primary_navy))
+        lineDataSet.circleColors =
+            listOf(ContextCompat.getColor(requireContext(), R.color.primary_navy))
         binding.lineChart.xAxis.isEnabled = false
         lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
         lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.primary_navy)

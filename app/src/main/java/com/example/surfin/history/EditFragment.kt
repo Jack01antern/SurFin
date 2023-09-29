@@ -7,15 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
-import com.example.surfin.R
+import androidx.navigation.fragment.findNavController
 import com.example.surfin.SurfinApplication
+import com.example.surfin.data.UserActivityHistory
 import com.example.surfin.databinding.FragmentEditBinding
 import com.example.surfin.factory.EditFactory
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Locale
 
 class EditFragment : DialogFragment() {
 
@@ -35,6 +34,25 @@ class EditFragment : DialogFragment() {
         binding.lifecycleOwner = this
 
 
+
+        var locationTitle = ""
+        binding.inputLocationTitle.doAfterTextChanged {locationTitle  = it.toString() }
+        var content =""
+        binding.inputContent.doAfterTextChanged { content =it.toString() }
+        var heartRate = ""
+        binding.inputHeartRate.doAfterTextChanged { heartRate = it.toString() }
+        var timeDuration = ""
+        binding.inputTimeDuration.doAfterTextChanged { timeDuration = it.toString() }
+        var calories = ""
+        binding.inputCalories.doAfterTextChanged { calories = it.toString() }
+        val photo = binding.inputPhoto.text.toString()
+        //date picker
+        var date = ""
+
+
+//        val history = UserActivityHistory(
+//            0,locationTitle,date,content,heartRate,timeDuration,calories,photo
+//        )
         binding.inputLocationTitle.setText(args.historyInfo.locationTitle)
         binding.inputContent.setText(args.historyInfo.content)
         binding.inputHeartRate.setText(args.historyInfo.heartRate)
@@ -52,8 +70,14 @@ class EditFragment : DialogFragment() {
         Log.i("edit", "args: $args")
 
 
-
-
+        binding.btnSubmit.setOnClickListener {
+            val history = UserActivityHistory(
+                args.historyInfo.activityId,locationTitle,date,content,heartRate,timeDuration,calories,photo
+            )
+            viewModel.updateHistory(history,repository)
+            Log.i("edit fragment", "${args.historyInfo},$repository")
+            findNavController().navigateUp()
+        }
         return binding.root
     }
 

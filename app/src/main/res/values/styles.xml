@@ -7,10 +7,25 @@
         <item name="android:windowBackground">@color/translucent_40</item>
         <item name="android:animation">@null</item>
     </style>
+
     <style name="round_image_view">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
         <item name="color">@color/translucent_40</item>
         <item name="android:animation">@null</item>
+    </style>
+
+    <style name="weather_element_title">
+        <item name="fontFamily">rounded</item>
+        <item name="android:textSize">20sp</item>
+        <item name="color">@color/primary_gray</item>
+        <item name="android:layout_margin">32dp</item>
+    </style>
+
+    <style name="weather_element_value">
+        <item name="fontFamily">rounded</item>
+        <item name="android:textSize">25sp</item>
+        <item name="color">@color/primary_gray</item>
+        <item name="android:padding">8dp</item>
     </style>
 </resources>
