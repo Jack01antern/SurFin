@@ -5,17 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.surfin.data.Spots
 import com.example.surfin.data.UserActivityHistory
 import com.example.surfin.databinding.ItemUserHistoryBinding
 
-class HistoryAdapter :
+class HistoryAdapter(private val onClickListener: OnClickListener)  :
     ListAdapter<UserActivityHistory, HistoryAdapter.UserActivityHistoryViewHolder>(DiffCallback) {
 
     class UserActivityHistoryViewHolder(private var binding: ItemUserHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(userActivityHistory: UserActivityHistory) {
+        fun bind(userActivityHistory: UserActivityHistory,onClickListener: OnClickListener) {
             userActivityHistory.let {
                 binding.viewModel = it
+                binding.btnEdit.setOnClickListener {
+                    onClickListener.onClick(userActivityHistory)
+                }
                 binding.executePendingBindings()
             }
         }
@@ -49,7 +53,11 @@ class HistoryAdapter :
      * Replaces the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: UserActivityHistoryViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position),onClickListener)
+    }
+
+    class OnClickListener(val clickListener: (userActivityHistory: UserActivityHistory) -> Unit) {
+        fun onClick(userActivityHistory: UserActivityHistory) = clickListener(userActivityHistory)
     }
 }
 

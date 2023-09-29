@@ -30,7 +30,8 @@ class HistoryFragment : Fragment() {
         viewModel =
             ViewModelProvider(this, HistoryFactory(repository)).get(HistoryViewModel::class.java)
 
-        val adapter = HistoryAdapter()
+        val adapter = HistoryAdapter(HistoryAdapter.OnClickListener {
+            findNavController().navigate(EditFragmentDirections.actionNavigateToEditFragment(it)) })
         binding.historyRecyclerView.adapter = adapter
         viewModel.activityHistory.observe(viewLifecycleOwner, Observer {
             adapter.submitList(viewModel.activityHistory.value)

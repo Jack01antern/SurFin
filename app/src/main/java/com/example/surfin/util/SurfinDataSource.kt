@@ -2,7 +2,6 @@ package com.example.surfin.util
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.surfin.data.CwaEarthquakeResult
 import com.example.surfin.data.UserActivityHistory
 import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
@@ -10,7 +9,6 @@ import com.example.surfin.data.CwaUviResult
 import com.example.surfin.data.Spots
 import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.localsource.SurfinDatabaseDao
-import com.google.android.gms.common.api.internal.ApiKey
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: FirebaseFirestore) :
@@ -63,6 +61,11 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
     //local
     override suspend fun insertHistory(user: UserActivityHistory) {
         return dao.insertHistory(user)
+    }
+
+
+    override suspend fun getCertainHistory(activityId:Long): LiveData<UserActivityHistory> {
+        return dao.getCertainHistory(activityId)
     }
 
     override suspend fun clearHistory() {

@@ -26,6 +26,11 @@ interface SurfinDatabaseDao {
     fun getAllHistory():
             LiveData<List<UserActivityHistory>>
 
+
+    @Query("SELECT * FROM user_history WHERE activityId = :id ORDER BY date ASC")
+    fun getCertainHistory(id:Long):
+            LiveData<UserActivityHistory>
+
     @Insert
     fun addToCollection(spots: Spots)
 

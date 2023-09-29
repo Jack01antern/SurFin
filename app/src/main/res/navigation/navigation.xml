@@ -98,14 +98,19 @@
 
     </fragment>
 
-    <action
-        android:id="@+id/action_navigate_to_zoom_dialog"
-        app:destination="@id/zoomDialog">
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.example.surfin.history.EditFragment"
+        android:label="EditFragment"
+        tools:layout="@layout/fragment_edit">
         <argument
-            android:name="photoInfo"
-            app:argType="string"
+            android:name="historyInfo"
+            app:argType="com.example.surfin.data.UserActivityHistory"
             app:nullable="false" />
-    </action>
+    </fragment>
+
+
+
 
     <!--    action-->
 
@@ -160,6 +165,19 @@
     <action
         android:id="@+id/action_navigate_to_recommend_fragment"
         app:destination="@id/recommendDialog" />
+
+    <action
+        android:id="@+id/action_navigate_to_zoom_dialog"
+        app:destination="@id/zoomDialog">
+        <argument
+            android:name="photoInfo"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <action
+        android:id="@+id/action_navigate_to_edit_fragment"
+        app:destination="@id/editFragment" />
 
 
 </navigation>

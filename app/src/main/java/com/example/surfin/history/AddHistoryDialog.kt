@@ -1,15 +1,19 @@
 package com.example.surfin.history
 
+import android.app.DatePickerDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.UserActivityHistory
 import com.example.surfin.databinding.DialogAddHistoryBinding
 import com.example.surfin.factory.AddHistoryFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import java.util.Calendar
 
 class AddHistoryDialog : BottomSheetDialogFragment() {
 
@@ -19,31 +23,50 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DialogAddHistoryBinding.inflate(inflater)
-        val locationTitle = binding.inputLocationTitle.text.toString()
-        val date = binding.inputDate.text.toString()
-        val content = binding.inputContent.text.toString()
-        val heartRate = binding.inputHeartRate.text.toString()
-        val timeDuration = binding.inputTimeDuration.text.toString()
-        val calories = binding.inputCalories.text.toString()
-        val photo = binding.inputPhoto.text.toString()
 
-        //mockData
-        val history = UserActivityHistory(
-            activityId = 0L,
-            locationTitle = "Jogging in the Park",
-            date = System.currentTimeMillis(),
-            content = "Enjoyed a morning jog in the park.",
-            heartRate = "120 BPM",
-            timeDuration = "30 minutes",
-            calories = "300 kcal",
-            photo = "https://example.com/jogging.jpg"
-        )
-        //mockDataEnd
+
+        val binding = DialogAddHistoryBinding.inflate(inflater)
+        var locationTitle = ""
+        binding.inputLocationTitle.doAfterTextChanged {locationTitle  = it.toString() }
+        var content =""
+        binding.inputContent.doAfterTextChanged { content =it.toString() }
+        var heartRate = ""
+        binding.inputHeartRate.doAfterTextChanged { heartRate = it.toString() }
+        var timeDuration = ""
+        binding.inputTimeDuration.doAfterTextChanged { timeDuration = it.toString() }
+        var calories = ""
+        binding.inputCalories.doAfterTextChanged { calories = it.toString() }
+        val photo = binding.inputPhoto.text.toString()
+        //date picker
+        var date = ""
+        binding.inputDate.setOnClickListener {
+            val year = Calendar.getInstance().get(Calendar.YEAR)
+            val month = Calendar.getInstance().get(Calendar.MONTH)
+            val day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+            val dpd = DatePickerDialog(requireContext(),
+                DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
+                    date = ("" + mDay + "/" + mMonth + "/" + mYear)
+                    binding.inputDate.setText(date)
+                }, year, month, day
+            )
+            dpd.show()
+        }
 
 
         binding.btnSubmit.setOnClickListener {
-            viewModel.addHistory(history)
+            viewModel.addHistory(
+                UserActivityHistory(
+                    activityId=0,
+                    locationTitle = locationTitle,
+                    date = date,
+                    content = content,
+                    heartRate = heartRate,
+                    timeDuration = timeDuration,
+                    calories = calories,
+                    photo = photo
+                )
+            )
+            Log.i("history edit ", "$")
         }
 
         binding.btnClear.setOnClickListener {
