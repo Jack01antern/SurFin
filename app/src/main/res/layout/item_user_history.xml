@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,74 +10,154 @@
             type="com.example.surfin.data.UserActivityHistory" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/location_title"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.locationTitle}"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_margin="16dp">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(viewModel.date)}"
-            app:layout_constraintTop_toBottomOf="@id/location_title"
-            />
+            <TextView
+                android:id="@+id/location_title"
+                style="@style/history_item_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/location_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.2" />
 
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.content}"
-            app:layout_constraintTop_toBottomOf="@id/date"
-            />
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@{viewModel.locationTitle}"
+                app:layout_constraintEnd_toStartOf="@id/btn_edit"
+                app:layout_constraintStart_toEndOf="@id/location_title"
+                app:layout_constraintTop_toTopOf="@id/location_title"
+                tools:text="location" />
 
-        <TextView
-            android:id="@+id/heart_rate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.heartRate}"
-            app:layout_constraintTop_toBottomOf="@id/content"
-            />
+            <ImageButton
+                android:id="@+id/btn_edit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/primary_gray"
+                android:scaleType="fitCenter"
+                android:src="@drawable/edit"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/location_title"
+                app:layout_constraintWidth_percent="0.08" />
 
-        <TextView
-            android:id="@+id/time_duration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.timeDuration}"
-            app:layout_constraintTop_toBottomOf="@id/heart_rate"
-            />
+            <TextView
+                android:id="@+id/date_title"
+                style="@style/history_item_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/location"
+                app:layout_constraintWidth_percent="0.2" />
 
-        <TextView
-            android:id="@+id/calories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.photo}"
-            app:layout_constraintTop_toBottomOf="@id/time_duration"
-            />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.date}"
+                app:layout_constraintEnd_toEndOf="@id/location"
+                app:layout_constraintStart_toEndOf="@id/location_title"
+                app:layout_constraintTop_toTopOf="@id/date_title"
+                tools:text="location" />
+
+            <TextView
+                android:id="@+id/content_title"
+                style="@style/history_item_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.content}"
+                app:layout_constraintEnd_toEndOf="@id/location"
+                app:layout_constraintStart_toEndOf="@id/location_title"
+                app:layout_constraintTop_toTopOf="@id/content_title"
+                tools:text="location" />
+
+            <TextView
+                android:id="@+id/heart_rate_title"
+                style="@style/history_item_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/heart_rate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <TextView
+                android:id="@+id/heart_rate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.heartRate}"
+                app:layout_constraintEnd_toEndOf="@id/location"
+                app:layout_constraintStart_toEndOf="@id/location_title"
+                app:layout_constraintTop_toTopOf="@id/heart_rate_title"
+                tools:text="location" />
+
+            <TextView
+                android:id="@+id/time_duration_title"
+                style="@style/history_item_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/time_duration"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/heart_rate"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <TextView
+                android:id="@+id/time_duration"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.timeDuration}"
+                app:layout_constraintEnd_toEndOf="@id/location"
+                app:layout_constraintStart_toEndOf="@id/location_title"
+                app:layout_constraintTop_toTopOf="@id/time_duration_title"
+                tools:text="location" />
+
+            <TextView
+                android:id="@+id/calories_title"
+                style="@style/history_item_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/calories"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/time_duration"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <TextView
+                android:id="@+id/calories"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.calories}"
+                app:layout_constraintEnd_toEndOf="@id/location"
+                app:layout_constraintStart_toEndOf="@id/location_title"
+                app:layout_constraintTop_toTopOf="@id/calories_title"
+                tools:text="location" />
 
 
-        <TextView
-            android:id="@+id/photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            app:layout_constraintTop_toBottomOf="@id/calories"
-            />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/btn_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="edit"
-            android:textColor="@color/primary_navy"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

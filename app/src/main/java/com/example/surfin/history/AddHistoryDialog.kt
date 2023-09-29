@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
+import androidx.navigation.fragment.findNavController
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.UserActivityHistory
 import com.example.surfin.databinding.DialogAddHistoryBinding
@@ -68,6 +69,7 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
                 )
             )
             Log.i("history edit ", "$")
+            findNavController().navigateUp()
         }
 
         binding.btnClear.setOnClickListener {
