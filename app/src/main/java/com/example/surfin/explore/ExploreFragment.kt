@@ -22,9 +22,11 @@ import com.example.surfin.factory.ExploreFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -92,6 +94,7 @@ class ExploreFragment : Fragment() {
             Log.i("explore", "${safeArgs}")
             true
         }
+
     }
 
     override fun onCreateView(
@@ -131,6 +134,7 @@ class ExploreFragment : Fragment() {
 //        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 //
 //    }
+
 
     //get user's current location
     private fun fetchLocation() {

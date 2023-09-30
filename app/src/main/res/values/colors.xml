@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="primary_gray">#CCCCCC</color>
+    <color name="darker_gray">#AAAAAA</color>
+
     <color name="primary_navy">#003366</color>
     <color name="primary_carolina">#99CCFF</color>
 
 <!--    Dialog background-->
     <color name="translucent_40">#66000000</color>
+
+    <color name="line_chart_gradient" tools:ignore="ResourceCycle">@color/line_chart_gradient</color>
 
 </resources>
