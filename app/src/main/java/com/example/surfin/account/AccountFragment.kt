@@ -1,14 +1,22 @@
 package com.example.surfin.account
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.surfin.MainActivity
 import com.example.surfin.R
@@ -68,11 +76,19 @@ class AccountFragment : Fragment() {
             findNavController().navigate(R.id.action_navigate_to_collection_fragment)
         }
         binding.btnLanguage.setOnClickListener {
-                binding.spinner.visibility = View.VISIBLE
+            binding.spinner.visibility = View.VISIBLE
         }
 
         binding.btnProvideSpots.setOnClickListener {
-            findNavController().navigate(R.id.action_navigate_to_recommend_fragment)
+            showRecommendDialog()
+        }
+
+        binding.btnContactUs.setOnClickListener {
+            showContactUsDialog()
+        }
+
+        binding.btnReportProblem.setOnClickListener {
+            showReportDialog()
         }
         return binding.root
     }
@@ -96,5 +112,73 @@ class AccountFragment : Fragment() {
 
     }
 
+    private fun showRecommendDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.dialog_recommend)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        Log.i("account provide btn", "clicked")
+
+        val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
+        btnSubmit.setOnClickListener {
+            Toast.makeText(requireContext(),"submitted",Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+    }
+
+    private fun showContactUsDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.dialog_contact_us)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        Log.i("account provide btn", "clicked")
+
+        val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
+        btnSubmit.setOnClickListener {
+            Toast.makeText(requireContext(),"submitted",Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+    }
+
+    private fun showReportDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.dialog_report)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        Log.i("account provide btn", "clicked")
+
+        val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
+        btnSubmit.setOnClickListener {
+            Toast.makeText(requireContext(),"submitted",Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+    }
 
 }

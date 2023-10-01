@@ -80,11 +80,6 @@
         android:label="fragment_language"
         tools:layout="@layout/dialog_language" />
 
-    <dialog
-        android:id="@+id/recommendDialog"
-        android:name="com.example.surfin.account.RecommendDialog"
-        android:label="fragment_provide"
-        tools:layout="@layout/dialog_recommend" />
 
     <fragment
         android:id="@+id/zoomDialog"
@@ -159,10 +154,6 @@
     <action
         android:id="@+id/action_navigate_to_detail_fragment"
         app:destination="@id/detailDialog" />
-
-    <action
-        android:id="@+id/action_navigate_to_recommend_fragment"
-        app:destination="@id/recommendDialog" />
 
     <action
         android:id="@+id/action_navigate_to_zoom_dialog"
