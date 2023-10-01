@@ -35,6 +35,10 @@ class EmergencyFragment : Fragment() {
             startActivity(viewModel.dial112())
         }
 
+        binding.btnCall119.setOnClickListener {
+            startActivity(viewModel.dial119())
+        }
+
         binding.btnLocate.setOnClickListener {
             checkPermission()
         }

@@ -32,8 +32,9 @@
             android:id="@+id/recommended_spots"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_margin="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/darker_gray"
             android:text="@string/recommended_spots"
             app:layout_constraintTop_toBottomOf="@id/search_card_view" />
 
