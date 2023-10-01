@@ -35,6 +35,7 @@
 
             <TextView
                 android:id="@+id/location"
+                style="@style/history_item_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -68,6 +69,7 @@
 
             <TextView
                 android:id="@+id/date"
+                style="@style/history_item_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.date}"
@@ -88,6 +90,7 @@
 
             <TextView
                 android:id="@+id/content"
+                style="@style/history_item_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.content}"
@@ -108,6 +111,7 @@
 
             <TextView
                 android:id="@+id/heart_rate"
+                style="@style/history_item_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.heartRate}"
@@ -128,6 +132,7 @@
 
             <TextView
                 android:id="@+id/time_duration"
+                style="@style/history_item_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.timeDuration}"
@@ -148,6 +153,7 @@
 
             <TextView
                 android:id="@+id/calories"
+                style="@style/history_item_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.calories}"

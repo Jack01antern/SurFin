@@ -11,81 +11,124 @@
 
     </data>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottom_sheet_add"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".history.AddHistoryDialog">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_sheet_add"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            tools:context=".history.AddHistoryDialog">
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_location_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+
+                android:layout_margin="16dp"
+                android:foreground="@drawable/border"
                 android:hint="@string/input_location_title"
-                app:layout_constraintBottom_toTopOf="@id/input_date" />
+                android:paddingStart="16dp"
+                app:layout_constraintBottom_toTopOf="@id/input_date"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/input_date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:foreground="@drawable/border"
                 android:hint="@string/input_date"
-                app:layout_constraintBottom_toTopOf="@id/input_content" />
+                android:paddingStart="16dp"
+                app:layout_constraintBottom_toTopOf="@id/input_heart_rate"
+                app:layout_constraintTop_toBottomOf="@id/input_location_title" />
 
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/input_content"
-                app:layout_constraintBottom_toTopOf="@id/input_heart_rate" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_heart_rate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:foreground="@drawable/border"
+
                 android:hint="@string/input_heart_rate"
-                app:layout_constraintBottom_toTopOf="@id/input_time_duration" />
+                android:paddingStart="16dp"
+                app:layout_constraintBottom_toTopOf="@id/input_time_duration"
+                app:layout_constraintTop_toBottomOf="@id/input_date" />
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_time_duration"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:foreground="@drawable/border"
                 android:hint="@string/input_time_duration"
-                app:layout_constraintBottom_toTopOf="@id/input_calories" />
+                android:paddingStart="16dp"
+                app:layout_constraintBottom_toTopOf="@id/input_calories"
+                app:layout_constraintTop_toBottomOf="@id/input_heart_rate" />
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_calories"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:foreground="@drawable/border"
+
                 android:hint="@string/input_calories"
-                app:layout_constraintBottom_toTopOf="@id/input_photo" />
+                android:paddingStart="16dp"
+                app:layout_constraintBottom_toTopOf="@id/input_content"
+                app:layout_constraintTop_toBottomOf="@id/input_time_duration" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_photo"
+                android:id="@+id/input_content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/upload_photo"
-                app:layout_constraintBottom_toTopOf="@id/btn_submit" />
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:layout_marginBottom="8dp"
+                android:foreground="@drawable/border"
 
-            <Button
+                android:gravity="top"
+                android:hint="@string/input_content"
+                android:paddingStart="16dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_delete"
+                app:layout_constraintHeight_percent="0.3"
+                app:layout_constraintTop_toBottomOf="@id/input_calories" />
+
+
+            <ImageButton
+                android:id="@+id/btn_delete"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/round_btn"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@id/btn_submit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.1" />
+
+            <ImageButton
                 android:id="@+id/btn_submit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/primary_navy"
-                android:text="submit"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/round_btn"
+                android:scaleType="fitCenter"
+                android:src="@drawable/send"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_delete"
+                app:layout_constraintWidth_percent="0.1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </layout>

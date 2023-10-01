@@ -1,12 +1,15 @@
 package com.example.surfin.history
 
 import android.app.DatePickerDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import com.example.surfin.SurfinApplication
@@ -37,7 +40,6 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
         binding.inputTimeDuration.doAfterTextChanged { timeDuration = it.toString() }
         var calories = ""
         binding.inputCalories.doAfterTextChanged { calories = it.toString() }
-        val photo = binding.inputPhoto.text.toString()
         //date picker
         var date = ""
         binding.inputDate.setOnClickListener {
@@ -64,17 +66,23 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
                     content,
                     heartRate,
                     timeDuration,
-                    calories,
-                    photo
+                    calories
                 )
             )
             Log.i("history edit ", "$")
             findNavController().navigateUp()
         }
 
-        binding.btnClear.setOnClickListener {
-            viewModel.clearHistory()
-        }
+
+        //setup background
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val params = dialog?.window?.attributes
+        params?.dimAmount = 0.5f
+        dialog?.window?.attributes = params as WindowManager.LayoutParams
+
+//        binding.btnClear.setOnClickListener {
+//            viewModel.clearHistory()
+//        }
 
         return binding.root
     }

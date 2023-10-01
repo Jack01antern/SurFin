@@ -12,6 +12,7 @@
         android:id="@+id/bottom_sheet_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         tools:context=".history.AddHistoryDialog">
 
@@ -20,31 +21,33 @@
             android:id="@+id/input_date"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textSize="19sp"
+            android:layout_margin="16dp"
+            android:foreground="@drawable/border"
             android:gravity=""
             android:hint="@string/input_date"
+            android:paddingLeft="16dp"
+            android:textSize="19sp"
             app:layout_constraintBottom_toTopOf="@id/input_location_title" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_location_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:foreground="@drawable/border"
             android:hint="@string/input_location_title"
-            app:layout_constraintBottom_toTopOf="@id/input_content" />
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/input_content"
+            android:paddingLeft="16dp"
             app:layout_constraintBottom_toTopOf="@id/input_heart_rate" />
+
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_heart_rate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:foreground="@drawable/border"
             android:hint="@string/input_heart_rate"
+            android:paddingLeft="16dp"
             app:layout_constraintBottom_toTopOf="@id/input_time_duration" />
 
 
@@ -52,7 +55,10 @@
             android:id="@+id/input_time_duration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:foreground="@drawable/border"
             android:hint="@string/input_time_duration"
+            android:paddingLeft="16dp"
             app:layout_constraintBottom_toTopOf="@id/input_calories" />
 
 
@@ -60,32 +66,50 @@
             android:id="@+id/input_calories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:foreground="@drawable/border"
             android:hint="@string/input_calories"
-            app:layout_constraintBottom_toTopOf="@id/input_photo" />
+            android:paddingLeft="16dp"
+            app:layout_constraintBottom_toTopOf="@id/input_content" />
+
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_photo"
+            android:id="@+id/input_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/upload_photo"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:foreground="@drawable/border"
+            app:layout_constraintHeight_percent="0.3"
+            android:hint="@string/input_content"
+            android:paddingLeft="16dp"
             app:layout_constraintBottom_toTopOf="@id/btn_submit" />
+
+        <!--        <com.google.android.material.textfield.TextInputEditText-->
+        <!--            android:id="@+id/input_photo"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"   android:layout_margin="16dp"-->
+        <!--            android:foreground="@drawable/border"-->
+        <!--            android:paddingLeft="16dp"-->
+        <!--            android:hint="@string/upload_photo"-->
+        <!--            app:layout_constraintBottom_toTopOf="@id/btn_submit" />-->
 
         <Button
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
             android:text="submit"
+            android:background="@drawable/round_btn"
+            android:layout_margin="16dp"
             app:layout_constraintBottom_toBottomOf="parent" />
 
 
-        <Button
-            android:id="@+id/btn_clear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
-            android:text="clear"
-            app:layout_constraintBottom_toTopOf="@id/input_date" />
+        <!--        <Button-->
+        <!--            android:id="@+id/btn_clear"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:background="@color/primary_navy"-->
+        <!--            android:text="clear"-->
+        <!--            app:layout_constraintBottom_toTopOf="@id/input_date" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

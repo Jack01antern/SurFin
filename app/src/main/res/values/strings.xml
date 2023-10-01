@@ -63,7 +63,8 @@
     <string name="time_duration">時長：</string>
     <string name="calories">卡路里：</string>
     <string name="photo">照片：</string>
-
+    <string name="delete">delete</string>
+    <string name="submit">submit</string>
 
 
 </resources>

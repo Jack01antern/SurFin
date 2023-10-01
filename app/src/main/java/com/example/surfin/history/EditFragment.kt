@@ -44,8 +44,6 @@ class EditFragment : DialogFragment() {
         var timeDuration = ""
         binding.inputTimeDuration.doAfterTextChanged { timeDuration = it.toString() }
         var calories = ""
-        binding.inputCalories.doAfterTextChanged { calories = it.toString() }
-        val photo = binding.inputPhoto.text.toString()
         //date picker
         var date = ""
 
@@ -72,7 +70,7 @@ class EditFragment : DialogFragment() {
 
         binding.btnSubmit.setOnClickListener {
             val history = UserActivityHistory(
-                args.historyInfo.activityId,locationTitle,date,content,heartRate,timeDuration,calories,photo
+                args.historyInfo.activityId,locationTitle,date,content,heartRate,timeDuration,calories
             )
             viewModel.updateHistory(history,repository)
             Log.i("edit fragment", "${args.historyInfo},$repository")

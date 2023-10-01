@@ -4,13 +4,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="primary_gray">#CCCCCC</color>
-    <color name="darker_gray">#AAAAAA</color>
+    <color name="darker_gray">#888888</color>
 
     <color name="primary_navy">#003366</color>
     <color name="primary_carolina">#99CCFF</color>
 
 <!--    Dialog background-->
     <color name="translucent_40">#66000000</color>
+    <color name="red">#DD3333</color>
 
     <color name="line_chart_gradient" tools:ignore="ResourceCycle">@color/line_chart_gradient</color>
 

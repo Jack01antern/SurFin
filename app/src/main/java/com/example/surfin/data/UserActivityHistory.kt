@@ -35,9 +35,7 @@ data class UserActivityHistory(
     @ColumnInfo(name = "time_duration")
     val timeDuration: String,
     @ColumnInfo(name = "calories")
-    val calories: String,
-    @ColumnInfo(name = "photo")
-    val photo: String
+    val calories: String
 ) : Parcelable
 
 
