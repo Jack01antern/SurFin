@@ -31,6 +31,8 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Base64
+import android.widget.EditText
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.SurfinRepository
@@ -158,8 +160,6 @@ class AccountFragment : Fragment() {
     private fun showRecommendDialog() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setCanceledOnTouchOutside(true)
         dialog.setContentView(R.layout.dialog_recommend)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         Log.i("account provide btn", "clicked")
@@ -168,8 +168,13 @@ class AccountFragment : Fragment() {
         btnCancel.setOnClickListener {
             dialog.dismiss()
         }
+
+        var inputContent = ""
+        dialog.findViewById<EditText>(R.id.input_spots).doAfterTextChanged { inputContent = it.toString() }
+
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
+            viewModel.provideSpots(inputContent)
             Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
@@ -181,8 +186,6 @@ class AccountFragment : Fragment() {
     private fun showContactUsDialog() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setCanceledOnTouchOutside(true)
         dialog.setContentView(R.layout.dialog_contact_us)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         Log.i("account provide btn", "clicked")
@@ -191,9 +194,14 @@ class AccountFragment : Fragment() {
         btnCancel.setOnClickListener {
             dialog.dismiss()
         }
+
+        var inputContent = ""
+        dialog.findViewById<EditText>(R.id.input_contact_us).doAfterTextChanged { inputContent = it.toString() }
+
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
             Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
+            viewModel.contactUs(inputContent)
             dialog.dismiss()
         }
 
@@ -204,8 +212,6 @@ class AccountFragment : Fragment() {
     private fun showReportDialog() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setCanceledOnTouchOutside(true)
         dialog.setContentView(R.layout.dialog_report)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         Log.i("account provide btn", "clicked")
@@ -214,9 +220,14 @@ class AccountFragment : Fragment() {
         btnCancel.setOnClickListener {
             dialog.dismiss()
         }
+
+        var inputContent = ""
+        dialog.findViewById<EditText>(R.id.input_report).doAfterTextChanged { inputContent = it.toString() }
+
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
             Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
+            viewModel.reportProblem(inputContent)
             dialog.dismiss()
         }
 
