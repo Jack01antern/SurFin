@@ -82,16 +82,9 @@
             app:layout_constraintHeight_percent="0.3"
             android:hint="@string/input_content"
             android:paddingLeft="16dp"
+            android:gravity="top"
             app:layout_constraintBottom_toTopOf="@id/btn_submit" />
 
-        <!--        <com.google.android.material.textfield.TextInputEditText-->
-        <!--            android:id="@+id/input_photo"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"   android:layout_margin="16dp"-->
-        <!--            android:foreground="@drawable/border"-->
-        <!--            android:paddingLeft="16dp"-->
-        <!--            android:hint="@string/upload_photo"-->
-        <!--            app:layout_constraintBottom_toTopOf="@id/btn_submit" />-->
 
         <Button
             android:id="@+id/btn_submit"
@@ -102,14 +95,6 @@
             android:layout_margin="16dp"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-
-        <!--        <Button-->
-        <!--            android:id="@+id/btn_clear"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:background="@color/primary_navy"-->
-        <!--            android:text="clear"-->
-        <!--            app:layout_constraintBottom_toTopOf="@id/input_date" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

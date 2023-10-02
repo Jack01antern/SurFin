@@ -13,6 +13,28 @@
         tools:context=".emergency.EmergencyFragment">
 
 
+        <ImageView
+            android:id="@+id/img_phone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="32dp"
+            android:src="@drawable/telephone"
+            app:layout_constraintWidth_percent="0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/emergeny_hint"
+            style="@style/emergency_hint"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:text="@string/emergency_hint"
+            app:layout_constraintBottom_toTopOf="@id/btn_locate"
+            app:layout_constraintTop_toBottomOf="@id/img_phone" />
+
         <TextView
             android:id="@+id/location_text_view"
             android:layout_width="0dp"
@@ -20,7 +42,7 @@
             android:layout_margin="16dp"
             android:padding="16dp"
             android:text=""
-            android:textColor="@color/darker_gray"
+            android:textColor="@color/primary_darker_gray"
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@id/btn_call_118"
             app:layout_constraintEnd_toStartOf="@id/btn_locate"
@@ -55,13 +77,13 @@
             android:id="@+id/locate_myself"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textAlignment="center"
             android:text="@string/locate_myself"
+            android:textAlignment="center"
+            android:textColor="@color/hint_middle_gray"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/location_text_view"
             app:layout_constraintEnd_toEndOf="@id/btn_locate"
-            app:layout_constraintStart_toStartOf="@id/btn_locate"
-            android:textColor="@color/darker_gray"/>
+            app:layout_constraintStart_toStartOf="@id/btn_locate" />
 
 
         <Button

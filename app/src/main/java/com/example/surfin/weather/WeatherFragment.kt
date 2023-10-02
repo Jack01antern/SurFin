@@ -78,6 +78,7 @@ class WeatherFragment : Fragment() {
 
         })
 
+        binding.locationTitle.text = args.tempId.title
         binding.lineChart.setPinchZoom(true)
 
         return binding.root

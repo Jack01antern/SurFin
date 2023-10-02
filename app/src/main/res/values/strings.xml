@@ -65,6 +65,7 @@
     <string name="photo">照片：</string>
     <string name="delete">delete</string>
     <string name="submit">submit</string>
+    <string name="emergency_hint">點擊後跳轉撥號頁面</string>
 
 
 </resources>

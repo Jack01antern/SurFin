@@ -20,6 +20,17 @@
             android:layout_height="wrap_content"
             tools:context=".weather.WeatherFragment">
 
+
+            <TextView
+                android:id="@+id/location_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAlignment="center"
+                style="@style/weather_element_location_title"
+                tools:text="白沙灣"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <TextView
                 android:id="@+id/tide_title"
                 style="@style/weather_element_title"
@@ -28,7 +39,7 @@
                 android:text="@string/tide_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/location_title" />
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/line_chart"
@@ -106,8 +117,8 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textAlignment="center"
-                        app:layout_constraintEnd_toEndOf="@id/temp_title"
-                        app:layout_constraintStart_toStartOf="@id/temp_title"
+                        app:layout_constraintEnd_toStartOf="@id/wdsd_value"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/temp_title"
                         tools:text="3" />
 
@@ -119,8 +130,8 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textAlignment="center"
-                        app:layout_constraintEnd_toEndOf="@id/wdsd_title"
-                        app:layout_constraintStart_toStartOf="@id/wdsd_title"
+                        app:layout_constraintEnd_toStartOf="@id/uvi_value"
+                        app:layout_constraintStart_toEndOf="@id/temp_value"
                         app:layout_constraintTop_toBottomOf="@id/wdsd_title"
                         tools:text="3" />
 
@@ -131,8 +142,8 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textAlignment="center"
-                        app:layout_constraintEnd_toEndOf="@id/uvi_title"
-                        app:layout_constraintStart_toStartOf="@id/uvi_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/wdsd_value"
                         app:layout_constraintTop_toBottomOf="@id/uvi_title"
                         tools:text="11.05" />
 

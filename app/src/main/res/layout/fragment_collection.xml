@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".collection.CollectionFragment">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="@color/background_light_gray"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/collection_recycler_view"
         android:layout_width="match_parent"

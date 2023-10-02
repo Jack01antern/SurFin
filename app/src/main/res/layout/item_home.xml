@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -21,8 +22,9 @@
             android:layout_marginStart="16dp"
             android:text="@{viewModel.title}"
             android:textSize="25sp"
-            android:textColor="@color/darker_gray"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:textColor="@color/hint_middle_gray"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="白沙灣" />
 
         <View
             android:id="@+id/dividing_line"

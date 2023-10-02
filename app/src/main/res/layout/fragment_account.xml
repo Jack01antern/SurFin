@@ -13,6 +13,13 @@
         android:background="@color/primary_gray"
         tools:context=".account.AccountFragment">
 
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="@color/background_light_gray"/>
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/account_background"
             android:layout_width="match_parent"
