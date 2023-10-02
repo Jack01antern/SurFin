@@ -51,31 +51,27 @@ class AccountFragment : Fragment() {
     private lateinit var xx: ByteArray
     private lateinit var repository: SurfinRepository
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAccountBinding.inflate(inflater)
         repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
         viewModel = ViewModelProvider(
-            this,
-            AccountFactory(repository)
+            this, AccountFactory(repository)
         ).get(AccountViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
 
+        //select language
         var languageList = ArrayList<String>()
         languageList.add("")
         languageList.add("English")
         languageList.add("Chinese")
-
-
         var adapter = ArrayAdapter(
             requireContext(),
             com.bumptech.glide.R.layout.support_simple_spinner_dropdown_item,
             languageList
         )
-
         binding.spinner.adapter = adapter
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -124,19 +120,16 @@ class AccountFragment : Fragment() {
         }
 
         viewModel.userInfo.observe(viewLifecycleOwner, Observer {
-            // Replace the content URI with your actual URI
             val contentUri = Uri.parse(it.selfie)
-            // Load the image into a Bitmap
             Log.i("uri", "$contentUri")
-            val bitmap: Bitmap? = loadBitmapFromUri(contentUri)
-            // Set the Bitmap as the image source for the ImageView
-            try {
-
-                if (contentUri != null) {
-                    binding.thumbnail.setImageURI(contentUri)
+            it.selfie.let {
+                try {
+                    if (contentUri != null) {
+                        binding.thumbnail.setImageURI(contentUri)
+                    }
+                } catch (e: Exception) {
+                    Log.i("uri", "failed: ${e.message}")
                 }
-            } catch (e: Exception) {
-                Log.i("uri", "failed: ${e.message}")
             }
         })
 
@@ -238,7 +231,7 @@ class AccountFragment : Fragment() {
             val selectedImageUri = data.data
 
             val imagePath = selectedImageUri?.path!!
-            val userInfo = UserInfo(0L, imagePath, "Jasmine")
+            val userInfo = UserInfo(0L, imagePath, "Gemma")
             viewModel.updateUserInfo(userInfo, repository)
             Log.d("Image Path", "Image Path: $imagePath")
         }
