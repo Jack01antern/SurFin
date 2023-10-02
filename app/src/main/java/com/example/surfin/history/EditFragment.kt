@@ -62,7 +62,8 @@ class EditFragment : DialogFragment() {
             val dpd = DatePickerDialog(
                 requireContext(),
                 DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
-                    binding.inputDate.setText("" + mDay + "/" + mMonth + "/" + mYear)
+                    date = ("" + mDay + "/" + mMonth + "/" + mYear)
+                    binding.inputDate.setText(date)
                 },
                 year,
                 month,
@@ -85,6 +86,8 @@ class EditFragment : DialogFragment() {
             )
             viewModel.updateHistory(history, repository)
             Log.i("edit fragment", "${args.historyInfo},$repository")
+
+            Log.i("edit fragment", "${history},$repository")
             findNavController().navigateUp()
         }
 

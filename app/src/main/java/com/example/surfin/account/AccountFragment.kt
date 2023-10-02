@@ -1,5 +1,6 @@
 package com.example.surfin.account
 
+import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -17,12 +18,29 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.example.surfin.MainActivity
 import com.example.surfin.R
 import com.example.surfin.databinding.FragmentAccountBinding
-import com.example.surfin.home.HomeViewModel
 import java.util.Locale
+import android.content.ContentResolver
+import android.content.ContentValues
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.provider.MediaStore
+import android.util.Base64
+import androidx.lifecycle.Observer
+import com.example.surfin.SurfinApplication
+import com.example.surfin.data.SurfinRepository
+import com.example.surfin.data.UserInfo
+import com.example.surfin.detail.DetailViewModel
+import com.example.surfin.factory.AccountFactory
+import com.example.surfin.factory.DetailFactory
+import java.io.ByteArrayOutputStream
+
+private const val PICK_IMAGE_REQUEST = 1
 
 class AccountFragment : Fragment() {
 
@@ -30,11 +48,21 @@ class AccountFragment : Fragment() {
     private lateinit var viewModel: AccountViewModel
     private lateinit var locale: Locale
     private lateinit var binding: FragmentAccountBinding
+    private lateinit var xx: ByteArray
+    private lateinit var repository: SurfinRepository
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAccountBinding.inflate(inflater)
+        repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
+        viewModel = ViewModelProvider(
+            this,
+            AccountFactory(repository)
+        ).get(AccountViewModel::class.java)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
 
         var languageList = ArrayList<String>()
         languageList.add("")
@@ -53,8 +81,6 @@ class AccountFragment : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 when (p2) {
                     0 -> {
-
-
                     }
 
                     1 -> setLocale("en")
@@ -90,6 +116,30 @@ class AccountFragment : Fragment() {
         binding.btnReportProblem.setOnClickListener {
             showReportDialog()
         }
+
+        binding.btnChangeThumbnail.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(intent, PICK_IMAGE_REQUEST)
+
+        }
+
+        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
+            // Replace the content URI with your actual URI
+            val contentUri = Uri.parse(it.selfie)
+            // Load the image into a Bitmap
+            Log.i("uri", "$contentUri")
+            val bitmap: Bitmap? = loadBitmapFromUri(contentUri)
+            // Set the Bitmap as the image source for the ImageView
+            try {
+
+                if (contentUri != null) {
+                    binding.thumbnail.setImageURI(contentUri)
+                }
+            } catch (e: Exception) {
+                Log.i("uri", "failed: ${e.message}")
+            }
+        })
+
         return binding.root
     }
 
@@ -127,7 +177,7 @@ class AccountFragment : Fragment() {
         }
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
-            Toast.makeText(requireContext(),"submitted",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 
@@ -150,7 +200,7 @@ class AccountFragment : Fragment() {
         }
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
-            Toast.makeText(requireContext(),"submitted",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 
@@ -173,12 +223,41 @@ class AccountFragment : Fragment() {
         }
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
-            Toast.makeText(requireContext(),"submitted",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
 
         dialog.show()
 
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
+            val selectedImageUri = data.data
+
+            val imagePath = selectedImageUri?.path!!
+            val userInfo = UserInfo(0L, imagePath, "Jasmine")
+            viewModel.updateUserInfo(userInfo, repository)
+            Log.d("Image Path", "Image Path: $imagePath")
+        }
+    }
+
+    private fun loadBitmapFromUri(uri: Uri): Bitmap? {
+        try {
+            // Use a content resolver to open the input stream
+            val inputStream = requireActivity().contentResolver.openInputStream(uri)
+            if (inputStream != null) {
+                // Decode the stream into a bitmap
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                inputStream.close()
+                return bitmap
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
 
 }

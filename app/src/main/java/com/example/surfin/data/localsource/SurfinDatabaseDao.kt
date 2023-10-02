@@ -5,8 +5,10 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.Upsert
 import com.example.surfin.data.Spots
 import com.example.surfin.data.UserActivityHistory
+import com.example.surfin.data.UserInfo
 
 @Dao
 interface SurfinDatabaseDao {
@@ -23,8 +25,7 @@ interface SurfinDatabaseDao {
     fun clearHistory()
 
     @Query("SELECT * FROM user_history ORDER BY date ASC")
-    fun getAllHistory():
-            LiveData<List<UserActivityHistory>>
+    fun getAllHistory(): LiveData<List<UserActivityHistory>>
 
 
     @Insert
@@ -32,10 +33,16 @@ interface SurfinDatabaseDao {
 
 
     @Query("SELECT * FROM user_collection ORDER BY id ASC")
-    fun getAllCollection():
-            LiveData<List<Spots>>
+    fun getAllCollection(): LiveData<List<Spots>>
 
     @Query("DELETE from user_collection WHERE lat = :lat AND longitude = :longitude")
     fun removeCollection(lat: Double, longitude: Double)
+
+    @Upsert
+    fun updateUserInfo(userInfo: UserInfo)
+
+
+    @Query("SELECT * FROM user_info")
+    fun getUserInfo(): LiveData<UserInfo>
 
 }

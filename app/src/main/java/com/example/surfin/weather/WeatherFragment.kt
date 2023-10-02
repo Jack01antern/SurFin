@@ -84,6 +84,7 @@ class WeatherFragment : Fragment() {
         return binding.root
     }
 
+
     private fun setLineChartData(entries: List<Entry>) {
 
         Log.i("line chart", "$entries")

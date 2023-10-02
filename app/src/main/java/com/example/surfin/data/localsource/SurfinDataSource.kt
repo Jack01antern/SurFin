@@ -8,6 +8,7 @@ import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
 import com.example.surfin.data.Spots
 import com.example.surfin.data.SurfinRepository
+import com.example.surfin.data.UserInfo
 import com.example.surfin.data.localsource.SurfinDatabaseDao
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
@@ -17,12 +18,12 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
     SurfinRepository {
 
     //remote
-    override suspend fun getCwaTide(apiKey: String,locationName: String): CwaTideResult {
-        return super.getCwaTide(apiKey,locationName)
+    override suspend fun getCwaTide(apiKey: String, locationName: String): CwaTideResult {
+        return super.getCwaTide(apiKey, locationName)
     }
 
-    override suspend fun getCwaTemp(apiKey: String,locationName: String): CwaTempResult {
-        return super.getCwaTemp(apiKey,locationName)
+    override suspend fun getCwaTemp(apiKey: String, locationName: String): CwaTempResult {
+        return super.getCwaTemp(apiKey, locationName)
     }
 
     override suspend fun getCwaWdsd(apiKey: String, locationName: String): CwaTempResult {
@@ -34,7 +35,7 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
     }
 
     override suspend fun getCwaUvi(apiKey: String, locationName: String): CwaUviResult {
-        return super.getCwaUvi(apiKey,locationName)
+        return super.getCwaUvi(apiKey, locationName)
     }
 
 //    override suspend fun getCwaEarthquake(locationName: String): CwaEarthquakeResult {
@@ -67,16 +68,18 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
 
     override suspend fun updateHistory(user: UserActivityHistory) {
         withContext(Dispatchers.IO) {
-        dao.updateHistory(user)
-    }
+            dao.updateHistory(user)
+        }
     }
 
     override suspend fun clearHistory() {
-        return dao.clearHistory()
+        withContext(Dispatchers.IO) {
+            dao.clearHistory()
+        }
     }
 
-    override suspend fun removeFromHistory(activityId:Long) {
-        withContext(Dispatchers.IO){
+    override suspend fun removeFromHistory(activityId: Long) {
+        withContext(Dispatchers.IO) {
             dao.removeFromHistory(activityId)
         }
     }
@@ -85,15 +88,29 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         return dao.getAllHistory()
     }
 
-    override fun addToCollection(spots: Spots) {
-        return dao.addToCollection(spots)
+    override suspend fun addToCollection(spots: Spots) {
+        withContext(Dispatchers.IO) {
+            dao.addToCollection(spots)
+        }
     }
 
     override fun getAllCollection(): LiveData<List<Spots>> {
         return dao.getAllCollection()
     }
 
-    override fun removeCollection(lat: Double, longitude: Double) {
-        return dao.removeCollection(lat, longitude)
+    override suspend fun removeCollection(lat: Double, longitude: Double) {
+        withContext(Dispatchers.IO) {
+            dao.removeCollection(lat, longitude)
+        }
+    }
+
+    override suspend fun updateUserInfo(userInfo: UserInfo) {
+        withContext(Dispatchers.IO) {
+            dao.updateUserInfo(userInfo)
+        }
+    }
+
+    override fun getUserInfo(): LiveData<UserInfo> {
+        return dao.getUserInfo()
     }
 }

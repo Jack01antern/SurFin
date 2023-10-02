@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.example.surfin.account.AccountViewModel" />
 
     </data>
 
@@ -17,7 +20,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:foreground="@color/background_light_gray"/>
+            android:foreground="@color/background_light_gray" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +41,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/gemma"
                 app:layout_constraintBottom_toBottomOf="@id/account_background"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="@id/account_background"
@@ -47,6 +49,16 @@
                 app:layout_constraintWidth_percent="0.5"
                 app:shapeAppearanceOverlay="@style/circular"
                 app:srcCompat="@drawable/baseline_account_circle_24" />
+
+            <ImageView
+                android:id="@+id/btn_change_thumbnail"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/camera"
+                app:layout_constraintBottom_toBottomOf="@id/thumbnail"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="@id/thumbnail"
+                app:layout_constraintWidth_percent="0.1" />
 
             <TextView
                 android:id="@+id/account_name"
@@ -145,8 +157,8 @@
                     android:id="@+id/btn_contact_us"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@color/primary_gray"
                     android:layout_margin="8dp"
+                    android:background="@color/primary_gray"
                     android:padding="4dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/support"

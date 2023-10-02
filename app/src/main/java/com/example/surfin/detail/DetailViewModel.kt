@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 class DetailViewModel(repository: SurfinRepository, args: Spots) : ViewModel() {
 
     private var _selectedDetail = MutableLiveData<Spots>()
-    val selectedDetail :LiveData<Spots>
+    val selectedDetail: LiveData<Spots>
         get() = _selectedDetail
 
 
@@ -45,10 +45,8 @@ class DetailViewModel(repository: SurfinRepository, args: Spots) : ViewModel() {
     fun addToCollection(repository: SurfinRepository, spots: Spots) {
         viewModelScope.launch {
             try {
-                withContext(Dispatchers.IO) {
-                    repository.addToCollection(spots)
-                    _isStarred.value = true
-                }
+                repository.addToCollection(spots)
+                _isStarred.value = true
             } catch (e: Exception) {
                 Log.i("collection", "failed: ${e.message}")
             }
@@ -59,10 +57,8 @@ class DetailViewModel(repository: SurfinRepository, args: Spots) : ViewModel() {
     fun removeFromCollection(repository: SurfinRepository, spots: Spots) {
         viewModelScope.launch {
             try {
-                withContext(Dispatchers.IO) {
-                    repository.removeCollection(spots.lat, spots.longitude)
-                    _isStarred.value = false
-                }
+                repository.removeCollection(spots.lat, spots.longitude)
+                _isStarred.value = false
             } catch (e: Exception) {
                 Log.i("collection", "failed: ${e.message}")
             }

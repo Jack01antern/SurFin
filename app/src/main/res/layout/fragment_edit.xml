@@ -21,29 +21,29 @@
             android:layout_height="match_parent"
             tools:context=".history.AddHistoryDialog">
 
+            <TextView
+                android:id="@+id/input_date"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="16dp"
+                android:foreground="@drawable/border"
+                android:hint="@string/input_date"
+                android:paddingLeft="16dp"
+                android:textAlignment="textStart"
+                android:textSize="19sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_location_title"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-
                 android:layout_margin="16dp"
                 android:foreground="@drawable/border"
                 android:hint="@string/input_location_title"
                 android:paddingStart="16dp"
-                app:layout_constraintBottom_toTopOf="@id/input_date"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/input_date"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="16dp"
-                android:foreground="@drawable/border"
-                android:hint="@string/input_date"
-                android:paddingStart="16dp"
-                app:layout_constraintBottom_toTopOf="@id/input_heart_rate"
-                app:layout_constraintTop_toBottomOf="@id/input_location_title" />
+                app:layout_constraintTop_toBottomOf="@id/input_date"
+                app:layout_constraintBottom_toTopOf="@id/input_heart_rate"/>
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -52,11 +52,10 @@
                 android:layout_height="0dp"
                 android:layout_margin="16dp"
                 android:foreground="@drawable/border"
-
                 android:hint="@string/input_heart_rate"
                 android:paddingStart="16dp"
                 app:layout_constraintBottom_toTopOf="@id/input_time_duration"
-                app:layout_constraintTop_toBottomOf="@id/input_date" />
+                app:layout_constraintTop_toBottomOf="@id/input_location_title" />
 
 
             <com.google.android.material.textfield.TextInputEditText
