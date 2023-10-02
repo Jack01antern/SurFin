@@ -34,11 +34,10 @@ class EditFragment : DialogFragment() {
         binding.lifecycleOwner = this
 
 
-
         var locationTitle = ""
-        binding.inputLocationTitle.doAfterTextChanged {locationTitle  = it.toString() }
-        var content =""
-        binding.inputContent.doAfterTextChanged { content =it.toString() }
+        binding.inputLocationTitle.doAfterTextChanged { locationTitle = it.toString() }
+        var content = ""
+        binding.inputContent.doAfterTextChanged { content = it.toString() }
         var heartRate = ""
         binding.inputHeartRate.doAfterTextChanged { heartRate = it.toString() }
         var timeDuration = ""
@@ -60,9 +59,15 @@ class EditFragment : DialogFragment() {
             val year = Calendar.getInstance().get(Calendar.YEAR)
             val month = Calendar.getInstance().get(Calendar.MONTH)
             val day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-            val dpd = DatePickerDialog(requireContext(),DatePickerDialog.OnDateSetListener{view, mYear,mMonth,mDay->
-                binding.inputDate.setText(""+mDay+"/"+mMonth+"/"+mYear)
-            },year,month,day)
+            val dpd = DatePickerDialog(
+                requireContext(),
+                DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
+                    binding.inputDate.setText("" + mDay + "/" + mMonth + "/" + mYear)
+                },
+                year,
+                month,
+                day
+            )
             dpd.show()
         }
         Log.i("edit", "args: $args")
@@ -70,10 +75,22 @@ class EditFragment : DialogFragment() {
 
         binding.btnSubmit.setOnClickListener {
             val history = UserActivityHistory(
-                args.historyInfo.activityId,locationTitle,date,content,heartRate,timeDuration,calories
+                args.historyInfo.activityId,
+                locationTitle,
+                date,
+                content,
+                heartRate,
+                timeDuration,
+                calories
             )
-            viewModel.updateHistory(history,repository)
+            viewModel.updateHistory(history, repository)
             Log.i("edit fragment", "${args.historyInfo},$repository")
+            findNavController().navigateUp()
+        }
+
+
+        binding.btnDelete.setOnClickListener {
+            viewModel.removeFromHistory(args.historyInfo.activityId, repository)
             findNavController().navigateUp()
         }
         return binding.root

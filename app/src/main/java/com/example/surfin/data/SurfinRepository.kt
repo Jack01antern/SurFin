@@ -47,6 +47,7 @@ interface SurfinRepository {
 
     suspend fun updateHistory(user:UserActivityHistory)
 
+    suspend fun removeFromHistory(activityId:Long)
 
     suspend fun clearHistory()
 

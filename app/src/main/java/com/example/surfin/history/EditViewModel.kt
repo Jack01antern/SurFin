@@ -9,7 +9,7 @@ import com.example.surfin.data.UserActivityHistory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
+import kotlin.Exception
 
 class EditViewModel(args: EditFragmentArgs, repository: SurfinRepository) : ViewModel() {
 
@@ -17,13 +17,24 @@ class EditViewModel(args: EditFragmentArgs, repository: SurfinRepository) : View
     fun updateHistory(history: UserActivityHistory, repository: SurfinRepository) {
         try {
             viewModelScope.launch {
-                withContext(Dispatchers.IO) {
+//                withContext(Dispatchers.IO) {
                     repository.updateHistory(history)
                     Log.i("Edit ViewModel", "success: ${history}")
-                }
+//                }
             }
         } catch (e: Exception) {
             Log.i("Edit ViewModel", "failed: ${e.message}")
+        }
+    }
+
+    fun removeFromHistory(history: Long, repository: SurfinRepository) {
+        viewModelScope.launch {
+            try {
+                repository.removeFromHistory(history)
+                Log.i("edit page", "remove success $history")
+            } catch (e: Exception) {
+                Log.i("edit page", "remove failed ${e.message}")
+            }
         }
     }
 

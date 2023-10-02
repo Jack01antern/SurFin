@@ -16,8 +16,8 @@ interface SurfinDatabaseDao {
     @Update
     fun updateHistory(userActivityHistory: UserActivityHistory)
 
-    @Query("DELETE from user_history WHERE location_title = :id AND date = :date")
-    fun deleteHistory(id: String, date: Long)
+    @Query("DELETE from user_history WHERE activityId = :activityId ")
+    fun removeFromHistory(activityId: Long)
 
     @Query("DELETE FROM user_history")
     fun clearHistory()

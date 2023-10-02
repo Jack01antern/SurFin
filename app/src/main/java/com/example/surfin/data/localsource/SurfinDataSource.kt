@@ -75,6 +75,12 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         return dao.clearHistory()
     }
 
+    override suspend fun removeFromHistory(activityId:Long) {
+        withContext(Dispatchers.IO){
+            dao.removeFromHistory(activityId)
+        }
+    }
+
     override fun getAllHistory(): LiveData<List<UserActivityHistory>> {
         return dao.getAllHistory()
     }

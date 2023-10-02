@@ -3,6 +3,7 @@ package com.example.surfin.history
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.telephony.CarrierConfigManager.Bsf
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +32,8 @@ class HistoryFragment : Fragment() {
             ViewModelProvider(this, HistoryFactory(repository)).get(HistoryViewModel::class.java)
 
         val adapter = HistoryAdapter(HistoryAdapter.OnClickListener {
-            findNavController().navigate(EditFragmentDirections.actionNavigateToEditFragment(it)) })
+            findNavController().navigate(EditFragmentDirections.actionNavigateToEditFragment(it))
+        Log.i("history edit btn","clicked: $it")})
         binding.historyRecyclerView.adapter = adapter
         viewModel.activityHistory.observe(viewLifecycleOwner, Observer {
             adapter.submitList(viewModel.activityHistory.value)
