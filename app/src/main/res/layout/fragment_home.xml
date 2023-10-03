@@ -10,12 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background_light_gray"
         tools:context=".home.HomeFragment">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foreground="@color/background_light_gray" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/search_card_view"
@@ -36,10 +33,10 @@
             android:id="@+id/recommended_spots"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="32dp"
             android:layout_marginStart="16dp"
-            android:textColor="@color/primary_darker_gray"
+            android:layout_marginTop="32dp"
             android:text="@string/recommended_spots"
+            android:textColor="@color/primary_darker_gray"
             app:layout_constraintTop_toBottomOf="@id/search_card_view" />
 
         <androidx.cardview.widget.CardView

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,8 @@ import com.example.surfin.databinding.FragmentEmergencyBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
+
+private const val LOCATION_REQUEST_CODE = 0x00
 class EmergencyFragment : Fragment() {
 
     private lateinit var viewModel: EmergencyViewModel
@@ -40,6 +43,7 @@ class EmergencyFragment : Fragment() {
         }
 
         binding.btnLocate.setOnClickListener {
+            Log.i("emergency", "clicked")
             checkPermission()
         }
 
@@ -64,7 +68,7 @@ class EmergencyFragment : Fragment() {
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-                1
+                LOCATION_REQUEST_CODE
             )
         } else {
             getLocations()
@@ -76,11 +80,7 @@ class EmergencyFragment : Fragment() {
         fusedLocationProviderClient.lastLocation?.addOnSuccessListener {
             if (it == null) {
                 sequenceOf(
-                    Toast.makeText(
-                        requireContext(),
-                        "Sorry can't get location",
-                        Toast.LENGTH_SHORT
-                    )
+                    Toast.makeText(requireContext(), "Sorry can't get location", Toast.LENGTH_SHORT)
                 )
             } else it.apply {
                 val latitude = it.latitude
@@ -95,7 +95,7 @@ class EmergencyFragment : Fragment() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        if (requestCode == 1) {
+        if (requestCode == LOCATION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(requireContext(), "Permission Granted", Toast.LENGTH_SHORT).show()
                 getLocations()

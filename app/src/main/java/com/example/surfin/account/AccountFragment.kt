@@ -48,9 +48,7 @@ class AccountFragment : Fragment() {
 
 
     private lateinit var viewModel: AccountViewModel
-    private lateinit var locale: Locale
     private lateinit var binding: FragmentAccountBinding
-    private lateinit var xx: ByteArray
     private lateinit var repository: SurfinRepository
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -64,43 +62,11 @@ class AccountFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-        //select language
-        var languageList = ArrayList<String>()
-        languageList.add("")
-        languageList.add("English")
-        languageList.add("Chinese")
-        var adapter = ArrayAdapter(
-            requireContext(),
-            com.bumptech.glide.R.layout.support_simple_spinner_dropdown_item,
-            languageList
-        )
-        binding.spinner.adapter = adapter
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                when (p2) {
-                    0 -> {
-                    }
-
-                    1 -> setLocale("en")
-                    2 -> setLocale("cn")
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-        }
-
-
-
         binding.btnActivityHistory.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_history_fragment)
         }
         binding.btnCollection.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_collection_fragment)
-        }
-        binding.btnLanguage.setOnClickListener {
-            binding.spinner.visibility = View.VISIBLE
         }
 
         binding.btnProvideSpots.setOnClickListener {
@@ -121,21 +87,19 @@ class AccountFragment : Fragment() {
 
         }
 
-        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
-            val contentUri = Uri.parse(it.selfie)
-            Log.i("uri", "$contentUri")
-            it.selfie.let {
-                try {
-                    if (contentUri != null) {
-//                        val bitmap = loadBitmapFromUri(contentUri)
-                        binding.thumbnail.setImageURI(contentUri)
-//                        binding.thumbnail.setImageBitmap(bitmap)
-                    }
-                } catch (e: Exception) {
-                    Log.i("uri", "failed: ${e.message}")
-                }
-            }
-        })
+//        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
+//            val contentUri = Uri.parse(it.selfie)
+//            Log.i("uri", "$contentUri")
+//            it.selfie.let {
+//                try {
+//                    if (contentUri != null) {
+//                        binding.thumbnail.setImageURI(contentUri)
+//                    }
+//                } catch (e: Exception) {
+//                    Log.i("uri", "failed: ${e.message}")
+//                }
+//            }
+//        })
 
         return binding.root
     }
@@ -143,20 +107,6 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
-    }
-
-    fun setLocale(language: String) {
-        locale = Locale(language)
-        var res = resources
-        var dm = res.displayMetrics
-        var conf = res.configuration
-        conf.locale = locale
-        res.updateConfiguration(conf, dm)
-
-        var refresh = Intent(requireContext(), MainActivity::class.java)
-        startActivity(refresh)
-        binding.spinner.visibility = View.GONE
-
     }
 
     private fun showRecommendDialog() {
@@ -232,7 +182,6 @@ class AccountFragment : Fragment() {
             viewModel.reportProblem(inputContent)
             dialog.dismiss()
         }
-
         dialog.show()
 
     }
@@ -250,20 +199,5 @@ class AccountFragment : Fragment() {
         }
     }
 
-    private fun loadBitmapFromUri(uri: Uri): Bitmap? {
-        try {
-            // Use a content resolver to open the input stream
-            val inputStream = requireActivity().contentResolver.openInputStream(uri)
-            if (inputStream != null) {
-                // Decode the stream into a bitmap
-                val bitmap = BitmapFactory.decodeStream(inputStream)
-                inputStream.close()
-                return bitmap
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return null
-    }
 
 }

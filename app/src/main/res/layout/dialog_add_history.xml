@@ -11,7 +11,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_sheet_add"
         android:layout_width="match_parent"
+        android:layout_margin="16dp"
         android:layout_height="wrap_content"
+        android:background="@color/transparent"
         android:padding="16dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         tools:context=".history.AddHistoryDialog">
@@ -79,20 +81,20 @@
             android:layout_height="0dp"
             android:layout_margin="16dp"
             android:foreground="@drawable/border"
-            app:layout_constraintHeight_percent="0.3"
+            android:gravity="top"
             android:hint="@string/input_content"
             android:paddingLeft="16dp"
-            android:gravity="top"
-            app:layout_constraintBottom_toTopOf="@id/btn_submit" />
+            app:layout_constraintBottom_toTopOf="@id/btn_submit"
+            app:layout_constraintHeight_percent="0.3" />
 
 
         <Button
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="submit"
-            android:background="@drawable/round_btn"
             android:layout_margin="16dp"
+            android:background="@drawable/round_btn"
+            android:text="submit"
             app:layout_constraintBottom_toBottomOf="parent" />
 
 

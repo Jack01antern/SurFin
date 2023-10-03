@@ -10,12 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".history.HistoryFragment">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foreground="@color/background_light_gray"/>
+        tools:context=".history.HistoryFragment"
+        android:background="@color/background_light_gray">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/history_recycler_view"

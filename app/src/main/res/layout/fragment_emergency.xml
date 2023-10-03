@@ -19,11 +19,11 @@
             android:layout_height="0dp"
             android:layout_margin="32dp"
             android:src="@drawable/telephone"
-            app:layout_constraintWidth_percent="0.7"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.2"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.7" />
 
         <TextView
             android:id="@+id/emergeny_hint"
@@ -65,18 +65,19 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="16dp"
+            android:background="@color/transparent"
             android:scaleType="centerCrop"
             android:src="@drawable/crosshair"
             app:layout_constraintBottom_toTopOf="@id/locate_myself"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/location_text_view"
-            app:layout_constraintWidth_percent="0.2" />
+            app:layout_constraintWidth_percent="0.15" />
 
 
         <TextView
             android:id="@+id/locate_myself"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/locate_myself"
             android:textAlignment="center"
