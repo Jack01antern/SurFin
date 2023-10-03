@@ -21,8 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@{viewModel.title}"
-            android:textSize="23sp"
-            android:textColor="@color/hint_middle_gray"
+            android:textSize="22sp"
+            android:textColor="@color/primary_navy"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="白沙灣" />
 

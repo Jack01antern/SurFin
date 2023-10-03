@@ -7,9 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.surfin.data.Spots
 import com.example.surfin.data.SurfinRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class DetailViewModel(repository: SurfinRepository, args: Spots) : ViewModel() {
 
@@ -35,7 +33,7 @@ class DetailViewModel(repository: SurfinRepository, args: Spots) : ViewModel() {
             try {
                 val list = repository.getAllCollection()
                 _isStarred.value =
-                    list.value?.any { it.lat == args.lat && it.longitude == args.longitude } == true
+                    list.any { it.lat == args.lat && it.longitude == args.longitude } == true
             } catch (e: Exception) {
                 Log.i("detail db", "failed: ${e.message}")
             }

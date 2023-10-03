@@ -2,7 +2,6 @@ package com.example.surfin.data
 
 import androidx.lifecycle.LiveData
 import com.example.surfin.network.SurfinApi
-import com.google.android.gms.common.api.internal.ApiKey
 
 interface SurfinRepository {
 
@@ -57,7 +56,10 @@ interface SurfinRepository {
     //local db collection
     suspend fun addToCollection(spots: Spots)
 
-    fun getAllCollection(): LiveData<List<Spots>>
+    fun getAllCollectionLiveData(): LiveData<List<Spots>>
+
+    suspend fun getAllCollection(): List<Spots>
+
 
     suspend fun removeCollection(lat: Double, longitude: Double)
 

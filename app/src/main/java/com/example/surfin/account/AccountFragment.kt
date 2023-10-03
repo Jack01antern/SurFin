@@ -127,7 +127,9 @@ class AccountFragment : Fragment() {
             it.selfie.let {
                 try {
                     if (contentUri != null) {
+//                        val bitmap = loadBitmapFromUri(contentUri)
                         binding.thumbnail.setImageURI(contentUri)
+//                        binding.thumbnail.setImageBitmap(bitmap)
                     }
                 } catch (e: Exception) {
                     Log.i("uri", "failed: ${e.message}")
@@ -242,7 +244,7 @@ class AccountFragment : Fragment() {
             val selectedImageUri = data.data
 
             val imagePath = selectedImageUri?.path!!
-            val userInfo = UserInfo(0L, imagePath, "Gemma")
+            val userInfo = UserInfo(0L, selectedImageUri.toString(), "Gemma")
             viewModel.updateUserInfo(userInfo, repository)
             Log.d("Image Path", "Image Path: $imagePath")
         }

@@ -9,7 +9,6 @@ import com.example.surfin.data.CwaUviResult
 import com.example.surfin.data.Spots
 import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.UserInfo
-import com.example.surfin.data.localsource.SurfinDatabaseDao
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -94,8 +93,16 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         }
     }
 
-    override fun getAllCollection(): LiveData<List<Spots>> {
-        return dao.getAllCollection()
+    override fun getAllCollectionLiveData(): LiveData<List<Spots>> {
+        return dao.getAllCollectionLiveData()
+    }
+
+    override suspend fun getAllCollection(): List<Spots> {
+        var list = listOf<Spots>()
+        withContext(Dispatchers.IO) {
+            list = dao.getAllCollection()
+        }
+        return list
     }
 
     override suspend fun removeCollection(lat: Double, longitude: Double) {

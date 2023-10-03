@@ -7,6 +7,6 @@ import com.example.surfin.data.SurfinRepository
 
 class CollectionViewModel(repository: SurfinRepository) : ViewModel() {
 
-    val spotCollection: LiveData<List<Spots>> = repository.getAllCollection()
+    val spotCollection: LiveData<List<Spots>> = repository.getAllCollectionLiveData()
 
 }

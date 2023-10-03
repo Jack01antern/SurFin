@@ -33,7 +33,11 @@ interface SurfinDatabaseDao {
 
 
     @Query("SELECT * FROM user_collection ORDER BY id ASC")
-    fun getAllCollection(): LiveData<List<Spots>>
+    fun getAllCollectionLiveData(): LiveData<List<Spots>>
+
+    @Query("SELECT * FROM user_collection ORDER BY id ASC")
+    fun getAllCollection(): List<Spots>
+
 
     @Query("DELETE from user_collection WHERE lat = :lat AND longitude = :longitude")
     fun removeCollection(lat: Double, longitude: Double)

@@ -51,6 +51,7 @@ class DetailDialog : BottomSheetDialogFragment() {
         val unStarredBtn = binding.btnUnstarred
 
         viewModel.isStarred.observe(viewLifecycleOwner, Observer {
+            Log.i("detailDialog", "isStarred $it")
             if (it) {
                 unStarredBtn.visibility = View.GONE
                 starredBtn.visibility = View.VISIBLE

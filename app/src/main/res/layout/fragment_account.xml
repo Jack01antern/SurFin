@@ -41,6 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
+                android:src="@drawable/gemma"
                 app:layout_constraintBottom_toBottomOf="@id/account_background"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="@id/account_background"
