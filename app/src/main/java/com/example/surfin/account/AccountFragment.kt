@@ -2,6 +2,7 @@ package com.example.surfin.account
 
 import android.app.Activity.RESULT_OK
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,34 +14,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
-import com.example.surfin.MainActivity
 import com.example.surfin.R
 import com.example.surfin.databinding.FragmentAccountBinding
-import java.util.Locale
-import android.content.ContentResolver
-import android.content.ContentValues
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.content.SharedPreferences
 import android.net.Uri
 import android.provider.MediaStore
-import android.util.Base64
 import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.UserInfo
-import com.example.surfin.detail.DetailViewModel
 import com.example.surfin.factory.AccountFactory
-import com.example.surfin.factory.DetailFactory
-import java.io.ByteArrayOutputStream
 
 private const val PICK_IMAGE_REQUEST = 1
 
@@ -50,6 +39,7 @@ class AccountFragment : Fragment() {
     private lateinit var viewModel: AccountViewModel
     private lateinit var binding: FragmentAccountBinding
     private lateinit var repository: SurfinRepository
+    private lateinit var sharedPreferences: SharedPreferences
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -86,6 +76,15 @@ class AccountFragment : Fragment() {
             startActivityForResult(intent, PICK_IMAGE_REQUEST)
 
         }
+
+        binding.btnEditName.setOnClickListener {
+            showEditNameDialog()
+        }
+
+        sharedPreferences = requireContext().getSharedPreferences("user_info", Context.MODE_PRIVATE)
+        val userName = sharedPreferences.getString("user_name", "Please Enter Your Name")
+        binding.accountName.setText(userName)
+
 
 //        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
 //            val contentUri = Uri.parse(it.selfie)
@@ -180,6 +179,38 @@ class AccountFragment : Fragment() {
         btnSubmit.setOnClickListener {
             Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
             viewModel.reportProblem(inputContent)
+            dialog.dismiss()
+        }
+        dialog.show()
+
+    }
+
+
+    private fun showEditNameDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_edit_name)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        Log.i("account provide btn", "clicked")
+
+        val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        var inputContent = ""
+        dialog.findViewById<EditText>(R.id.input_name).doAfterTextChanged { inputContent = it.toString() }
+
+
+
+        val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
+        btnSubmit.setOnClickListener {
+            sharedPreferences = requireContext().getSharedPreferences("user_info", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("user_name",inputContent)
+            editor.apply()
+            binding.accountName.setText(inputContent)
+            Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
         dialog.show()

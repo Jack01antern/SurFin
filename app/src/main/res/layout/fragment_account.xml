@@ -4,194 +4,182 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.surfin.account.AccountViewModel" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/primary_gray"
-        tools:context=".account.AccountFragment">
-
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foreground="@color/background_light_gray" />
-
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/account_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            tools:context=".account.AccountFragment">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:foreground="@drawable/account_circle_background"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/thumbnail"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/gemma"
-                app:layout_constraintBottom_toBottomOf="@id/account_background"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="@id/account_background"
-                app:layout_constraintStart_toStartOf="@id/account_background"
-                app:layout_constraintTop_toTopOf="@id/account_background"
-                app:layout_constraintWidth_percent="0.5"
-                app:shapeAppearanceOverlay="@style/circular"
-                app:srcCompat="@drawable/baseline_account_circle_24" />
-
-            <ImageView
-                android:id="@+id/btn_change_thumbnail"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:src="@drawable/camera"
-                app:layout_constraintBottom_toBottomOf="@id/thumbnail"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="@id/thumbnail"
-                app:layout_constraintWidth_percent="0.1" />
-
-            <TextView
-                android:id="@+id/account_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:text="Gemma Ward"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@id/thumbnail"
-                app:layout_constraintStart_toStartOf="@id/thumbnail"
-                app:layout_constraintTop_toBottomOf="@id/thumbnail"
-                tools:text="Gemma Ward" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            app:cardCornerRadius="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/account_background">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/account_background"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="32dp">
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <ImageButton
-                    android:id="@+id/btn_activity_history"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:foreground="@drawable/account_circle_background"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/thumbnail"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_margin="8dp"
-                    android:background="@color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/diary"
-                    android:text="@string/activity_history"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/gemma"
+                    app:layout_constraintBottom_toBottomOf="@id/account_background"
                     app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@id/btn_collection"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.2" />
+                    app:layout_constraintEnd_toEndOf="@id/account_background"
+                    app:layout_constraintStart_toStartOf="@id/account_background"
+                    app:layout_constraintTop_toTopOf="@id/account_background"
+                    app:layout_constraintWidth_percent="0.5"
+                    app:shapeAppearanceOverlay="@style/circular"
+                    app:srcCompat="@drawable/baseline_account_circle_24" />
 
-                <ImageButton
-                    android:id="@+id/btn_collection"
+                <ImageView
+                    android:id="@+id/btn_change_thumbnail"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_margin="8dp"
-                    android:background="@color/transparent"
-                    android:padding="8dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/save_instagram"
-                    android:text="@string/collection"
+                    android:src="@drawable/camera"
+                    app:layout_constraintBottom_toBottomOf="@id/thumbnail"
                     app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@id/btn_language"
-                    app:layout_constraintStart_toEndOf="@id/btn_activity_history"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.2" />
+                    app:layout_constraintEnd_toEndOf="@id/thumbnail"
+                    app:layout_constraintWidth_percent="0.1" />
 
-
-                <ImageButton
-                    android:id="@+id/btn_language"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_margin="8dp"
-                    android:background="@color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/language"
-                    android:text="@string/switch_language"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/btn_collection"
-                    app:layout_constraintTop_toTopOf="parent"
-
-                    app:layout_constraintWidth_percent="0.2" />
-
-                <ImageButton
-                    android:id="@+id/btn_provide_spots"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_margin="8dp"
-                    android:background="@color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/surfboard"
-                    android:text="@string/provide_spots"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@id/btn_contact_us"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btn_activity_history"
-                    app:layout_constraintWidth_percent="0.2" />
-
-                <ImageButton
-                    android:id="@+id/btn_contact_us"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_margin="8dp"
-                    android:background="@color/transparent"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/support"
-                    android:text="@string/contact_us"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@id/btn_report_problem"
-                    app:layout_constraintStart_toEndOf="@id/btn_provide_spots"
-                    app:layout_constraintTop_toBottomOf="@id/btn_collection"
-                    app:layout_constraintWidth_percent="0.2" />
-
-
-                <ImageButton
-                    android:id="@+id/btn_report_problem"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_margin="8dp"
-                    android:background="@color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/problem"
-                    android:text="@string/report_problem"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/btn_contact_us"
-                    app:layout_constraintTop_toBottomOf="@id/btn_language"
-                    app:layout_constraintWidth_percent="0.2" />
-
+                <TextView
+                    android:id="@+id/account_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:text=""
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@id/thumbnail"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail"
+                    app:layout_constraintTop_toBottomOf="@id/thumbnail"
+                    tools:text="Gemma Ward" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                app:cardCornerRadius="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/account_background">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="32dp">
+
+                    <ImageButton
+                        android:id="@+id/btn_activity_history"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/diary"
+                        android:text="@string/activity_history"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <ImageButton
+                        android:id="@+id/btn_collection"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/transparent"
+                        android:padding="8dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/save_instagram"
+                        android:text="@string/collection"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_activity_history"
+                        app:layout_constraintWidth_percent="0.2" />
+
+
+                    <ImageButton
+                        android:id="@+id/btn_provide_spots"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/surfboard"
+                        android:text="@string/provide_spots"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_collection"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <ImageButton
+                        android:id="@+id/btn_contact_us"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/transparent"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/support"
+                        android:text="@string/contact_us"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_provide_spots"
+                        app:layout_constraintWidth_percent="0.2" />
+
+
+                    <ImageButton
+                        android:id="@+id/btn_report_problem"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/problem"
+                        android:text="@string/report_problem"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_contact_us"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <ImageView
+                        android:id="@+id/btn_edit_name"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/edit_profile"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_report_problem"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </layout>
