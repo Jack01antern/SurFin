@@ -20,7 +20,7 @@ private const val CWA_BASE_URL = "https://$CWA_HOST_NAME/api/$CWA_API_VERSION/"
 
 //cwa data source
 private const val CWA_TIDE_SOURCE = "F-A0021-001"
-private const val CWA_TEMP_SOURCE = "O-A0003-001"
+private const val CWA_TEMP_SOURCE = "O-A0001-001"
 private const val CWA_UVI_SOURCE = "O-A0005-001"
 
 

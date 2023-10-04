@@ -58,7 +58,7 @@
     <string name="delete">刪除</string>
     <string name="submit">送出</string>
     <string name="emergency_hint">點擊後跳轉撥號頁面</string>
-    <string name="edit_name">更改資料</string>
+    <string name="edit_name">更改姓名</string>
 
 
 </resources>

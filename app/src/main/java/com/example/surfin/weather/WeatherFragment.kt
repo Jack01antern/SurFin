@@ -102,14 +102,15 @@ class WeatherFragment : Fragment() {
         lineDataSet.lineWidth = 3f
         lineDataSet.circleColors =
             listOf(ContextCompat.getColor(requireContext(), R.color.primary_gray))
-
+        binding.lineChart.legend.isEnabled = false
         binding.lineChart.xAxis.isEnabled = false
         binding.lineChart.axisLeft.isEnabled = false
         binding.lineChart.axisRight.isEnabled = false
+        binding.lineChart.description.isEnabled = false
 
         lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
         lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.primary_gray)
-        binding.lineChart.animateXY(3000, 3000)
+        binding.lineChart.animateXY(2000, 3000)
         lineDataSet.fillFormatter =
             IFillFormatter { _, dataProvider ->
                 entries
