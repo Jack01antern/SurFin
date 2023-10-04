@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="更改資料"
+            android:text="@string/edit_name"
             android:textAlignment="center"
             android:textColor="@color/primary_darker_gray"
             android:textSize="20sp"

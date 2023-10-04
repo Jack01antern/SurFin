@@ -52,22 +52,22 @@ class AccountFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-        binding.btnActivityHistory.setOnClickListener {
+        binding.activityHistoryTitle.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_history_fragment)
         }
-        binding.btnCollection.setOnClickListener {
+        binding.collectionTitle.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_collection_fragment)
         }
 
-        binding.btnProvideSpots.setOnClickListener {
+        binding.provideSpotsTitle.setOnClickListener {
             showRecommendDialog()
         }
 
-        binding.btnContactUs.setOnClickListener {
+        binding.contactUsTitle.setOnClickListener {
             showContactUsDialog()
         }
 
-        binding.btnReportProblem.setOnClickListener {
+        binding.reportProblemTitle.setOnClickListener {
             showReportDialog()
         }
 
@@ -77,7 +77,7 @@ class AccountFragment : Fragment() {
 
         }
 
-        binding.btnEditName.setOnClickListener {
+        binding.editNameTitle.setOnClickListener {
             showEditNameDialog()
         }
 
@@ -86,19 +86,19 @@ class AccountFragment : Fragment() {
         binding.accountName.setText(userName)
 
 
-//        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
-//            val contentUri = Uri.parse(it.selfie)
-//            Log.i("uri", "$contentUri")
-//            it.selfie.let {
-//                try {
-//                    if (contentUri != null) {
-//                        binding.thumbnail.setImageURI(contentUri)
-//                    }
-//                } catch (e: Exception) {
-//                    Log.i("uri", "failed: ${e.message}")
-//                }
-//            }
-//        })
+        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
+            val contentUri = Uri.parse(it.selfie)
+            Log.i("uri", "$contentUri")
+            it.selfie.let {
+                try {
+                    if (contentUri != null) {
+                        binding.thumbnail.setImageURI(contentUri)
+                    }
+                } catch (e: Exception) {
+                    Log.i("uri", "failed: ${e.message}")
+                }
+            }
+        })
 
         return binding.root
     }

@@ -22,7 +22,7 @@
             android:layout_marginStart="16dp"
             android:text="@{viewModel.title}"
             android:textSize="22sp"
-            android:textColor="@color/primary_navy"
+            android:textColor="@color/primary_darker_gray"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="白沙灣" />
 

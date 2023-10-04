@@ -67,4 +67,16 @@
         <item name="android:letterSpacing">0.4</item>
     </style>
 
+
+    <style name="account_title">
+        <item name="fontFamily">rounded</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/primary_darker_gray</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:letterSpacing">0.4</item>
+    </style>
+
 </resources>
