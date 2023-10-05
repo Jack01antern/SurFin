@@ -86,19 +86,19 @@ class AccountFragment : Fragment() {
         binding.accountName.setText(userName)
 
 
-        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
-            val contentUri = Uri.parse(it.selfie)
-            Log.i("uri", "$contentUri")
-            it.selfie.let {
-                try {
-                    if (contentUri != null) {
-                        binding.thumbnail.setImageURI(contentUri)
-                    }
-                } catch (e: Exception) {
-                    Log.i("uri", "failed: ${e.message}")
-                }
-            }
-        })
+//        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
+//            val contentUri = Uri.parse(it.selfie)
+//            Log.i("uri", "$contentUri")
+//            it.selfie.let {
+//                try {
+//                    if (contentUri != null) {
+//                        binding.thumbnail.setImageURI(contentUri)
+//                    }
+//                } catch (e: Exception) {
+//                    Log.i("uri", "failed: ${e.message}")
+//                }
+//            }
+//        })
 
         return binding.root
     }

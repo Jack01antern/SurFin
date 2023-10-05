@@ -11,10 +11,13 @@
 
 <!--    Dialog background-->
     <color name="translucent_40">#66000000</color>
-    <color name="red">#DD3333</color>
+    <color name="burgundy">#993333</color>
 
     <color name="background_light_gray">#FFEEEEEE</color>
     <color name="line_chart_gradient" tools:ignore="ResourceCycle">@color/line_chart_gradient</color>
     <color name="hint_middle_gray">#888888</color>
 
+    <color name="card_view_background">#FFFFFF</color>
+
+    <color name="btn_gray">#888888</color>
 </resources>

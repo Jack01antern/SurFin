@@ -17,10 +17,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             tools:context=".account.AccountFragment">
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/account_background"
@@ -60,17 +59,30 @@
                     app:layout_constraintEnd_toEndOf="@id/thumbnail"
                     app:layout_constraintWidth_percent="0.1" />
 
-                <TextView
-                    android:id="@+id/account_name"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/account_name_card_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="30dp"
-                    android:text=""
-                    android:textSize="20sp"
+                    app:cardBackgroundColor="@color/card_view_background"
+                    app:cardCornerRadius="20dp"
                     app:layout_constraintEnd_toEndOf="@id/thumbnail"
                     app:layout_constraintStart_toStartOf="@id/thumbnail"
-                    app:layout_constraintTop_toBottomOf="@id/thumbnail"
-                    tools:text="Gemma Ward" />
+                    app:layout_constraintTop_toBottomOf="@id/thumbnail">
+
+                    <TextView
+                        android:id="@+id/account_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:text=""
+                        android:textColor="@color/primary_darker_gray"
+                        android:textSize="20sp"
+                        tools:text="Gemma Ward" />
+                </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -78,7 +90,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="32dp"
+                app:cardBackgroundColor="@color/card_view_background"
                 app:cardCornerRadius="30sp"
+                android:padding="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +115,7 @@
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent="0.2" />
+                        app:layout_constraintWidth_percent="0.15" />
 
                     <TextView
                         android:id="@+id/activity_history_title"
@@ -112,16 +126,6 @@
                         app:layout_constraintBottom_toBottomOf="@id/btn_activity_history"
                         app:layout_constraintStart_toEndOf="@id/btn_activity_history"
                         app:layout_constraintTop_toTopOf="@id/btn_activity_history" />
-
-                    <View
-                        android:id="@+id/dividing_line_1"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_activity_history"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/activity_history_title" />
 
 
                     <ImageButton
@@ -137,7 +141,7 @@
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/btn_activity_history"
-                        app:layout_constraintWidth_percent="0.2" />
+                        app:layout_constraintWidth_percent="0.15" />
 
 
                     <TextView
@@ -150,15 +154,6 @@
                         app:layout_constraintStart_toEndOf="@id/btn_collection"
                         app:layout_constraintTop_toTopOf="@id/btn_collection" />
 
-                    <View
-                        android:id="@+id/dividing_line_2"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_collection"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/collection_title" />
 
                     <ImageButton
                         android:id="@+id/btn_provide_spots"
@@ -172,7 +167,7 @@
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/btn_collection"
-                        app:layout_constraintWidth_percent="0.2" />
+                        app:layout_constraintWidth_percent="0.15" />
 
 
                     <TextView
@@ -185,15 +180,6 @@
                         app:layout_constraintStart_toEndOf="@id/btn_provide_spots"
                         app:layout_constraintTop_toTopOf="@id/btn_provide_spots" />
 
-                    <View
-                        android:id="@+id/dividing_line_3"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_provide_spots"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/provide_spots_title" />
 
                     <ImageButton
                         android:id="@+id/btn_contact_us"
@@ -208,7 +194,7 @@
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/btn_provide_spots"
-                        app:layout_constraintWidth_percent="0.2" />
+                        app:layout_constraintWidth_percent="0.15" />
 
                     <TextView
                         android:id="@+id/contact_us_title"
@@ -219,16 +205,6 @@
                         app:layout_constraintBottom_toBottomOf="@id/btn_contact_us"
                         app:layout_constraintStart_toEndOf="@id/btn_contact_us"
                         app:layout_constraintTop_toTopOf="@id/btn_contact_us" />
-
-                    <View
-                        android:id="@+id/dividing_line_4"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_contact_us"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/contact_us_title" />
 
 
                     <ImageButton
@@ -243,7 +219,7 @@
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/btn_contact_us"
-                        app:layout_constraintWidth_percent="0.2" />
+                        app:layout_constraintWidth_percent="0.15" />
 
                     <TextView
                         android:id="@+id/report_problem_title"
@@ -255,15 +231,6 @@
                         app:layout_constraintStart_toEndOf="@id/btn_report_problem"
                         app:layout_constraintTop_toTopOf="@id/btn_report_problem" />
 
-                    <View
-                        android:id="@+id/dividing_line_5"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_report_problem"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/report_problem_title" />
 
                     <ImageView
                         android:id="@+id/btn_edit_name"
@@ -275,7 +242,7 @@
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/btn_report_problem"
-                        app:layout_constraintWidth_percent="0.2" />
+                        app:layout_constraintWidth_percent="0.15" />
 
                     <TextView
                         android:id="@+id/edit_name_title"
@@ -287,15 +254,6 @@
                         app:layout_constraintStart_toEndOf="@id/btn_edit_name"
                         app:layout_constraintTop_toTopOf="@id/btn_edit_name" />
 
-                    <View
-                        android:id="@+id/dividing_line_6"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_edit_name"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/edit_name_title" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

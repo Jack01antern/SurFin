@@ -15,8 +15,9 @@
     <string name="search_spots">搜尋地點</string>
 
     <!--    emergency-->
-    <string name="call_118">撥打118海巡署</string>
-    <string name="call_112">撥打112緊急救難專線</string>
+    <string name="call_118">撥打 118 海巡署</string>
+    <string name="call_112">撥打 112 緊急救難專線</string>
+    <string name="call_119">撥打 119</string>
 
     <!--    account-->
     <string name="activity_history">活動紀錄</string>
@@ -38,7 +39,7 @@
 
     <!--    switch language-->
     <string name="traditional_chinese">繁體中文</string>
-    <string name="locate_myself">顯示定位</string>
+    <string name="locate_myself">我的定位</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="temperature">溫度</string>
     <string name="wdsd">風速</string>

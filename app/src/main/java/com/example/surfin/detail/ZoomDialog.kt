@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.surfin.databinding.DialogZoomBinding
 import com.example.surfin.factory.ZoomFactory
 
@@ -28,6 +29,9 @@ class ZoomDialog :Fragment() {
         binding.viewModel = viewModel
 
 
+        binding.backKey.setOnClickListener {
+            findNavController().navigateUp()
+        }
         return binding.root
     }
 }
