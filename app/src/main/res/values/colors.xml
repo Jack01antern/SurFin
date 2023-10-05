@@ -11,7 +11,7 @@
 
 <!--    Dialog background-->
     <color name="translucent_40">#66000000</color>
-    <color name="burgundy">#993333</color>
+    <color name="burgundy">#994444</color>
 
     <color name="background_light_gray">#FFEEEEEE</color>
     <color name="line_chart_gradient" tools:ignore="ResourceCycle">@color/line_chart_gradient</color>
