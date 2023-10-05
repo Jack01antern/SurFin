@@ -42,7 +42,7 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
         binding.inputCalories.doAfterTextChanged { calories = it.toString() }
         //date picker
         var date = ""
-        binding.inputDate.setOnClickListener {
+        binding.btnSelectDate.setOnClickListener {
             val year = Calendar.getInstance().get(Calendar.YEAR)
             val month = Calendar.getInstance().get(Calendar.MONTH)
             val day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)

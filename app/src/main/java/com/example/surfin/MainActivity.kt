@@ -112,11 +112,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.weatherFragment -> {
-                    binding.toolbar.visibility = View.VISIBLE
-                    binding.backKey.visibility = View.VISIBLE
-                    binding.backKey.setOnClickListener {
-                       navController.navigateUp()
-                    }
+                    binding.toolbar.visibility = View.GONE
+
                 }
 
                 R.id.exploreFragment -> {

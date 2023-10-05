@@ -67,17 +67,13 @@ class AccountFragment : Fragment() {
             showContactUsDialog()
         }
 
-        binding.reportProblemTitle.setOnClickListener {
-            showReportDialog()
-        }
-
         binding.btnChangeThumbnail.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, PICK_IMAGE_REQUEST)
 
         }
 
-        binding.editNameTitle.setOnClickListener {
+        binding.btnEditName.setOnClickListener {
             showEditNameDialog()
         }
 
@@ -156,31 +152,6 @@ class AccountFragment : Fragment() {
             dialog.dismiss()
         }
 
-        dialog.show()
-
-    }
-
-    private fun showReportDialog() {
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.dialog_report)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        Log.i("account provide btn", "clicked")
-
-        val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
-        btnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        var inputContent = ""
-        dialog.findViewById<EditText>(R.id.input_report).doAfterTextChanged { inputContent = it.toString() }
-
-        val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
-        btnSubmit.setOnClickListener {
-            Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
-            viewModel.reportProblem(inputContent)
-            dialog.dismiss()
-        }
         dialog.show()
 
     }

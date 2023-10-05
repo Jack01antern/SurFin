@@ -51,15 +51,4 @@ class AccountViewModel(repository: SurfinRepository) : ViewModel() {
             .addOnFailureListener { e -> Log.w("provide spots", "Error writing document", e) }
     }
 
-    fun reportProblem(text: String) {
-        db.collection("report problem").document()
-            .set(hashMapOf("content" to text))
-            .addOnSuccessListener {
-                Log.d(
-                    "provide spots",
-                    "DocumentSnapshot successfully written!"
-                )
-            }
-            .addOnFailureListener { e -> Log.w("provide spots", "Error writing document", e) }
-    }
 }

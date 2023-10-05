@@ -41,6 +41,7 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/gemma"
                     app:layout_constraintBottom_toBottomOf="@id/account_background"
+                    app:layout_constraintVertical_bias="0.3"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="@id/account_background"
                     app:layout_constraintStart_toStartOf="@id/account_background"
@@ -70,18 +71,37 @@
                     app:layout_constraintStart_toStartOf="@id/thumbnail"
                     app:layout_constraintTop_toBottomOf="@id/thumbnail">
 
-                    <TextView
-                        android:id="@+id/account_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="10dp"
-                        android:text=""
-                        android:textColor="@color/primary_darker_gray"
-                        android:textSize="20sp"
-                        tools:text="Gemma Ward" />
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:id="@+id/account_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text=""
+                            android:textColor="@color/primary_darker_gray"
+                            android:textSize="20sp"
+                            tools:text="Gemma Ward" />
+
+                        <ImageView
+                            android:id="@+id/btn_edit_name"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="16dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/baseline_mode_edit_24"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/account_name"
+                            app:layout_constraintTop_toTopOf="@id/account_name"
+                            app:layout_constraintWidth_percent="0.15" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -90,9 +110,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="32dp"
+                android:padding="32dp"
                 app:cardBackgroundColor="@color/card_view_background"
                 app:cardCornerRadius="30sp"
-                android:padding="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -187,9 +207,8 @@
                         android:layout_height="0dp"
                         android:layout_margin="8dp"
                         android:background="@color/transparent"
-                        android:padding="4dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/support"
+                        android:src="@drawable/problem"
                         android:text="@string/contact_us"
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintStart_toStartOf="parent"
@@ -205,54 +224,6 @@
                         app:layout_constraintBottom_toBottomOf="@id/btn_contact_us"
                         app:layout_constraintStart_toEndOf="@id/btn_contact_us"
                         app:layout_constraintTop_toTopOf="@id/btn_contact_us" />
-
-
-                    <ImageButton
-                        android:id="@+id/btn_report_problem"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_margin="8dp"
-                        android:background="@color/transparent"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/problem"
-                        android:text="@string/report_problem"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/btn_contact_us"
-                        app:layout_constraintWidth_percent="0.15" />
-
-                    <TextView
-                        android:id="@+id/report_problem_title"
-                        style="@style/account_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/report_problem"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_report_problem"
-                        app:layout_constraintStart_toEndOf="@id/btn_report_problem"
-                        app:layout_constraintTop_toTopOf="@id/btn_report_problem" />
-
-
-                    <ImageView
-                        android:id="@+id/btn_edit_name"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_margin="8dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/edit_profile"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/btn_report_problem"
-                        app:layout_constraintWidth_percent="0.15" />
-
-                    <TextView
-                        android:id="@+id/edit_name_title"
-                        style="@style/account_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/edit_name"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_edit_name"
-                        app:layout_constraintStart_toEndOf="@id/btn_edit_name"
-                        app:layout_constraintTop_toTopOf="@id/btn_edit_name" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

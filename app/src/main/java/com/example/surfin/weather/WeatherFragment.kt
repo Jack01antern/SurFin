@@ -18,6 +18,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.surfin.R
 import com.example.surfin.SurfinApplication
@@ -78,6 +79,9 @@ class WeatherFragment : Fragment() {
 
         })
 
+        binding.backKey.setOnClickListener {
+            findNavController().navigateUp()
+        }
         binding.locationTitle.text = args.tempId.title
         binding.lineChart.setPinchZoom(true)
 
