@@ -11,5 +11,4 @@ enum class CurrentFragment(val value: String) {
     ACCOUNT(getString(R.string.account)),
     HISTORY(getString(R.string.activity_history)),
     COLLECTION(getString(R.string.collection)),
-    LANGUAGE(getString(R.string.switch_language))
 }

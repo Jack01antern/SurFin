@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">SurFin</string>
-    <string name="login_title">請登入會員</string>
-    <string name="login_email">Email</string>
-    <string name="login_password">Password</string>
 
     <!--    toolbar-->
     <string name="weather">搜尋天氣</string>
@@ -22,23 +19,20 @@
     <!--    account-->
     <string name="activity_history">活動紀錄</string>
     <string name="collection">收藏清單</string>
-    <string name="switch_language">切換語言</string>
     <string name="provide_spots">提供浪點</string>
     <string name="contact_us">聯絡我們</string>
     <string name="report_problem">問題回報</string>
 
     <!--    add history-->
     <string name="input_location_title">請輸入地點</string>
-    <string name="input_date">請輸入日期</string>
+    <string name="input_date">請選擇日期</string>
     <string name="input_content">請輸入內容</string>
     <string name="input_heart_rate">請輸入心率</string>
     <string name="input_time_duration">請輸入時長</string>
     <string name="input_calories">請輸入消耗卡路里</string>
-    <string name="upload_photo">請上傳照片</string>
 
 
     <!--    switch language-->
-    <string name="traditional_chinese">繁體中文</string>
     <string name="locate_myself">我的定位</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="temperature">溫度</string>
@@ -49,13 +43,6 @@
 
 
     <!--    add history -->
-    <string name="location_title">地點：</string>
-    <string name="date">日期：</string>
-    <string name="content">內容：</string>
-    <string name="heart_rate">心率：</string>
-    <string name="time_duration">時長：</string>
-    <string name="calories">卡路里：</string>
-    <string name="photo">照片：</string>
     <string name="delete">刪除</string>
     <string name="submit">送出</string>
     <string name="emergency_hint">點擊後跳轉撥號頁面</string>

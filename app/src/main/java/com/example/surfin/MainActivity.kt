@@ -95,9 +95,6 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.collectionFragment -> binding.toolbarTitle.text =
                     CurrentFragment.COLLECTION.value
-
-                R.id.languageFragment -> binding.toolbarTitle.text =
-                    CurrentFragment.LANGUAGE.value
             }
             Log.i("toolbar", "toolbar value: ${viewModel.currentFragment.value}")
         }
