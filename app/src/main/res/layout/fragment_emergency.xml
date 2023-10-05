@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
+        android:padding="16dp"
         tools:context=".emergency.EmergencyFragment">
 
         <ImageView
@@ -39,7 +40,7 @@
         <TextView
             android:id="@+id/location_text_view"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_margin="16dp"
             android:padding="16dp"
             android:text=""
@@ -47,7 +48,7 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@id/btn_call_118"
             app:layout_constraintEnd_toStartOf="@id/btn_locate"
-            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintHeight_percent="0.15"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="25.1313,121.4352" />
 
@@ -71,8 +72,8 @@
             app:layout_constraintBottom_toTopOf="@id/locate_myself"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/location_text_view"
             app:layout_constraintStart_toEndOf="@id/location_text_view"
-            app:layout_constraintTop_toBottomOf="@id/location_text_view"
             app:layout_constraintWidth_percent="0.15" />
 
 
@@ -84,6 +85,7 @@
             android:textAlignment="center"
             android:textColor="@color/hint_middle_gray"
             android:textSize="18sp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="@id/location_text_view"
             app:layout_constraintEnd_toEndOf="@id/btn_locate"
             app:layout_constraintStart_toStartOf="@id/btn_locate"
