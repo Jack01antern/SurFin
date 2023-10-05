@@ -32,14 +32,14 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
         val binding = DialogAddHistoryBinding.inflate(inflater)
         var locationTitle = ""
         binding.inputLocationTitle.doAfterTextChanged { locationTitle = it.toString() }
-        var content = ""
-        binding.inputContent.doAfterTextChanged { content = it.toString() }
         var heartRate = ""
         binding.inputHeartRate.doAfterTextChanged { heartRate = it.toString() }
         var timeDuration = ""
         binding.inputTimeDuration.doAfterTextChanged { timeDuration = it.toString() }
         var calories = ""
         binding.inputCalories.doAfterTextChanged { calories = it.toString() }
+        var content = ""
+        binding.inputContent.doAfterTextChanged { content = it.toString() }
         //date picker
         var date = ""
         binding.btnSelectDate.setOnClickListener {
@@ -61,12 +61,12 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
             viewModel.addHistory(
                 UserActivityHistory(
                     0,
-                    locationTitle,
                     date,
-                    content,
+                    locationTitle,
                     heartRate,
                     timeDuration,
-                    calories
+                    calories,
+                    content
                 )
             )
             Log.i("history edit ", "$")

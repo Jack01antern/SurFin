@@ -43,19 +43,19 @@ class EditFragment : DialogFragment() {
         var timeDuration = ""
         binding.inputTimeDuration.doAfterTextChanged { timeDuration = it.toString() }
         var calories = ""
-        //date picker
+        binding.inputCalories.doAfterTextChanged { calories= it.toString() }
         var date = ""
+        binding.inputDate.doAfterTextChanged { date = it.toString() }
 
-
-//        val history = UserActivityHistory(
-//            0,locationTitle,date,content,heartRate,timeDuration,calories,photo
-//        )
         binding.inputLocationTitle.setText(args.historyInfo.locationTitle)
-        binding.inputContent.setText(args.historyInfo.content)
+        binding.inputDate.setText(args.historyInfo.date)
         binding.inputHeartRate.setText(args.historyInfo.heartRate)
         binding.inputTimeDuration.setText(args.historyInfo.timeDuration)
         binding.inputCalories.setText(args.historyInfo.calories)
-        binding.inputDate.setOnClickListener {
+        binding.inputContent.setText(args.historyInfo.content)
+
+        //Date picker
+        binding.btnSelectDate.setOnClickListener {
             val year = Calendar.getInstance().get(Calendar.YEAR)
             val month = Calendar.getInstance().get(Calendar.MONTH)
             val day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
@@ -77,12 +77,12 @@ class EditFragment : DialogFragment() {
         binding.btnSubmit.setOnClickListener {
             val history = UserActivityHistory(
                 args.historyInfo.activityId,
-                locationTitle,
                 date,
-                content,
+                locationTitle,
                 heartRate,
                 timeDuration,
-                calories
+                calories,
+                content
             )
             viewModel.updateHistory(history, repository)
             Log.i("edit fragment", "${args.historyInfo},$repository")
