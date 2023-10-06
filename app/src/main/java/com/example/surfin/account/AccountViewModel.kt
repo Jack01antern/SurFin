@@ -1,7 +1,6 @@
 package com.example.surfin.account
 
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.surfin.data.SurfinRepository
@@ -39,9 +38,13 @@ class AccountViewModel(repository: SurfinRepository) : ViewModel() {
 
 
 
-    fun contactUs(text: String) {
+    fun contactUs(category:String,userName:String,userEmail:String,content: String) {
         db.collection("contact us").document()
-            .set(hashMapOf("content" to text))
+            .set(hashMapOf(
+                "category" to category,
+                "user_name" to userName,
+                "user_email" to userEmail,
+                "content" to content))
             .addOnSuccessListener {
                 Log.d(
                     "provide spots",

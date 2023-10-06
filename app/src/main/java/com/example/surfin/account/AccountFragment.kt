@@ -21,15 +21,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.surfin.R
 import com.example.surfin.databinding.FragmentAccountBinding
 import android.content.SharedPreferences
-import android.net.Uri
 import android.provider.MediaStore
 import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.Observer
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.UserInfo
 import com.example.surfin.factory.AccountFactory
+import com.google.android.material.chip.ChipGroup
 
 private const val PICK_IMAGE_REQUEST = 1
 
@@ -117,7 +116,8 @@ class AccountFragment : Fragment() {
         }
 
         var inputContent = ""
-        dialog.findViewById<EditText>(R.id.input_spots).doAfterTextChanged { inputContent = it.toString() }
+        dialog.findViewById<EditText>(R.id.input_spots)
+            .doAfterTextChanged { inputContent = it.toString() }
 
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
@@ -142,15 +142,38 @@ class AccountFragment : Fragment() {
             dialog.dismiss()
         }
 
+        var inputUserName = ""
+        dialog.findViewById<EditText>(R.id.input_user_name)
+            .doAfterTextChanged { inputUserName = it.toString() }
+
+        var inputUserEmail = ""
+        dialog.findViewById<EditText>(R.id.input_user_email)
+            .doAfterTextChanged { inputUserEmail = it.toString() }
+
         var inputContent = ""
-        dialog.findViewById<EditText>(R.id.input_contact_us).doAfterTextChanged { inputContent = it.toString() }
+        dialog.findViewById<EditText>(R.id.input_contact_us)
+            .doAfterTextChanged { inputContent = it.toString() }
+
+
+        val chipGroup = dialog.findViewById<ChipGroup>(R.id.chip_group)
+        var category = ""
+        chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            checkedId?.let {
+                when (it) {
+                    R.id.option_1 -> category = "recommendation"
+                    R.id.option_2 -> category = "issue report"
+                    R.id.option_3 -> category = "other"
+                }
+            }
+        }
 
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
             Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
-            viewModel.contactUs(inputContent)
+            viewModel.contactUs(category, inputUserName, inputUserEmail, inputContent)
             dialog.dismiss()
         }
+
 
         dialog.show()
 
@@ -170,15 +193,16 @@ class AccountFragment : Fragment() {
         }
 
         var inputContent = ""
-        dialog.findViewById<EditText>(R.id.input_name).doAfterTextChanged { inputContent = it.toString() }
-
+        dialog.findViewById<EditText>(R.id.input_name)
+            .doAfterTextChanged { inputContent = it.toString() }
 
 
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
-            sharedPreferences = requireContext().getSharedPreferences("user_info", Context.MODE_PRIVATE)
+            sharedPreferences =
+                requireContext().getSharedPreferences("user_info", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
-            editor.putString("user_name",inputContent)
+            editor.putString("user_name", inputContent)
             editor.apply()
             binding.accountName.setText(inputContent)
             Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()

@@ -47,6 +47,10 @@
     <string name="submit">送出</string>
     <string name="emergency_hint">點擊後跳轉撥號頁面</string>
     <string name="edit_name">更改姓名</string>
+    <string name="recommendation">提供建議</string>
+    <string name="other">其他</string>
+    <string name="please_enter_your_name">請填入稱謂</string>
+    <string name="please_enter_email">請填入電子郵件</string>
 
 
 </resources>
