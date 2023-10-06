@@ -32,12 +32,7 @@
     <string name="input_calories">請輸入消耗卡路里</string>
 
 
-    <!--    switch language-->
     <string name="locate_myself">我的定位</string>
-    <string name="title_activity_main2">MainActivity2</string>
-    <string name="temperature">溫度</string>
-    <string name="wdsd">風速</string>
-    <string name="uvi">紫外線</string>
     <string name="recommend_spot">請輸入推薦浪點</string>
     <string name="tide_title">潮汐</string>
 
@@ -51,6 +46,8 @@
     <string name="other">其他</string>
     <string name="please_enter_your_name">請填入稱謂</string>
     <string name="please_enter_email">請填入電子郵件</string>
+    <string name="degree">°C</string>
+    <string name="ms">㎧</string>
 
 
 </resources>

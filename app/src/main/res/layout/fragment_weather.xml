@@ -87,37 +87,41 @@
                         app:srcCompat="@drawable/outline_hide_image_24"
                         tools:text="晴" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/temp_title"
-                        style="@style/weather_element_title"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginTop="32dp"
-                        android:text="@string/temperature"
-                        android:textAlignment="center"
+                        android:src="@drawable/temperature"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintWidth_percent="0.08"
+                        android:scaleType="fitCenter"
                         app:layout_constraintEnd_toStartOf="@id/wdsd_title"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/weather_value" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/wdsd_title"
-                        style="@style/weather_element_title"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/wdsd"
-                        android:textAlignment="center"
+                        android:layout_height="0dp"
+                        app:layout_constraintWidth_percent="0.08"
+                        android:src="@drawable/wind"
+                        android:padding="1dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        android:scaleType="fitCenter"
                         app:layout_constraintBottom_toBottomOf="@id/temp_title"
                         app:layout_constraintEnd_toStartOf="@id/uvi_title"
                         app:layout_constraintStart_toEndOf="@id/temp_title"
                         app:layout_constraintTop_toTopOf="@id/temp_title" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/uvi_title"
-                        style="@style/weather_element_title"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/uvi"
-                        android:textAlignment="center"
+                        android:layout_height="0dp"
+                        app:layout_constraintWidth_percent="0.08"
+                        android:src="@drawable/uv"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintBottom_toBottomOf="@id/wdsd_title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/wdsd_title"
@@ -133,8 +137,16 @@
                         app:layout_constraintEnd_toStartOf="@id/wdsd_value"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/temp_title"
-                        tools:text="3" />
+                        tools:text="33.0" />
 
+                    <TextView
+                        android:id="@+id/degree"
+                        style="@style/weather_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/degree"
+                        app:layout_constraintBottom_toBottomOf="@id/temp_value"
+                        app:layout_constraintEnd_toEndOf="@id/temp_value" />
 
                     <TextView
                         android:id="@+id/wdsd_value"
@@ -146,7 +158,16 @@
                         app:layout_constraintEnd_toStartOf="@id/uvi_value"
                         app:layout_constraintStart_toEndOf="@id/temp_value"
                         app:layout_constraintTop_toBottomOf="@id/wdsd_title"
-                        tools:text="3" />
+                        tools:text="3.0" />
+
+                    <TextView
+                        android:id="@+id/ms"
+                        style="@style/weather_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ms"
+                        app:layout_constraintBottom_toBottomOf="@id/wdsd_value"
+                        app:layout_constraintEnd_toEndOf="@id/wdsd_value" />
 
                     <TextView
                         android:id="@+id/uvi_value"
@@ -159,6 +180,7 @@
                         app:layout_constraintStart_toEndOf="@id/wdsd_value"
                         app:layout_constraintTop_toBottomOf="@id/uvi_title"
                         tools:text="11.05" />
+
 
                     <TextView
                         android:id="@+id/tide_value"
