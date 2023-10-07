@@ -106,7 +106,7 @@ class AccountFragment : Fragment() {
     private fun showRecommendDialog() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.dialog_recommend)
+        dialog.setContentView(R.layout.dialog_provide_spot)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         Log.i("account provide btn", "clicked")
 
@@ -115,13 +115,17 @@ class AccountFragment : Fragment() {
             dialog.dismiss()
         }
 
+        var inputAddress = ""
+        dialog.findViewById<EditText>(R.id.input_address)
+            .doAfterTextChanged { inputAddress = it.toString() }
+
         var inputContent = ""
-        dialog.findViewById<EditText>(R.id.input_spots)
+        dialog.findViewById<EditText>(R.id.input_content)
             .doAfterTextChanged { inputContent = it.toString() }
 
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
-            viewModel.provideSpots(inputContent)
+            viewModel.provideSpots(inputAddress,inputContent)
             Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }

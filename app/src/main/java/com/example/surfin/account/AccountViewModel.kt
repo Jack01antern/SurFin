@@ -24,9 +24,11 @@ class AccountViewModel(repository: SurfinRepository) : ViewModel() {
     }
 
 
-    fun provideSpots(text: String) {
+    fun provideSpots(address:String,content: String) {
         db.collection("New Spots").document()
-            .set(hashMapOf("content" to text))
+            .set(hashMapOf(
+                "address" to address,
+                "content" to content))
             .addOnSuccessListener {
                 Log.d(
                     "provide spots",
