@@ -10,192 +10,196 @@
             type="com.example.surfin.weather.WeatherViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background"
-            tools:context=".weather.WeatherFragment">
+            android:layout_height="match_parent">
 
 
-            <TextView
-                android:id="@+id/location_title"
-                style="@style/weather_element_location_title"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/white"
-                android:text=""
-                android:textAlignment="center"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="白沙灣" />
-
-
-            <ImageView
-                android:id="@+id/back_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:src="@drawable/baseline_arrow_back_ios_new_24"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <TextView
-                android:id="@+id/tide_title"
-                style="@style/weather_element_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tide_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/location_title" />
-
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/line_chart"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toBottomOf="@id/tide_title" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/weather_card_view"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:elevation="1dp"
-                app:cardBackgroundColor="@color/card_view_background"
-                app:cardCornerRadius="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_chart"
-                app:strokeWidth="0dp">
+                android:background="@drawable/background"
+                tools:context=".weather.WeatherFragment">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+
+                <TextView
+                    android:id="@+id/location_title"
+                    style="@style/weather_element_location_title"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#00FFFFFF">
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:text=""
+                    android:textAlignment="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="白沙灣" />
 
-                    <ImageView
-                        android:id="@+id/weather_value"
+
+                <ImageView
+                    android:id="@+id/back_key"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/baseline_arrow_back_ios_new_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tide_title"
+                    style="@style/weather_element_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tide_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_title" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toBottomOf="@id/tide_title" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/weather_card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:elevation="1dp"
+                    app:cardBackgroundColor="@color/card_view_background"
+                    app:cardCornerRadius="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/line_chart"
+                    app:strokeWidth="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_margin="16dp"
-                        app:layout_constraintDimensionRatio="3:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/outline_hide_image_24"
-                        tools:text="晴" />
+                        android:layout_height="match_parent"
+                        android:background="#00FFFFFF">
 
-                    <ImageView
-                        android:id="@+id/temp_title"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="64dp"
-                        android:layout_marginTop="32dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/temperature"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/weather_value"
-                        app:layout_constraintWidth_percent="0.08" />
+                        <ImageView
+                            android:id="@+id/weather_value"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_margin="16dp"
+                            app:layout_constraintDimensionRatio="3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/outline_hide_image_24"
+                            tools:text="晴" />
 
-                    <ImageView
-                        android:id="@+id/wdsd_title"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:padding="1dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/wind"
-                        app:layout_constraintBottom_toBottomOf="@id/temp_title"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintEnd_toStartOf="@id/uvi_title"
-                        app:layout_constraintStart_toEndOf="@id/temp_title"
-                        app:layout_constraintTop_toTopOf="@id/temp_title"
-                        app:layout_constraintWidth_percent="0.08" />
+                        <ImageView
+                            android:id="@+id/temp_title"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="64dp"
+                            android:layout_marginTop="32dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/temperature"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/weather_value"
+                            app:layout_constraintWidth_percent="0.08" />
 
-                    <ImageView
-                        android:id="@+id/uvi_title"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginEnd="64dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/uv"
-                        app:layout_constraintBottom_toBottomOf="@id/wdsd_title"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/temp_title"
-                        app:layout_constraintWidth_percent="0.08" />
+                        <ImageView
+                            android:id="@+id/wdsd_title"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:padding="1dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/wind"
+                            app:layout_constraintBottom_toBottomOf="@id/temp_title"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/uvi_title"
+                            app:layout_constraintStart_toEndOf="@id/temp_title"
+                            app:layout_constraintTop_toTopOf="@id/temp_title"
+                            app:layout_constraintWidth_percent="0.08" />
 
-                    <TextView
-                        android:id="@+id/temp_value"
-                        style="@style/weather_element_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textAlignment="center"
-                        app:layout_constraintEnd_toStartOf="@id/wdsd_value"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/temp_title"
-                        tools:text="33.0" />
+                        <ImageView
+                            android:id="@+id/uvi_title"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="64dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/uv"
+                            app:layout_constraintBottom_toBottomOf="@id/wdsd_title"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/temp_title"
+                            app:layout_constraintWidth_percent="0.08" />
 
-                    <TextView
-                        android:id="@+id/degree"
-                        style="@style/weather_quantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/degree"
-                        app:layout_constraintBottom_toBottomOf="@id/temp_value"
-                        app:layout_constraintEnd_toEndOf="@id/temp_value" />
+                        <TextView
+                            android:id="@+id/temp_value"
+                            style="@style/weather_element_value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAlignment="center"
+                            app:layout_constraintEnd_toStartOf="@id/wdsd_value"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/temp_title"
+                            tools:text="33.0" />
 
-                    <TextView
-                        android:id="@+id/wdsd_value"
-                        style="@style/weather_element_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textAlignment="center"
-                        app:layout_constraintEnd_toStartOf="@id/uvi_value"
-                        app:layout_constraintStart_toEndOf="@id/temp_value"
-                        app:layout_constraintTop_toBottomOf="@id/wdsd_title"
-                        tools:text="3.0" />
+                        <TextView
+                            android:id="@+id/degree"
+                            style="@style/weather_quantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/degree"
+                            app:layout_constraintBottom_toBottomOf="@id/temp_value"
+                            app:layout_constraintEnd_toEndOf="@id/temp_value" />
 
-                    <TextView
-                        android:id="@+id/ms"
-                        style="@style/weather_quantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/ms"
-                        app:layout_constraintBottom_toBottomOf="@id/wdsd_value"
-                        app:layout_constraintEnd_toEndOf="@id/wdsd_value" />
+                        <TextView
+                            android:id="@+id/wdsd_value"
+                            style="@style/weather_element_value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAlignment="center"
+                            app:layout_constraintEnd_toStartOf="@id/uvi_value"
+                            app:layout_constraintStart_toEndOf="@id/temp_value"
+                            app:layout_constraintTop_toBottomOf="@id/wdsd_title"
+                            tools:text="3.0" />
 
-                    <TextView
-                        android:id="@+id/uvi_value"
-                        style="@style/weather_element_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textAlignment="center"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/wdsd_value"
-                        app:layout_constraintTop_toBottomOf="@id/uvi_title"
-                        tools:text="11.05" />
+                        <TextView
+                            android:id="@+id/ms"
+                            style="@style/weather_quantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ms"
+                            app:layout_constraintBottom_toBottomOf="@id/wdsd_value"
+                            app:layout_constraintEnd_toEndOf="@id/wdsd_value" />
+
+                        <TextView
+                            android:id="@+id/uvi_value"
+                            style="@style/weather_element_value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAlignment="center"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/wdsd_value"
+                            app:layout_constraintTop_toBottomOf="@id/uvi_title"
+                            tools:text="11.05" />
 
 
-                    <TextView
-                        android:id="@+id/tide_value"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        app:layout_constraintTop_toBottomOf="@id/temp_value" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        <TextView
+                            android:id="@+id/tide_value"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            app:layout_constraintTop_toBottomOf="@id/temp_value" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

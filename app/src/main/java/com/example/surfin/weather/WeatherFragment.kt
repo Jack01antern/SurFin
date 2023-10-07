@@ -53,6 +53,14 @@ class WeatherFragment : Fragment() {
             WeatherFactory(repository, args)
         ).get(WeatherViewModel::class.java)
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getCwaUvi()
+            viewModel.getCwaWdsd()
+            viewModel.getCwaTide()
+            viewModel.getCwaTemp()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
 
         viewModel.cwaUviResult.observe(viewLifecycleOwner, Observer {
             binding.uviValue.text = viewModel.cwaUviResult.value.toString()

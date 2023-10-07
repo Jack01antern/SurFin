@@ -54,7 +54,7 @@ class WeatherViewModel(
     }
 
 
-    private fun getCwaTide() {
+    fun getCwaTide() {
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaTide(apiKey, args.tempId.tideStationId)
@@ -68,7 +68,7 @@ class WeatherViewModel(
     }
 
 
-    private fun getCwaTemp() {
+    fun getCwaTemp() {
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaTemp(apiKey, args.tempId.tempStationId)
@@ -81,7 +81,7 @@ class WeatherViewModel(
     }
 
 
-    private fun getCwaWdsd() {
+    fun getCwaWdsd() {
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaWdsd(apiKey, args.tempId.wdsdStationId)
@@ -94,7 +94,7 @@ class WeatherViewModel(
     }
 
 
-    private fun getCwaUvi() {
+    fun getCwaUvi() {
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaUvi(
