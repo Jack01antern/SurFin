@@ -24,10 +24,14 @@ import com.example.surfin.R
 import com.example.surfin.SurfinApplication
 import com.example.surfin.databinding.FragmentWeatherBinding
 import com.example.surfin.factory.WeatherFactory
+import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.IFillFormatter
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 
@@ -100,6 +104,7 @@ class WeatherFragment : Fragment() {
 
 
         //set line chart style
+        val xAxis = binding.lineChart.xAxis
         lineDataSet.setDrawFilled(true)
         lineDataSet.fillDrawable =
             ContextCompat.getDrawable(requireContext(), R.drawable.line_chart_gradient)
@@ -107,10 +112,20 @@ class WeatherFragment : Fragment() {
         lineDataSet.circleColors =
             listOf(ContextCompat.getColor(requireContext(), R.color.primary_gray))
         binding.lineChart.legend.isEnabled = false
-        binding.lineChart.xAxis.isEnabled = false
+//        binding.lineChart.xAxis.isEnabled = false
         binding.lineChart.axisLeft.isEnabled = false
         binding.lineChart.axisRight.isEnabled = false
         binding.lineChart.description.isEnabled = false
+        xAxis.granularity = 2f
+        xAxis.isGranularityEnabled = true
+        xAxis.valueFormatter = IndexAxisValueFormatter(arrayOf("a","b")) // 自定义 X 轴标签值
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+//        binding.lineChart.xAxis.valueFormatter = object :IAxisValueFormatter{
+//            override fun getFormattedValue(value: Float, axis: AxisBase?): String {
+//                return axis.toString()
+//            }
+//        }
+
 
         lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
         lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.primary_gray)

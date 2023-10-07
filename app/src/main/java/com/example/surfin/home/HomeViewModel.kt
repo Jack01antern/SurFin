@@ -17,7 +17,7 @@ class HomeViewModel(private val repository: SurfinRepository) : ViewModel() {
     val fireResult: LiveData<List<Spots>>
         get() = _fireResult
 
-    private fun getFirebase() {
+    fun getFirebase() {
         db.collection("spots")
             .get()
             .addOnSuccessListener { results ->

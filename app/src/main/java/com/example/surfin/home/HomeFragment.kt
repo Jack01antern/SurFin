@@ -63,6 +63,11 @@ class HomeFragment : Fragment() {
         })
 
 
+        binding.swipeLayout.setOnRefreshListener {
+            viewModel.getFirebase()
+            binding.swipeLayout.isRefreshing = false
+        }
+
         return binding.root
     }
 
