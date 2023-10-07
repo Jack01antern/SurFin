@@ -64,6 +64,28 @@ class WeatherFragment : Fragment() {
 
         viewModel.cwaUviResult.observe(viewLifecycleOwner, Observer {
             binding.uviValue.text = viewModel.cwaUviResult.value.toString()
+            val uvi = viewModel.cwaUviResult.value!!.toFloat()
+            when {
+                uvi in 0f..2f -> {
+                    binding.uviValue.setTextColor(resources.getColor(R.color.uvi_green))
+                }
+
+                uvi in 3f..5f -> {
+                    binding.uviValue.setTextColor(resources.getColor(R.color.uvi_yellow))
+                }
+
+                uvi in 6f..7f -> {
+                    binding.uviValue.setTextColor(resources.getColor(R.color.uvi_orange))
+                }
+
+                uvi in 8f..10f -> {
+                    binding.uviValue.setTextColor(resources.getColor(R.color.uvi_red))
+                }
+
+                uvi >= 11f-> {
+                    binding.uviValue.setTextColor(resources.getColor(R.color.uvi_purple))
+                }
+            }
         })
 
         viewModel.cwaTempResult.observe(viewLifecycleOwner, Observer {
@@ -126,7 +148,7 @@ class WeatherFragment : Fragment() {
         binding.lineChart.description.isEnabled = false
         xAxis.granularity = 2f
         xAxis.isGranularityEnabled = true
-        xAxis.valueFormatter = IndexAxisValueFormatter(arrayOf("a","b")) // 自定义 X 轴标签值
+        xAxis.valueFormatter = IndexAxisValueFormatter(arrayOf("a", "b")) // 自定义 X 轴标签值
         xAxis.position = XAxis.XAxisPosition.BOTTOM
 //        binding.lineChart.xAxis.valueFormatter = object :IAxisValueFormatter{
 //            override fun getFormattedValue(value: Float, axis: AxisBase?): String {
