@@ -2,6 +2,8 @@ package com.example.surfin.home
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,7 +32,7 @@ class HomeFragment : Fragment() {
 
         val adapter = HomeAdapter(HomeAdapter.OnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigateToWeatherFragment(it))
-            Log.i("cwa args","${it}")
+            Log.i("cwa args", "${it}")
         })
 
 
@@ -42,13 +44,20 @@ class HomeFragment : Fragment() {
 
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                viewModel.searchFirebase(p0!!)
-                Log.i("fire store","p0: $p0")
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.searchFirebase(query!!)
+                Log.i("fire store", "p0: $query")
                 return false
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val searchHandler = Handler(Looper.getMainLooper())
+                searchHandler.removeCallbacksAndMessages(null)
+                searchHandler.postDelayed({
+                    viewModel.searchFirebase(newText.orEmpty())
+                    Log.i("Firestore", "Debounced query: $newText")
+                }, 500)
                 return false
             }
         })

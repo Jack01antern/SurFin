@@ -96,7 +96,7 @@
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintWidth_percent="0.08"
                         android:scaleType="fitCenter"
-                        app:layout_constraintEnd_toStartOf="@id/wdsd_title"
+                        android:layout_marginStart="64dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/weather_value" />
 
@@ -121,10 +121,10 @@
                         app:layout_constraintWidth_percent="0.08"
                         android:src="@drawable/uv"
                         android:scaleType="fitCenter"
+                        android:layout_marginEnd="64dp"
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintBottom_toBottomOf="@id/wdsd_title"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/wdsd_title"
                         app:layout_constraintTop_toTopOf="@id/temp_title" />
 
                     <TextView

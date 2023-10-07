@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.Spots
 import com.example.surfin.data.SurfinRepository
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,14 +20,14 @@ class HomeViewModel(private val repository: SurfinRepository) : ViewModel() {
     private fun getFirebase() {
         db.collection("spots")
             .get()
-            .addOnSuccessListener { result ->
+            .addOnSuccessListener { results ->
                 val resultList = mutableListOf<Spots>()
-                for (document in result) {
+                for (document in results) {
                     val result = document.toObject<Spots>()
                     resultList.add(result)
                 }
                 _fireResult.value = resultList
-                Log.d("Fire store", "resultList:  ${_fireResult.value}")
+//                Log.d("Fire store", "resultList:  ${_fireResult.value}")
             }
             .addOnFailureListener { exception ->
                 Log.w("Fire store", "Error getting documents.", exception)
@@ -43,21 +42,13 @@ class HomeViewModel(private val repository: SurfinRepository) : ViewModel() {
             .addOnSuccessListener { documents ->
                 val resultList = mutableListOf<Spots>()
                 for (document in documents) {
-
-//                    if (document.contains(spotName)) {
-//
-//                    } else {
-//                        System.out.println("字符串不包含关键字");
-//                    }
+                    Log.d("Fire store", "search document:  ${document.data}")
                     val result = document.toObject<Spots>()
-//                    Log.d("Fire store", "result search:  ${result}")
-
                     resultList.add(result)
-                    Log.d("Fire store", "resultList search:  ${resultList}")
-
+                    Log.d("Fire store", "search resultList:  ${resultList}")
                 }
                 _fireResult.value = resultList
-                Log.d("Fire store", "fireResult search:  ${_fireResult.value}")
+                Log.d("Fire store", "search fireResult:  ${_fireResult.value}")
             }
             .addOnFailureListener { exception ->
                 Log.w("firebase", "Error getting documents: ", exception)
