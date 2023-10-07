@@ -51,18 +51,18 @@ class AccountFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-        binding.activityHistoryTitle.setOnClickListener {
+        binding.activityHistoryLayout.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_history_fragment)
         }
-        binding.collectionTitle.setOnClickListener {
+        binding.collectionLayout.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_collection_fragment)
         }
 
-        binding.provideSpotsTitle.setOnClickListener {
+        binding.provideSpotLayout.setOnClickListener {
             showRecommendDialog()
         }
 
-        binding.contactUsTitle.setOnClickListener {
+        binding.contactUsLayout.setOnClickListener {
             showContactUsDialog()
         }
 
@@ -94,7 +94,6 @@ class AccountFragment : Fragment() {
 //                }
 //            }
 //        })
-
         return binding.root
     }
 
@@ -129,7 +128,6 @@ class AccountFragment : Fragment() {
             Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
-
         dialog.show()
 
     }

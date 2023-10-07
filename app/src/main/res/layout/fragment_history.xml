@@ -11,12 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".history.HistoryFragment"
-        android:background="@color/background_light_gray">
+        >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/history_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/background"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <View
@@ -31,7 +32,7 @@
         <ImageButton
             android:id="@+id/btn_add"
             android:layout_width="70dp"
-            android:layout_margin="16dp"
+            android:layout_margin="32dp"
             android:layout_height="0dp"
             android:scaleType="fitCenter"
             android:src="@drawable/notebook"

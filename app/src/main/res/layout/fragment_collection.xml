@@ -10,7 +10,7 @@
         android:id="@+id/collection_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_light_gray"
+        android:background="@drawable/background"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2" />
 
