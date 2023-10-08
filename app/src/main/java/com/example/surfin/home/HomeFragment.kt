@@ -55,7 +55,9 @@ class HomeFragment : Fragment() {
                 val searchHandler = Handler(Looper.getMainLooper())
                 searchHandler.removeCallbacksAndMessages(null)
                 searchHandler.postDelayed({
-                    viewModel.searchFirebase(newText.orEmpty())
+                    if (newText != "") {
+                        viewModel.searchFirebase(newText.toString())
+                    }
                     Log.i("Firestore", "Debounced query: $newText")
                 }, 500)
                 return false

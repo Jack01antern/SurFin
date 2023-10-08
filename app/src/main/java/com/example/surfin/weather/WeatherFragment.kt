@@ -66,19 +66,19 @@ class WeatherFragment : Fragment() {
             binding.uviValue.text = viewModel.cwaUviResult.value.toString()
             val uvi = viewModel.cwaUviResult.value!!.toFloat()
             when {
-                uvi in 0f..2f -> {
+                uvi in 0f..2.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_green))
                 }
 
-                uvi in 3f..5f -> {
+                uvi in 3f..5.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_yellow))
                 }
 
-                uvi in 6f..7f -> {
+                uvi in 6f..7.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_orange))
                 }
 
-                uvi in 8f..10f -> {
+                uvi in 8f..10.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_red))
                 }
 

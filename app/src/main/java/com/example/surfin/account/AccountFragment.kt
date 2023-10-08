@@ -1,5 +1,6 @@
 package com.example.surfin.account
 
+import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.Context
@@ -21,9 +22,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.surfin.R
 import com.example.surfin.databinding.FragmentAccountBinding
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.provider.MediaStore
 import android.widget.EditText
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.Observer
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.UserInfo
@@ -81,19 +87,32 @@ class AccountFragment : Fragment() {
         binding.accountName.setText(userName)
 
 
-//        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
-//            val contentUri = Uri.parse(it.selfie)
-//            Log.i("uri", "$contentUri")
-//            it.selfie.let {
-//                try {
-//                    if (contentUri != null) {
-//                        binding.thumbnail.setImageURI(contentUri)
-//                    }
-//                } catch (e: Exception) {
-//                    Log.i("uri", "failed: ${e.message}")
-//                }
-//            }
-//        })
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                PICK_IMAGE_REQUEST
+            )
+        } else {
+            viewModel.userInfo.observe(viewLifecycleOwner, Observer {
+                val contentUri = Uri.parse(it.selfie)
+                Log.i("uri", "$contentUri")
+                it.selfie.let {
+                    try {
+                        if (contentUri != null) {
+                            binding.thumbnail.setImageURI(contentUri)
+                        }
+                    } catch (e: Exception) {
+                        Log.i("uri", "failed: ${e.message}")
+                    }
+                }
+            })
+        }
         return binding.root
     }
 
@@ -124,7 +143,7 @@ class AccountFragment : Fragment() {
 
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
-            viewModel.provideSpots(inputAddress,inputContent)
+            viewModel.provideSpots(inputAddress, inputContent)
             Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }

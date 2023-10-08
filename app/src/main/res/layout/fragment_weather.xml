@@ -106,7 +106,8 @@
                             app:layout_constraintDimensionRatio="1:1"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/weather_value"
-                            app:layout_constraintWidth_percent="0.08" />
+                            app:layout_constraintWidth_percent="0.08"
+                            app:tint="@color/uvi_red" />
 
                         <ImageView
                             android:id="@+id/wdsd_title"
@@ -120,10 +121,13 @@
                             app:layout_constraintEnd_toStartOf="@id/uvi_title"
                             app:layout_constraintStart_toEndOf="@id/temp_title"
                             app:layout_constraintTop_toTopOf="@id/temp_title"
-                            app:layout_constraintWidth_percent="0.08" />
+                            app:layout_constraintWidth_percent="0.08"
+                            app:tint="@color/uvi_blue"
+                            />
 
                         <ImageView
                             android:id="@+id/uvi_title"
+                            app:tint="@color/uvi_yellow"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginEnd="64dp"
