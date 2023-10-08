@@ -49,6 +49,7 @@
     <string name="degree">°C</string>
     <string name="ms">㎧</string>
     <string name="please_enter_address">請輸入浪點地址</string>
+    <string name="please_eneter_your_name">請輸入名字</string>
 
 
 </resources>
