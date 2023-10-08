@@ -41,7 +41,7 @@ class WeatherViewModel(
         get() = _cwaWeatherResult
 
     private fun List<TideTime>.toEntryList(): List<com.github.mikephil.charting.data.Entry> {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss",Locale.getDefault())
 
         return this.map {
             val dateTime = dateFormat.parse(it.dateTime)
@@ -58,9 +58,12 @@ class WeatherViewModel(
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaTide(apiKey, args.tempId.tideStationId)
+                Log.i("cwa", "$dataList")
+
                 val entry =
                     dataList.records.tideForecasts[0].location.timePeriods.daily[0].tideTime.toEntryList()
                 _cwaTideResult.value = entry
+                Log.i("cwa", "$entry")
             } catch (e: Exception) {
                 Log.i("cwa", "tide:fail ${e.message}")
             }

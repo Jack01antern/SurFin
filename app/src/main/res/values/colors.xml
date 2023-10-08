@@ -26,6 +26,11 @@
     <color name="uvi_orange">#FF8901</color>
     <color name="uvi_red">#F54656</color>
     <color name="uvi_purple">#A021A7</color>
-    <color name="uvi_blue">#688FEA</color>
+
+    <color name="weather_red">#F56A9A</color>
+    <color name="weather_blue">#688FEA</color>
+    <color name="weather_yellow">#FFD786</color>
+
+    <color name="line_chart_blue">#CFA4DEFF</color>
 
 </resources>

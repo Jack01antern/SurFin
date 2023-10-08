@@ -34,14 +34,16 @@ import com.github.mikephil.charting.formatter.IFillFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class WeatherFragment : Fragment() {
 
     private lateinit var viewModel: WeatherViewModel
     private lateinit var binding: FragmentWeatherBinding
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val args by navArgs<WeatherFragmentArgs>()
         Log.i("cwa safe args", args.tempId.tempStationId)
@@ -49,8 +51,7 @@ class WeatherFragment : Fragment() {
 
         val repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
         viewModel = ViewModelProvider(
-            this,
-            WeatherFactory(repository, args)
+            this, WeatherFactory(repository, args)
         ).get(WeatherViewModel::class.java)
 
         binding.swipeRefreshLayout.setOnRefreshListener {
@@ -82,7 +83,7 @@ class WeatherFragment : Fragment() {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_red))
                 }
 
-                uvi >= 11f-> {
+                uvi >= 11f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_purple))
                 }
             }
@@ -98,12 +99,12 @@ class WeatherFragment : Fragment() {
 
         viewModel.cwaWeatherResult.observe(viewLifecycleOwner, Observer {
             when (it) {
-                "晴" -> binding.weatherValue.setImageResource(R.drawable.sun)
-                "多雲" -> binding.weatherValue.setImageResource(R.drawable.cloudy)
-                "陰" -> binding.weatherValue.setImageResource(R.drawable.cloud)
-                "多雲有雨" -> binding.weatherValue.setImageResource(R.drawable.rainy_cloudy)
-                "陰有雨" -> binding.weatherValue.setImageResource(R.drawable.rain)
-                else -> binding.weatherValue.setImageResource(R.drawable.cloud)
+                "晴" -> binding.weatherValue.setAnimation(R.raw.animation_sunny)
+                "多雲" -> binding.weatherValue.setAnimation(R.raw.animation_sunny_cloud)
+                "陰" -> binding.weatherValue.setAnimation(R.raw.animation_cloudy)
+                "多雲有雨" -> binding.weatherValue.setAnimation(R.raw.animation_cloudy_rain)
+                "陰有雨" -> binding.weatherValue.setAnimation(R.raw.animation_rainy)
+                else -> binding.weatherValue.setAnimation(R.raw.animation_sunny_cloud)
             }
         })
 
@@ -141,30 +142,37 @@ class WeatherFragment : Fragment() {
         lineDataSet.lineWidth = 3f
         lineDataSet.circleColors =
             listOf(ContextCompat.getColor(requireContext(), R.color.primary_gray))
+        lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+        lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.line_chart_blue)
+        lineDataSet.valueTextSize = 14f
+        lineDataSet.setValueTextColors(listOf(resources.getColor(R.color.primary_navy)))
+
+
         binding.lineChart.legend.isEnabled = false
-//        binding.lineChart.xAxis.isEnabled = false
         binding.lineChart.axisLeft.isEnabled = false
         binding.lineChart.axisRight.isEnabled = false
         binding.lineChart.description.isEnabled = false
+
+        xAxis.valueFormatter = object : IAxisValueFormatter {
+            private val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            override fun getFormattedValue(value: Float, axis: AxisBase?): String {
+                val millis = value.toLong()
+                val date = Date(millis)
+                return dateFormat.format(date)
+            }
+        }
+
+        xAxis.setDrawGridLines(false)
         xAxis.granularity = 2f
         xAxis.isGranularityEnabled = true
-        xAxis.valueFormatter = IndexAxisValueFormatter(arrayOf("a", "b")) // 自定义 X 轴标签值
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-//        binding.lineChart.xAxis.valueFormatter = object :IAxisValueFormatter{
-//            override fun getFormattedValue(value: Float, axis: AxisBase?): String {
-//                return axis.toString()
-//            }
-//        }
 
-
-        lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
-        lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.primary_gray)
         binding.lineChart.animateXY(2000, 3000)
-        lineDataSet.fillFormatter =
-            IFillFormatter { _, dataProvider ->
-                entries
-                dataProvider.yChartMin
-            }
-
+        lineDataSet.fillFormatter = IFillFormatter { _, dataProvider ->
+            entries
+            dataProvider.yChartMin
+        }
     }
+
+
 }

@@ -83,31 +83,29 @@
                         android:layout_height="match_parent"
                         android:background="#00FFFFFF">
 
-                        <ImageView
+                        <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/weather_value"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_margin="16dp"
-                            app:layout_constraintDimensionRatio="3:1"
+                            android:layout_height="180dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/outline_hide_image_24"
-                            tools:text="晴" />
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true" />
 
                         <ImageView
                             android:id="@+id/temp_title"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginStart="64dp"
-                            android:layout_marginTop="32dp"
+                            android:layout_marginTop="16dp"
                             android:scaleType="fitCenter"
                             android:src="@drawable/temperature"
                             app:layout_constraintDimensionRatio="1:1"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/weather_value"
                             app:layout_constraintWidth_percent="0.08"
-                            app:tint="@color/uvi_red" />
+                            app:tint="@color/weather_red" />
 
                         <ImageView
                             android:id="@+id/wdsd_title"
@@ -122,12 +120,10 @@
                             app:layout_constraintStart_toEndOf="@id/temp_title"
                             app:layout_constraintTop_toTopOf="@id/temp_title"
                             app:layout_constraintWidth_percent="0.08"
-                            app:tint="@color/uvi_blue"
-                            />
+                            app:tint="@color/weather_blue" />
 
                         <ImageView
                             android:id="@+id/uvi_title"
-                            app:tint="@color/uvi_yellow"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginEnd="64dp"
@@ -137,7 +133,8 @@
                             app:layout_constraintDimensionRatio="1:1"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@id/temp_title"
-                            app:layout_constraintWidth_percent="0.08" />
+                            app:layout_constraintWidth_percent="0.08"
+                            app:tint="@color/weather_yellow" />
 
                         <TextView
                             android:id="@+id/temp_value"
