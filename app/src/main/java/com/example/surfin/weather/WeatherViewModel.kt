@@ -40,8 +40,13 @@ class WeatherViewModel(
     val cwaWeatherResult: LiveData<String>
         get() = _cwaWeatherResult
 
+
+    private var _cwaWaveResult = MutableLiveData<String>()
+    val cwaWaveResult: LiveData<String>
+        get() = _cwaWaveResult
+
     private fun List<TideTime>.toEntryList(): List<com.github.mikephil.charting.data.Entry> {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss",Locale.getDefault())
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
 
         return this.map {
             val dateTime = dateFormat.parse(it.dateTime)
@@ -129,9 +134,20 @@ class WeatherViewModel(
         }
     }
 
-    fun parseDateTime(dateTimeString: String): Date? {
-        val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.TAIWAN)
-        return format.parse(dateTimeString)
+    fun getCwaWave() {
+        viewModelScope.launch {
+            try {
+                val dataList = repository.getCwaWave(
+                    apiKey,
+                    args.tempId.waveStationId
+                )
+                _cwaWaveResult.value =
+                    dataList.records.seaSurfaceObs.location[0].stationObsTimes.stationObsTime.first().weatherElements.waveHeight
+                Log.i("cwa", "wave success: ${_cwaWaveResult.value}")
+            } catch (e: Exception) {
+                Log.i("cwa", "wave:fail ${e.message}")
+            }
+        }
     }
 
 
@@ -141,6 +157,7 @@ class WeatherViewModel(
         getCwaWdsd()
         getCwaUvi()
         getCwaWeather()
+        getCwaWave()
     }
 }
 

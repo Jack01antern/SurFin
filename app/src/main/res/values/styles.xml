@@ -17,7 +17,7 @@
 
     <style name="weather_element_title">
         <item name="fontFamily">rounded</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/primary_darker_gray</item>
         <item name="android:layout_margin">32dp</item>
     </style>
@@ -35,13 +35,13 @@
         <item name="fontFamily">rounded</item>
         <item name="android:textSize">30sp</item>
         <item name="android:textColor">@color/primary_darker_gray</item>
-        <item name="android:padding">8dp</item>
+<!--        <item name="android:padding">8dp</item>-->
     </style>
 
     <style name="weather_quantity">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/primary_darker_gray</item>
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
         <item name="android:textAlignment">center</item>
     </style>
 

@@ -36,6 +36,13 @@ class HomeFragment : Fragment() {
         })
 
 
+        viewModel.isLoading.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                true -> binding.loadingAnim.visibility = View.VISIBLE
+                false -> binding.loadingAnim.visibility = View.GONE
+            }
+        })
+
         binding.homeRecyclerView.adapter = adapter
         viewModel.fireResult.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)

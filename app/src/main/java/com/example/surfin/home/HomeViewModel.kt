@@ -17,6 +17,10 @@ class HomeViewModel(private val repository: SurfinRepository) : ViewModel() {
     val fireResult: LiveData<List<Spots>>
         get() = _fireResult
 
+    private var _isLoading = MutableLiveData(true)
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     fun getFirebase() {
         db.collection("spots")
             .get()
@@ -27,6 +31,7 @@ class HomeViewModel(private val repository: SurfinRepository) : ViewModel() {
                     resultList.add(result)
                 }
                 _fireResult.value = resultList
+                _isLoading.value = false
 //                Log.d("Fire store", "resultList:  ${_fireResult.value}")
             }
             .addOnFailureListener { exception ->

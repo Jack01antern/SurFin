@@ -61,42 +61,52 @@ class WeatherFragment : Fragment() {
             viewModel.getCwaWdsd()
             viewModel.getCwaTide()
             viewModel.getCwaTemp()
+            viewModel.getCwaWave()
             binding.swipeRefreshLayout.isRefreshing = false
         }
 
 
         viewModel.cwaUviResult.observe(viewLifecycleOwner, Observer {
             binding.uviValue.text = viewModel.cwaUviResult.value.toString()
-            val uvi = viewModel.cwaUviResult.value!!.toFloat()
+            val uvi = it!!.toFloat()
             when {
                 uvi in 0f..2.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_green))
+                    binding.uviDescription.setText(getString(R.string.uvi_low))
                 }
 
                 uvi in 3f..5.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_yellow))
+                    binding.uviDescription.setText(getString(R.string.uvi_mod))
                 }
 
                 uvi in 6f..7.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_orange))
+                    binding.uviDescription.setText(getString(R.string.uvi_high))
                 }
 
                 uvi in 8f..10.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_red))
+                    binding.uviDescription.setText(getString(R.string.uvi_over))
                 }
 
                 uvi >= 11f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_purple))
+                    binding.uviDescription.setText(getString(R.string.uvi_extreme))
                 }
             }
         })
 
         viewModel.cwaTempResult.observe(viewLifecycleOwner, Observer {
-            binding.tempValue.text = viewModel.cwaTempResult.value.toString()
+            binding.tempValue.text = it.toString()
         })
 
         viewModel.cwaWdsdResult.observe(viewLifecycleOwner, Observer {
-            binding.wdsdValue.text = viewModel.cwaWdsdResult.value.toString()
+            binding.wdsdValue.text = it.toString()
+        })
+
+        viewModel.cwaWaveResult.observe(viewLifecycleOwner, Observer {
+            binding.waveValue.text = it.toString()
         })
 
         viewModel.cwaWeatherResult.observe(viewLifecycleOwner, Observer {
@@ -165,13 +175,10 @@ class WeatherFragment : Fragment() {
         }
 
         xAxis.setDrawGridLines(false)
-        xAxis.granularity = 2f
-        xAxis.isGranularityEnabled = true
         xAxis.position = XAxis.XAxisPosition.BOTTOM
 
         binding.lineChart.animateY(2000, Easing.EasingOption.EaseInOutCubic)
         lineDataSet.fillFormatter = IFillFormatter { _, dataProvider ->
-            entries
             dataProvider.yChartMin
         }
     }
