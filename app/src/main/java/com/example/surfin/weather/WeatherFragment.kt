@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.animation.core.Ease
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -24,6 +25,7 @@ import com.example.surfin.R
 import com.example.surfin.SurfinApplication
 import com.example.surfin.databinding.FragmentWeatherBinding
 import com.example.surfin.factory.WeatherFactory
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -167,7 +169,7 @@ class WeatherFragment : Fragment() {
         xAxis.isGranularityEnabled = true
         xAxis.position = XAxis.XAxisPosition.BOTTOM
 
-        binding.lineChart.animateXY(2000, 3000)
+        binding.lineChart.animateY(2000, Easing.EasingOption.EaseInOutCubic)
         lineDataSet.fillFormatter = IFillFormatter { _, dataProvider ->
             entries
             dataProvider.yChartMin

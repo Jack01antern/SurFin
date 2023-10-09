@@ -100,9 +100,9 @@ class AccountFragment : Fragment() {
             )
         } else {
             viewModel.userInfo.observe(viewLifecycleOwner, Observer {
-                val contentUri = Uri.parse(it.selfie)
+                val contentUri = Uri.parse(it?.selfie)
                 Log.i("uri", "$contentUri")
-                it.selfie.let {
+                it?.selfie.let {
                     try {
                         if (contentUri != null) {
                             binding.thumbnail.setImageURI(contentUri)

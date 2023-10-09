@@ -68,6 +68,6 @@ interface SurfinRepository {
 
     suspend fun updateUserInfo(userInfo: UserInfo)
 
-    fun getUserInfo():LiveData<UserInfo>
+    fun getUserInfo():LiveData<UserInfo?>
 
 }

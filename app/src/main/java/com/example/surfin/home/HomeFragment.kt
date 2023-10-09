@@ -43,26 +43,29 @@ class HomeFragment : Fragment() {
 
 
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchCardView.setOnClickListener {
+            binding.searchView.isIconified = false
+            binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.searchFirebase(query!!)
-                Log.i("fire store", "p0: $query")
-                return false
-            }
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    viewModel.searchFirebase(query!!)
+                    Log.i("fire store", "p0: $query")
+                    return false
+                }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                val searchHandler = Handler(Looper.getMainLooper())
-                searchHandler.removeCallbacksAndMessages(null)
-                searchHandler.postDelayed({
-                    if (newText != "") {
-                        viewModel.searchFirebase(newText.toString())
-                    }
-                    Log.i("Firestore", "Debounced query: $newText")
-                }, 500)
-                return false
-            }
-        })
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    val searchHandler = Handler(Looper.getMainLooper())
+                    searchHandler.removeCallbacksAndMessages(null)
+                    searchHandler.postDelayed({
+                        if (newText != "") {
+                            viewModel.searchFirebase(newText.toString())
+                        }
+                        Log.i("Firestore", "Debounced query: $newText")
+                    }, 500)
+                    return false
+                }
+            })
+        }
 
 
         binding.swipeRefreshLayout.setOnRefreshListener {

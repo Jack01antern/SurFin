@@ -47,6 +47,6 @@ interface SurfinDatabaseDao {
 
 
     @Query("SELECT * FROM user_info")
-    fun getUserInfo(): LiveData<UserInfo>
+    fun getUserInfo(): LiveData<UserInfo?>
 
 }
