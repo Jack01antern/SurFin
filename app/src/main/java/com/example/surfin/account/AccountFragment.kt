@@ -35,8 +35,10 @@ import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.UserInfo
 import com.example.surfin.factory.AccountFactory
 import com.google.android.material.chip.ChipGroup
+import java.net.URI
 
 private const val PICK_IMAGE_REQUEST = 1
+lateinit var contentUri:Uri
 
 class AccountFragment : Fragment() {
 
@@ -56,6 +58,7 @@ class AccountFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        contentUri = Uri.parse("content://abc")
 
         binding.activityHistoryLayout.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_history_fragment)
@@ -98,21 +101,27 @@ class AccountFragment : Fragment() {
                 arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 PICK_IMAGE_REQUEST
             )
-        } else {
-            viewModel.userInfo.observe(viewLifecycleOwner, Observer {
-                val contentUri = Uri.parse(it?.selfie)
-                Log.i("uri", "$contentUri")
-                it?.selfie.let {
-                    try {
-                        if (contentUri != null) {
-                            binding.thumbnail.setImageURI(contentUri)
-                        }
-                    } catch (e: Exception) {
-                        Log.i("uri", "failed: ${e.message}")
-                    }
-                }
-            })
         }
+
+
+        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
+            it?.selfie.let {selfie ->
+                if (selfie != null) {
+                    contentUri = Uri.parse(selfie)
+                }
+            }
+            Log.i("uri", "$contentUri")
+            it?.selfie.let {
+                try {
+                    if (contentUri != null) {
+                        binding.thumbnail.setImageURI(contentUri)
+                    }
+                } catch (e: Exception) {
+                    Log.i("uri", "failed: ${e.message}")
+                }
+            }
+        })
+
         return binding.root
     }
 
