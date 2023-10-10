@@ -60,7 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/white"
-            app:itemIconTint="@color/primary_navy"
+            app:itemIconTint="@drawable/btm_navi"
+            app:itemRippleColor="@color/background_light_gray"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/bottom_nav" />
