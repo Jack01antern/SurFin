@@ -19,6 +19,7 @@ import com.google.android.gms.location.LocationServices
 
 
 private const val LOCATION_REQUEST_CODE = 0x00
+
 class EmergencyFragment : Fragment() {
 
     private lateinit var viewModel: EmergencyViewModel
@@ -42,10 +43,10 @@ class EmergencyFragment : Fragment() {
             startActivity(viewModel.dial119())
         }
 
-        binding.btnLocate.setOnClickListener {
-            Log.i("emergency", "clicked")
-            checkPermission()
-        }
+//        binding.btnLocate.setOnClickListener {
+//            Log.i("emergency", "clicked")
+//        }
+        checkPermission()
 
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -77,14 +78,16 @@ class EmergencyFragment : Fragment() {
 
     @SuppressLint("MissingPermission")
     private fun getLocations() {
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
         fusedLocationProviderClient.lastLocation?.addOnSuccessListener {
             if (it == null) {
                 sequenceOf(
                     Toast.makeText(requireContext(), "Sorry can't get location", Toast.LENGTH_SHORT)
                 )
             } else it.apply {
-                val latitude = it.latitude
-                val longitude = it.longitude
+                val latitude = String.format("%.7f", it.latitude)
+                val longitude = String.format("%.7f", it.longitude)
                 binding.locationTextView.text = "$latitude, $longitude"
             }
         }
