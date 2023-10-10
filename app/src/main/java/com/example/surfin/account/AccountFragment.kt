@@ -38,7 +38,7 @@ import com.google.android.material.chip.ChipGroup
 import java.net.URI
 
 private const val PICK_IMAGE_REQUEST = 1
-lateinit var contentUri:Uri
+lateinit var contentUri: Uri
 
 class AccountFragment : Fragment() {
 
@@ -105,7 +105,7 @@ class AccountFragment : Fragment() {
 
 
         viewModel.userInfo.observe(viewLifecycleOwner, Observer {
-            it?.selfie.let {selfie ->
+            it?.selfie.let { selfie ->
                 if (selfie != null) {
                     contentUri = Uri.parse(selfie)
                 }
@@ -153,7 +153,11 @@ class AccountFragment : Fragment() {
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
             viewModel.provideSpots(inputAddress, inputContent)
-            Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
+            binding.submitAnim.visibility = View.VISIBLE
+            binding.submitAnim.playAnimation()
+            binding.submitAnim.postDelayed({
+                binding.submitAnim.visibility = View.GONE
+            }, 2000)
             dialog.dismiss()
         }
         dialog.show()
@@ -199,8 +203,12 @@ class AccountFragment : Fragment() {
 
         val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
         btnSubmit.setOnClickListener {
-            Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
             viewModel.contactUs(category, inputUserName, inputUserEmail, inputContent)
+            binding.submitAnim.visibility = View.VISIBLE
+            binding.submitAnim.playAnimation()
+            binding.submitAnim.postDelayed({
+                binding.submitAnim.visibility = View.GONE
+            }, 2000)
             dialog.dismiss()
         }
 
