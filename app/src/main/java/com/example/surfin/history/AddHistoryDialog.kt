@@ -49,7 +49,8 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
             val dpd = DatePickerDialog(
                 requireContext(),
                 DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
-                    date = ("" + mDay + "/" + mMonth + "/" + mYear)
+                    val correctedMonth = mMonth + 1
+                    date = ("$mDay/$correctedMonth/$mYear")
                     binding.inputDate.setText(date)
                 }, year, month, day
             )

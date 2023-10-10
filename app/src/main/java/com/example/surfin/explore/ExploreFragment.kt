@@ -45,9 +45,9 @@ class ExploreFragment : Fragment() {
     val callback = OnMapReadyCallback { googleMap ->
 
         //mock data for zoom in
-        val school = LatLng(25.0385, 121.5324)
+        val center = LatLng(23.716, 121.0564)
         googleMap.addMarker(
-            MarkerOptions().position(school).title("Marker in School")
+            MarkerOptions().position(center).title("Marker in School")
                 .snippet("The Best School Ever")
         )
 
@@ -78,7 +78,7 @@ class ExploreFragment : Fragment() {
 
         var safeArgs = Spots()
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school, ZOOM_IN))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, ZOOM_IN))
         googleMap.setOnMarkerClickListener {
             for (spot in spotsInfo) {
                 if (spot.title == it.title) {

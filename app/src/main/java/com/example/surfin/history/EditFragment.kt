@@ -43,7 +43,7 @@ class EditFragment : DialogFragment() {
         var timeDuration = ""
         binding.inputTimeDuration.doAfterTextChanged { timeDuration = it.toString() }
         var calories = ""
-        binding.inputCalories.doAfterTextChanged { calories= it.toString() }
+        binding.inputCalories.doAfterTextChanged { calories = it.toString() }
         var date = ""
         binding.inputDate.doAfterTextChanged { date = it.toString() }
 
@@ -62,7 +62,8 @@ class EditFragment : DialogFragment() {
             val dpd = DatePickerDialog(
                 requireContext(),
                 DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
-                    date = ("" + mDay + "/" + mMonth + "/" + mYear)
+                    val correctedMonth = mMonth + 1
+                    date = ("$mDay/$correctedMonth/$mYear")
                     binding.inputDate.setText(date)
                 },
                 year,
