@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 class EmergencyViewModel : ViewModel() {
     private val num118 = "118"
     private val num112 = "112"
+    private val num119 = "119"
     private val intent = Intent(Intent.ACTION_DIAL)
 
     fun dial118(): Intent {
@@ -19,5 +20,8 @@ class EmergencyViewModel : ViewModel() {
         return intent
     }
 
-
+    fun dial119(): Intent {
+        intent.setData(Uri.parse("tel:$num119"))
+        return intent
+    }
 }

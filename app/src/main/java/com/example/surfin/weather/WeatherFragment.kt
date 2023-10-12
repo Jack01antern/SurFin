@@ -1,5 +1,14 @@
 package com.example.surfin.weather
 
+import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Paint
+import android.graphics.Rect
+import android.graphics.Shader
+import android.graphics.drawable.BitmapDrawable
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +16,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
@@ -16,10 +23,11 @@ import com.example.surfin.R
 import com.example.surfin.SurfinApplication
 import com.example.surfin.databinding.FragmentWeatherBinding
 import com.example.surfin.factory.WeatherFactory
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IFillFormatter
+import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 
 class WeatherFragment : Fragment() {
@@ -54,38 +62,60 @@ class WeatherFragment : Fragment() {
         })
 
         viewModel.cwaWeatherResult.observe(viewLifecycleOwner, Observer {
-//            binding.weatherValue.text = viewModel.cwaWeatherResult.value.toString()
+            when (it) {
+                "晴" -> binding.weatherValue.setImageResource(R.drawable.sun)
+                "多雲" -> binding.weatherValue.setImageResource(R.drawable.cloudy)
+                "陰" -> binding.weatherValue.setImageResource(R.drawable.cloud)
+                "多雲有雨" -> binding.weatherValue.setImageResource(R.drawable.rainy_cloudy)
+                "陰有雨" -> binding.weatherValue.setImageResource(R.drawable.rain)
+                else -> binding.weatherValue.setImageResource(R.drawable.cloud)
+            }
         })
 
 
         viewModel.cwaTideResult.observe(viewLifecycleOwner, Observer {
-            viewModel.cwaTideResult.value?.let { it1 -> setLineChartData(it1) }
+            viewModel.cwaTideResult.value?.let { setLineChartData(it) }
 
         })
 
+        binding.locationTitle.text = args.tempId.title
+        binding.lineChart.setPinchZoom(true)
+
         return binding.root
     }
+
 
     private fun setLineChartData(entries: List<Entry>) {
 
         Log.i("line chart", "$entries")
 
-//        val entries = ArrayList<Entry>()
-////        entries.add(Entry(0f, 3f))
-////        entries.add(Entry(1f, 1f))
-////        entries.add(Entry(2f, 6f))
-////        entries.add(Entry(3f, 3f))
-////        entries.add(Entry(4f, 5f))
-
-
-
+        //feed data
         val lineDataSet = LineDataSet(entries, "")
         val dataSets = listOf(lineDataSet)
         binding.lineChart.data = LineData(dataSets)
 
+
+        //set line chart style
+        lineDataSet.setDrawFilled(true)
+        lineDataSet.fillDrawable =
+            ContextCompat.getDrawable(requireContext(), R.drawable.line_chart_gradient)
+        lineDataSet.lineWidth = 3f
+        lineDataSet.circleColors =
+            listOf(ContextCompat.getColor(requireContext(), R.color.primary_gray))
+        binding.lineChart.legend.isEnabled = false
+        binding.lineChart.xAxis.isEnabled = false
+        binding.lineChart.axisLeft.isEnabled = false
+        binding.lineChart.axisRight.isEnabled = false
+        binding.lineChart.description.isEnabled = false
+
         lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
-        lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.primary_navy)
-        binding.lineChart.animateXY(3000, 3000)
+        lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.primary_gray)
+        binding.lineChart.animateXY(2000, 3000)
+        lineDataSet.fillFormatter =
+            IFillFormatter { _, dataProvider ->
+                entries
+                dataProvider.yChartMin
+            }
 
     }
 }

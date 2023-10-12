@@ -10,14 +10,17 @@ import com.example.surfin.databinding.ItemCollectionBinding
 import com.example.surfin.databinding.ItemUserHistoryBinding
 import com.example.surfin.history.HistoryAdapter
 
-class CollectionAdapter :
+class CollectionAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Spots, CollectionAdapter.CollectionViewHolder>(DiffCallback) {
 
     class CollectionViewHolder(private var binding: ItemCollectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(spots: Spots) {
+        fun bind(spots: Spots,onClickListener: OnClickListener) {
             spots.let {
                 binding.viewModel = it
+                binding.root.setOnClickListener {
+                    onClickListener.onClick(spots)
+                }
                 binding.executePendingBindings()
             }
         }
@@ -51,7 +54,11 @@ class CollectionAdapter :
      * Replaces the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: CollectionViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position),onClickListener)
+    }
+
+    class OnClickListener(val clickListener: (spots:Spots) -> Unit) {
+        fun onClick(spots: Spots) = clickListener(spots)
     }
 }
 

@@ -8,14 +8,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surfin.databinding.ItemDetailBinding
 
-class DetailAdapter :
+class DetailAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<String, DetailAdapter.DetailViewHolder>(DiffCallback) {
 
     class DetailViewHolder(private var binding: ItemDetailBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(spots: String) {
+        fun bind(spots: String,onClickListener: OnClickListener) {
             binding.url = spots
             Log.i("detail spots", "$spots" )
+            binding.root.setOnClickListener {
+                onClickListener.onClick(spots)
+            }
             binding.executePendingBindings()
         }
     }
@@ -45,7 +48,11 @@ class DetailAdapter :
     }
 
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position),onClickListener)
+    }
+
+    class OnClickListener(val clickListener: (spots:String) -> Unit) {
+        fun onClick(spots:String) = clickListener(spots)
     }
 }
 

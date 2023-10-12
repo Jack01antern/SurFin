@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
+import java.nio.charset.Charset
 
 class SurfinConverters {
 
@@ -24,4 +25,15 @@ class SurfinConverters {
         }
         return null
     }
+
+    @TypeConverter
+    fun fromByteArray(byteArray: ByteArray?): String? {
+        return byteArray?.toString(Charset.defaultCharset())
+    }
+
+    @TypeConverter
+    fun toByteArray(data: String?): ByteArray? {
+        return data?.toByteArray(Charset.defaultCharset())
+    }
+
 }

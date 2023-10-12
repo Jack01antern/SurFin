@@ -41,6 +41,22 @@
             app:nullable="false" />
     </fragment>
 
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.surfin.history.HistoryFragment"
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="com.example.surfin.collection.CollectionFragment"
+        android:label="fragment_collection"
+        tools:layout="@layout/fragment_collection" />
+
+
+    <!--    dialog-->
+
     <dialog
         android:id="@+id/detailDialog"
         android:name="com.example.surfin.detail.DetailDialog"
@@ -58,29 +74,38 @@
         android:label="AddHistoryFragment"
         tools:layout="@layout/dialog_add_history" />
 
-    <fragment
-        android:id="@+id/historyFragment"
-        android:name="com.example.surfin.history.HistoryFragment"
-        android:label="HistoryFragment"
-        tools:layout="@layout/fragment_history" />
-
-    <fragment
-        android:id="@+id/collectionFragment"
-        android:name="com.example.surfin.collection.CollectionFragment"
-        android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" />
-
     <dialog
         android:id="@+id/languageFragment"
         android:name="com.example.surfin.language.LanguageDialog"
         android:label="fragment_language"
         tools:layout="@layout/dialog_language" />
 
-    <dialog
-        android:id="@+id/recommendDialog"
-        android:name="com.example.surfin.account.RecommendDialog"
-        android:label="fragment_provide"
-        tools:layout="@layout/dialog_recommend"/>
+
+    <fragment
+        android:id="@+id/zoomDialog"
+        android:name="com.example.surfin.detail.ZoomDialog"
+        android:label="dialog_zoom"
+        tools:layout="@layout/dialog_zoom">
+        <argument
+            android:name="photoInfo"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.example.surfin.history.EditFragment"
+        android:label="EditFragment"
+        tools:layout="@layout/fragment_edit">
+        <argument
+            android:name="historyInfo"
+            app:argType="com.example.surfin.data.UserActivityHistory"
+            app:nullable="false" />
+    </fragment>
+
+
+    <!--    action-->
 
     <action
         android:id="@+id/action_navigate_to_home_fragment"
@@ -131,7 +156,17 @@
         app:destination="@id/detailDialog" />
 
     <action
-        android:id="@+id/action_navigate_to_recommend_fragment"
-        app:destination="@id/recommendDialog" />
+        android:id="@+id/action_navigate_to_zoom_dialog"
+        app:destination="@id/zoomDialog">
+        <argument
+            android:name="photoInfo"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <action
+        android:id="@+id/action_navigate_to_edit_fragment"
+        app:destination="@id/editFragment" />
+
 
 </navigation>

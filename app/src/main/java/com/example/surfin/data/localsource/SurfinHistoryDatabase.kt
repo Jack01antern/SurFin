@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.surfin.data.Spots
 import com.example.surfin.data.UserActivityHistory
+import com.example.surfin.data.UserInfo
 
-@Database(entities = [UserActivityHistory::class, Spots::class], version = 1, exportSchema = false)
+@Database(entities = [UserActivityHistory::class, Spots::class,UserInfo::class], version = 1, exportSchema = false)
 abstract class SurfinHistoryDatabase : RoomDatabase() {
 
     abstract val surfinDatabaseDao: SurfinDatabaseDao

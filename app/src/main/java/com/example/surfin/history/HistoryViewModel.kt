@@ -9,7 +9,7 @@ import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.UserActivityHistory
 import kotlinx.coroutines.launch
 
-class HistoryViewModel(private val repository: SurfinRepository) : ViewModel() {
+class HistoryViewModel(repository: SurfinRepository) : ViewModel() {
     val activityHistory: LiveData<List<UserActivityHistory>> = repository.getAllHistory()
 
 

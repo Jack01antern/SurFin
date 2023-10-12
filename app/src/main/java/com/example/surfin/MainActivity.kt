@@ -107,13 +107,13 @@ class MainActivity : AppCompatActivity() {
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { navController: NavController, _: NavDestination, _: Bundle? ->
             when (navController.currentDestination?.id) {
                 R.id.homeFragment -> binding.toolbar.visibility = View.VISIBLE
-                R.id.weatherFragment -> binding.toolbar.visibility = View.VISIBLE
+                R.id.weatherFragment -> binding.toolbar.visibility = View.GONE
                 R.id.exploreFragment -> binding.toolbar.visibility = View.VISIBLE
                 R.id.emergencyFragment -> binding.toolbar.visibility = View.VISIBLE
                 R.id.accountFragment -> binding.toolbar.visibility = View.VISIBLE
                 R.id.historyFragment -> binding.toolbar.visibility = View.VISIBLE
                 R.id.collectionFragment -> binding.toolbar.visibility = View.VISIBLE
-                R.id.languageFragment -> binding.toolbar.visibility = View.VISIBLE
+                R.id.zoomDialog -> binding.toolbar.visibility = View.GONE
             }
             Log.i("toolbar", "toolbar value: ${viewModel.currentFragment.value}")
         }

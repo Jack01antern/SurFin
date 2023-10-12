@@ -1,12 +1,16 @@
 package com.example.surfin.explore
 
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.os.Build
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -18,15 +22,17 @@ import com.example.surfin.factory.ExploreFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 
 
 private const val REQUEST_CODE_LOCATION_PERMISSION = 0x00
-private const val ZOOM_IN = 10F
+private const val ZOOM_IN = 8F
 
 
 class ExploreFragment : Fragment() {
@@ -88,6 +94,7 @@ class ExploreFragment : Fragment() {
             Log.i("explore", "${safeArgs}")
             true
         }
+
     }
 
     override fun onCreateView(
@@ -96,6 +103,8 @@ class ExploreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
+//        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -120,6 +129,13 @@ class ExploreFragment : Fragment() {
     }
 
 
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+//
+//    }
+
+
     //get user's current location
     private fun fetchLocation() {
         val task = fusedLocationProviderClient.lastLocation
@@ -139,16 +155,14 @@ class ExploreFragment : Fragment() {
             )
             return
         }
-        task.addOnSuccessListener {
-            if (it != null) {
-                Toast.makeText(
-                    requireContext(),
-                    "${it.latitude}${it.longitude}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
+//        task.addOnSuccessListener {
+//            if (it != null) {
+//                Toast.makeText(
+//                    requireContext(),
+//                    "${it.latitude}${it.longitude}",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        }
     }
-
-
 }

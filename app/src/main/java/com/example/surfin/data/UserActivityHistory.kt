@@ -23,11 +23,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class UserActivityHistory(
     @PrimaryKey(autoGenerate = true)
-    val activityId:Long,
+    val activityId:Long ,
     @ColumnInfo(name = "location_title")
     val locationTitle: String,
     @ColumnInfo(name = "date")
-    val date: Long,
+    var date: String,
     @ColumnInfo(name = "content")
     val content: String,
     @ColumnInfo(name = "heart_rate")
@@ -35,9 +35,7 @@ data class UserActivityHistory(
     @ColumnInfo(name = "time_duration")
     val timeDuration: String,
     @ColumnInfo(name = "calories")
-    val calories: String,
-    @ColumnInfo(name = "photo")
-    val photo: String
+    val calories: String
 ) : Parcelable
 
 

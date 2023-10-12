@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 内部矩形填充颜色 -->
+    <item android:drawable="@android:color/transparent" />
+    <!-- 外部边框 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" /> <!-- 填充颜色透明，可以根据需要更改 -->
+            <corners android:radius="12dp" /> <!-- 圆角半径，根据需要更改 -->
+            <stroke
+                android:width="2dp"
+            android:color="@android:color/darker_gray" />
+        </shape>
+    </item>
+</layer-list>

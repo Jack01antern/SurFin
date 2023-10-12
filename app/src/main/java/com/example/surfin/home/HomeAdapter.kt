@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surfin.data.Spots
-import com.example.surfin.data.UserActivityHistory
 import com.example.surfin.databinding.ItemHomeBinding
-import com.example.surfin.databinding.ItemUserHistoryBinding
 
 class HomeAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Spots, HomeAdapter.HomeViewHolder>(DiffCallback) {

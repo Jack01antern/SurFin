@@ -5,110 +5,303 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.surfin.account.AccountViewModel" />
+
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".account.AccountFragment">
+        android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/account_background"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/primary_gray"
-            app:layout_constraintDimensionRatio="4:1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/thumbnail"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/account_background"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintStart_toStartOf="@id/account_background"
-            app:layout_constraintTop_toTopOf="@id/account_background"
-            app:srcCompat="@drawable/baseline_account_circle_24" />
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            tools:context=".account.AccountFragment">
 
 
-        <TextView
-            android:id="@+id/account_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            app:layout_constraintBottom_toBottomOf="@id/thumbnail"
-            app:layout_constraintStart_toEndOf="@id/thumbnail"
-            app:layout_constraintTop_toTopOf="@id/thumbnail"
-            tools:text="AppWorks School"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/account_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/btn_activity_history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
-            android:text="@string/activity_history"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/account_background" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:foreground="@drawable/account_circle_background"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_collection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
-            android:text="@string/collection"
-            app:layout_constraintStart_toEndOf="@id/btn_activity_history"
-            app:layout_constraintTop_toTopOf="@id/btn_activity_history" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/thumbnail"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/gemma"
+                    app:layout_constraintBottom_toBottomOf="@id/account_background"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="@id/account_background"
+                    app:layout_constraintStart_toStartOf="@id/account_background"
+                    app:layout_constraintTop_toTopOf="@id/account_background"
+                    app:layout_constraintWidth_percent="0.5"
+                    app:shapeAppearanceOverlay="@style/circular"
+                    app:srcCompat="@drawable/baseline_account_circle_24" />
+
+                <ImageView
+                    android:id="@+id/btn_change_thumbnail"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/camera"
+                    app:layout_constraintBottom_toBottomOf="@id/thumbnail"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="@id/thumbnail"
+                    app:layout_constraintWidth_percent="0.1" />
+
+                <TextView
+                    android:id="@+id/account_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:text=""
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@id/thumbnail"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail"
+                    app:layout_constraintTop_toBottomOf="@id/thumbnail"
+                    tools:text="Gemma Ward" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                app:cardCornerRadius="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/account_background">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="32dp">
+
+                    <ImageButton
+                        android:id="@+id/btn_activity_history"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/diary"
+                        android:text="@string/activity_history"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <TextView
+                        android:id="@+id/activity_history_title"
+                        style="@style/account_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_history"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_activity_history"
+                        app:layout_constraintStart_toEndOf="@id/btn_activity_history"
+                        app:layout_constraintTop_toTopOf="@id/btn_activity_history" />
+
+                    <View
+                        android:id="@+id/dividing_line_1"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@color/primary_gray"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_activity_history"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/activity_history_title" />
 
 
-        <Button
-            android:id="@+id/btn_language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
-            android:text="@string/switch_language"
-            app:layout_constraintStart_toEndOf="@id/btn_collection"
-            app:layout_constraintTop_toTopOf="@id/btn_collection" />
-
-        <Button
-            android:id="@+id/btn_provide_spots"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
-            android:text="@string/provide_spots"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_language"
-            app:layout_constraintTop_toTopOf="@id/btn_language" />
-
-        <Button
-            android:id="@+id/btn_contact_us"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
-            android:text="@string/contact_us"
-            app:layout_constraintStart_toStartOf="@id/btn_activity_history"
-            app:layout_constraintTop_toBottomOf="@id/btn_activity_history" />
+                    <ImageButton
+                        android:id="@+id/btn_collection"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/transparent"
+                        android:padding="8dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/save_instagram"
+                        android:text="@string/collection"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_activity_history"
+                        app:layout_constraintWidth_percent="0.2" />
 
 
-        <Button
-            android:id="@+id/btn_report_problem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
-            android:text="@string/report_problem"
-            app:layout_constraintStart_toEndOf="@id/btn_contact_us"
-            app:layout_constraintTop_toTopOf="@id/btn_contact_us" />
+                    <TextView
+                        android:id="@+id/collection_title"
+                        style="@style/account_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/collection"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_collection"
+                        app:layout_constraintStart_toEndOf="@id/btn_collection"
+                        app:layout_constraintTop_toTopOf="@id/btn_collection" />
+
+                    <View
+                        android:id="@+id/dividing_line_2"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@color/primary_gray"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_collection"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/collection_title" />
+
+                    <ImageButton
+                        android:id="@+id/btn_provide_spots"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/surfboard"
+                        android:text="@string/provide_spots"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_collection"
+                        app:layout_constraintWidth_percent="0.2" />
 
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/btn_language"
-            app:layout_constraintTop_toTopOf="@id/btn_language"
-            app:layout_constraintEnd_toEndOf="@id/btn_language"
-            app:layout_constraintBottom_toBottomOf="@id/btn_language"
-            android:visibility="gone"
-            />
+                    <TextView
+                        android:id="@+id/provide_spots_title"
+                        style="@style/account_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/provide_spots"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_provide_spots"
+                        app:layout_constraintStart_toEndOf="@id/btn_provide_spots"
+                        app:layout_constraintTop_toTopOf="@id/btn_provide_spots" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <View
+                        android:id="@+id/dividing_line_3"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@color/primary_gray"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_provide_spots"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/provide_spots_title" />
+
+                    <ImageButton
+                        android:id="@+id/btn_contact_us"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/transparent"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/support"
+                        android:text="@string/contact_us"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_provide_spots"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <TextView
+                        android:id="@+id/contact_us_title"
+                        style="@style/account_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contact_us"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_contact_us"
+                        app:layout_constraintStart_toEndOf="@id/btn_contact_us"
+                        app:layout_constraintTop_toTopOf="@id/btn_contact_us" />
+
+                    <View
+                        android:id="@+id/dividing_line_4"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@color/primary_gray"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_contact_us"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/contact_us_title" />
+
+
+                    <ImageButton
+                        android:id="@+id/btn_report_problem"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/problem"
+                        android:text="@string/report_problem"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_contact_us"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <TextView
+                        android:id="@+id/report_problem_title"
+                        style="@style/account_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/report_problem"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_report_problem"
+                        app:layout_constraintStart_toEndOf="@id/btn_report_problem"
+                        app:layout_constraintTop_toTopOf="@id/btn_report_problem" />
+
+                    <View
+                        android:id="@+id/dividing_line_5"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@color/primary_gray"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_report_problem"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/report_problem_title" />
+
+                    <ImageView
+                        android:id="@+id/btn_edit_name"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/edit_profile"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_report_problem"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <TextView
+                        android:id="@+id/edit_name_title"
+                        style="@style/account_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/edit_name"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_edit_name"
+                        app:layout_constraintStart_toEndOf="@id/btn_edit_name"
+                        app:layout_constraintTop_toTopOf="@id/btn_edit_name" />
+
+                    <View
+                        android:id="@+id/dividing_line_6"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@color/primary_gray"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_edit_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/edit_name_title" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </layout>

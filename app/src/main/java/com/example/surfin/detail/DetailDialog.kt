@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.surfin.SurfinApplication
 import com.example.surfin.databinding.DialogDetailBinding
 import com.example.surfin.factory.DetailFactory
@@ -35,18 +36,22 @@ class DetailDialog : BottomSheetDialogFragment() {
 
 
         //photo recycler view
-        val adapter = DetailAdapter()
+        val adapter = DetailAdapter(DetailAdapter.OnClickListener{
+            findNavController().navigate(ZoomDialogDirections.actionNavigateToZoomDialog(it))
+        })
         binding.detailRecyclerView.adapter = adapter
         viewModel.selectedDetail.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it.photo)
             Log.i("selected detail args info","${it.photo}")
         })
 
+
         //star function
         val starredBtn = binding.btnStarred
         val unStarredBtn = binding.btnUnstarred
 
         viewModel.isStarred.observe(viewLifecycleOwner, Observer {
+            Log.i("detailDialog", "isStarred $it")
             if (it) {
                 unStarredBtn.visibility = View.GONE
                 starredBtn.visibility = View.VISIBLE

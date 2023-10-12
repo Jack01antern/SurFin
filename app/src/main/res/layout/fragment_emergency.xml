@@ -12,49 +12,113 @@
         android:layout_height="match_parent"
         tools:context=".emergency.EmergencyFragment">
 
+
+        <ImageView
+            android:id="@+id/img_phone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="32dp"
+            android:src="@drawable/telephone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.7" />
+
+        <TextView
+            android:id="@+id/emergeny_hint"
+            style="@style/emergency_hint"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:text="@string/emergency_hint"
+            android:textColor="@color/primary_navy"
+            app:layout_constraintBottom_toTopOf="@id/btn_locate"
+            app:layout_constraintTop_toBottomOf="@id/img_phone" />
+
+        <TextView
+            android:id="@+id/location_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            android:text=""
+            android:textColor="@color/primary_darker_gray"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_call_118"
+            app:layout_constraintEnd_toStartOf="@id/btn_locate"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="25.1313,121.43523" />
+
+        <View
+            android:id="@+id/emergency_divider"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:foreground="@color/primary_gray"
+            app:layout_constraintEnd_toEndOf="@id/location_text_view"
+            app:layout_constraintStart_toStartOf="@id/location_text_view"
+            app:layout_constraintTop_toBottomOf="@id/location_text_view" />
+
+        <ImageButton
+            android:id="@+id/btn_locate"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/crosshair"
+            app:layout_constraintBottom_toTopOf="@id/locate_myself"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/location_text_view"
+            app:layout_constraintWidth_percent="0.15" />
+
+
+        <TextView
+            android:id="@+id/locate_myself"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/locate_myself"
+            android:textAlignment="center"
+            android:textColor="@color/hint_middle_gray"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/location_text_view"
+            app:layout_constraintEnd_toEndOf="@id/btn_locate"
+            app:layout_constraintStart_toStartOf="@id/btn_locate" />
+
+
         <Button
             android:id="@+id/btn_call_118"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
+            android:layout_margin="16dp"
+            android:background="@drawable/round_btn"
             android:text="@string/call_118"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_call_112" />
 
         <Button
             android:id="@+id/btn_call_112"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
+            android:layout_margin="16dp"
+            android:background="@drawable/round_btn"
             android:text="@string/call_112"
-            app:layout_constraintTop_toBottomOf="@id/btn_call_118" />
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_call_119" />
 
-        <TextView
-            android:id="@+id/location_text_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/emergency_divider"
-            app:layout_constraintEnd_toStartOf="@id/btn_locate"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_call_112" />
-
-        <View
-            android:id="@+id/emergency_divider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/primary_gray"
-            app:layout_constraintEnd_toEndOf="@id/location_text_view"
-            app:layout_constraintStart_toStartOf="@id/location_text_view"
-            app:layout_constraintTop_toBottomOf="@id/location_text_view" />
 
         <Button
-            android:id="@+id/btn_locate"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_call_119"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
-            android:text="@string/locate_myself"
-            app:layout_constraintBottom_toBottomOf="@id/emergency_divider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/location_text_view" />
+            android:layout_margin="16dp"
+            android:background="@drawable/round_btn"
+            android:text="撥打119"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

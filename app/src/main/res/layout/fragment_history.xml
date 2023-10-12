@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".history.HistoryFragment">
+        tools:context=".history.HistoryFragment"
+        android:background="@color/background_light_gray">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/history_recycler_view"
@@ -18,13 +19,26 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <Button
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/circle_button"
+            app:layout_constraintStart_toStartOf="@id/btn_add"
+            app:layout_constraintTop_toTopOf="@id/btn_add"
+            app:layout_constraintEnd_toEndOf="@id/btn_add"
+            app:layout_constraintBottom_toBottomOf="@id/btn_add"/>
+
+        <ImageButton
             android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_navy"
-            android:text="add"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_width="70dp"
+            android:layout_margin="16dp"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/notebook"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
