@@ -11,13 +11,13 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        app:strokeWidth="0dp"
-        app:cardBackgroundColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="18dp"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,12 +28,11 @@
                 android:id="@+id/collection_content"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="8dp"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{viewModel.photo[0]}"
+                app:layout_constraintBottom_toTopOf="@id/collection_title"
                 app:layout_constraintDimensionRatio="1:1.15"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/collection_title"
                 app:shapeAppearanceOverlay="@style/round_image_view"
                 tools:text="test" />
 
@@ -41,13 +40,13 @@
                 android:id="@+id/collection_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
+                android:paddingTop="8dp"
                 android:text="@{viewModel.title}"
                 android:textAlignment="center"
                 android:textColor="@color/primary_darker_gray"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="McCauley Beach" />
+                tools:text="花蓮南濱" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
