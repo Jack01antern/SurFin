@@ -83,9 +83,11 @@
 
                         <TextView
                             android:id="@+id/account_name"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:text=""
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:maxWidth="300dp"
                             android:textColor="@color/primary_darker_gray"
                             android:textSize="20sp"
                             tools:text="Gemma Ward" />
