@@ -61,14 +61,18 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    val searchHandler = Handler(Looper.getMainLooper())
-                    searchHandler.removeCallbacksAndMessages(null)
-                    searchHandler.postDelayed({
-                        if (newText != "") {
-                            viewModel.searchFirebase(newText.toString())
-                        }
-                        Log.i("Firestore", "Debounced query: $newText")
-                    }, 500)
+                    if (newText.isNullOrBlank()) {
+                        viewModel.getFirebase()
+                    } else {
+                        val searchHandler = Handler(Looper.getMainLooper())
+                        searchHandler.removeCallbacksAndMessages(null)
+                        searchHandler.postDelayed({
+                            if (newText != "") {
+                                viewModel.searchFirebase(newText.toString())
+                            }
+                            Log.i("Firestore", "Debounced query: $newText")
+                        }, 500)
+                    }
                     return false
                 }
             })
