@@ -25,10 +25,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.7"
-            app:tint="@color/primary_darker_gray"/>
+            app:tint="@color/primary_darker_gray" />
 
         <TextView
-            android:id="@+id/emergeny_hint"
+            android:id="@+id/emergency_hint"
             style="@style/emergency_hint"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -48,9 +48,9 @@
             android:textColor="@color/primary_darker_gray"
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@id/btn_call_118"
-            app:layout_constraintEnd_toStartOf="@id/btn_locate"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.15"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/locate_myself"
             tools:text="25.1313,121.4352" />
 
         <View
@@ -66,14 +66,14 @@
             android:id="@+id/btn_locate"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
             android:background="@color/transparent"
             android:scaleType="centerCrop"
             android:src="@drawable/crosshair"
             app:layout_constraintBottom_toTopOf="@id/locate_myself"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/location_text_view"
+            app:layout_constraintEnd_toStartOf="@id/location_text_view"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/location_text_view"
             app:layout_constraintWidth_percent="0.15"
             app:tint="@color/primary_darker_gray" />
