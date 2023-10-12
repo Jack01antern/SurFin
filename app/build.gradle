@@ -65,6 +65,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
+
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
@@ -83,27 +84,11 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
-
-    //toolbar
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-
-    //
-    implementation 'com.google.android.material:material:1.2.0'
-    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
-    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
-    debugImplementation 'androidx.compose.ui:ui-tooling'
-    debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
 
     //bottom navigation
     def nav_version = "2.5.3"
-
-    // Java language implementation
-    implementation("androidx.navigation:navigation-fragment:$nav_version")
-    implementation("androidx.navigation:navigation-ui:$nav_version")
 
     // Kotlin
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
@@ -125,10 +110,6 @@ dependencies {
     implementation "com.squareup.moshi:moshi:1.9.3"
     implementation "com.squareup.moshi:moshi-kotlin:1.9.3"
 
-    // Retrofit - Deprecated plugins - No more required
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    // implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
-
     // Retrofit with Moshi Converter
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
 
@@ -146,12 +127,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     // Skip this if you don't want to use integration libraries or configure Glide.
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
-
-
-    //view pager and tab layout
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation "androidx.viewpager2:viewpager2:1.0.0"
-
 
     //paging
     implementation 'androidx.paging:paging-runtime-ktx:2.1.1'
@@ -176,7 +151,6 @@ dependencies {
 //    implementation("com.google.dagger:hilt-android:2.44")
 //    kapt("com.google.dagger:hilt-android-compiler:2.44")
 
-
     //firebase
     // Import the BoM for the Firebase platform
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
@@ -186,9 +160,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
 
     //line chart
-//    implementation 'com.diogobernardino:williamchart:3.10.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-
 
     //zoom in pinch
     implementation 'com.github.MikeOrtiz:TouchImageView:1.4.1'

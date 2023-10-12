@@ -1,9 +1,11 @@
 package com.example.surfin
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -21,7 +23,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+        }
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
@@ -95,9 +99,6 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.collectionFragment -> binding.toolbarTitle.text =
                     CurrentFragment.COLLECTION.value
-
-                R.id.languageFragment -> binding.toolbarTitle.text =
-                    CurrentFragment.LANGUAGE.value
             }
             Log.i("toolbar", "toolbar value: ${viewModel.currentFragment.value}")
         }
@@ -106,14 +107,58 @@ class MainActivity : AppCompatActivity() {
     private fun setupToolbar() {
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { navController: NavController, _: NavDestination, _: Bundle? ->
             when (navController.currentDestination?.id) {
-                R.id.homeFragment -> binding.toolbar.visibility = View.VISIBLE
-                R.id.weatherFragment -> binding.toolbar.visibility = View.GONE
-                R.id.exploreFragment -> binding.toolbar.visibility = View.VISIBLE
-                R.id.emergencyFragment -> binding.toolbar.visibility = View.VISIBLE
-                R.id.accountFragment -> binding.toolbar.visibility = View.VISIBLE
-                R.id.historyFragment -> binding.toolbar.visibility = View.VISIBLE
-                R.id.collectionFragment -> binding.toolbar.visibility = View.VISIBLE
-                R.id.zoomDialog -> binding.toolbar.visibility = View.GONE
+                R.id.homeFragment -> {
+                    binding.toolbar.visibility = View.VISIBLE
+                    binding.backKey.visibility = View.GONE
+                }
+
+                R.id.weatherFragment -> {
+                    binding.toolbar.visibility = View.GONE
+
+                }
+
+                R.id.exploreFragment -> {
+                    binding.toolbar.visibility = View.VISIBLE
+                    binding.backKey.visibility = View.GONE
+                }
+
+                R.id.zoomDialog -> {
+                    binding.toolbar.visibility = View.GONE
+                }
+
+                R.id.emergencyFragment -> {
+                    binding.toolbar.visibility = View.VISIBLE
+                    binding.backKey.visibility = View.GONE
+                }
+
+                R.id.accountFragment -> {
+                    binding.toolbar.visibility = View.VISIBLE
+                    binding.backKey.visibility = View.GONE
+                }
+
+                R.id.historyFragment -> {
+                    binding.toolbar.visibility = View.VISIBLE
+                    binding.backKey.visibility = View.VISIBLE
+                    binding.backKey.setOnClickListener {
+                       navController.navigateUp()
+                    }
+                }
+
+                R.id.collectionFragment -> {
+                    binding.toolbar.visibility = View.VISIBLE
+                    binding.backKey.visibility = View.VISIBLE
+                    binding.backKey.setOnClickListener {
+                       navController.navigateUp()
+                    }
+                }
+
+                R.id.editFragment -> {
+                    binding.toolbar.visibility = View.VISIBLE
+                    binding.backKey.visibility = View.VISIBLE
+                    binding.backKey.setOnClickListener {
+                        navController.navigateUp()
+                    }
+                }
             }
             Log.i("toolbar", "toolbar value: ${viewModel.currentFragment.value}")
         }

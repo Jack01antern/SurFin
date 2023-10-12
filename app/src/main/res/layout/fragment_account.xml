@@ -17,10 +17,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background"
             tools:context=".account.AccountFragment">
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/account_background"
@@ -40,12 +39,12 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/gemma"
                     app:layout_constraintBottom_toBottomOf="@id/account_background"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="@id/account_background"
                     app:layout_constraintStart_toStartOf="@id/account_background"
                     app:layout_constraintTop_toTopOf="@id/account_background"
+                    app:layout_constraintVertical_bias="0.3"
                     app:layout_constraintWidth_percent="0.5"
                     app:shapeAppearanceOverlay="@style/circular"
                     app:srcCompat="@drawable/baseline_account_circle_24" />
@@ -54,253 +53,243 @@
                     android:id="@+id/btn_change_thumbnail"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:src="@drawable/camera"
+                    android:background="@drawable/btm_sheet_background"
+                    android:padding="4dp"
+                    android:src="@drawable/gallery"
                     app:layout_constraintBottom_toBottomOf="@id/thumbnail"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="@id/thumbnail"
                     app:layout_constraintWidth_percent="0.1" />
 
-                <TextView
-                    android:id="@+id/account_name"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/account_name_card_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="30dp"
-                    android:text=""
-                    android:textSize="20sp"
+                    app:cardBackgroundColor="@color/card_view_background"
+                    app:cardCornerRadius="20dp"
                     app:layout_constraintEnd_toEndOf="@id/thumbnail"
                     app:layout_constraintStart_toStartOf="@id/thumbnail"
                     app:layout_constraintTop_toBottomOf="@id/thumbnail"
-                    tools:text="Gemma Ward" />
+                    app:strokeWidth="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:id="@+id/account_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text=""
+                            android:textColor="@color/primary_darker_gray"
+                            android:textSize="20sp"
+                            tools:text="Gemma Ward" />
+
+                        <ImageView
+                            android:id="@+id/btn_edit_name"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="16dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/baseline_mode_edit_24"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/account_name"
+                            app:layout_constraintTop_toTopOf="@id/account_name"
+                            app:layout_constraintWidth_percent="0.15" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="32dp"
+                android:padding="32dp"
+                app:cardBackgroundColor="@color/card_view_background"
                 app:cardCornerRadius="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/account_background">
+                app:layout_constraintTop_toBottomOf="@id/account_background"
+                app:strokeWidth="0dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="#00FFFFFF"
                     android:padding="32dp">
 
-                    <ImageButton
-                        android:id="@+id/btn_activity_history"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_margin="8dp"
-                        android:background="@color/transparent"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/diary"
-                        android:text="@string/activity_history"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent="0.2" />
-
-                    <TextView
-                        android:id="@+id/activity_history_title"
-                        style="@style/account_title"
-                        android:layout_width="0dp"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/activity_history_layout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/activity_history"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_activity_history"
-                        app:layout_constraintStart_toEndOf="@id/btn_activity_history"
-                        app:layout_constraintTop_toTopOf="@id/btn_activity_history" />
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <View
-                        android:id="@+id/dividing_line_1"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_activity_history"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/activity_history_title" />
+                        <ImageButton
+                            android:id="@+id/btn_activity_history"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_margin="8dp"
+                            android:background="@color/transparent"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/diary"
+                            android:text="@string/activity_history"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/activity_history_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.13" />
+
+                        <TextView
+                            android:id="@+id/activity_history_title"
+                            style="@style/account_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:text="@string/activity_history"
+                            app:layout_constraintBottom_toBottomOf="@id/btn_activity_history"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/btn_activity_history"
+                            app:layout_constraintTop_toTopOf="@id/btn_activity_history" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                    <ImageButton
-                        android:id="@+id/btn_collection"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_margin="8dp"
-                        android:background="@color/transparent"
-                        android:padding="8dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/save_instagram"
-                        android:text="@string/collection"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/btn_activity_history"
-                        app:layout_constraintWidth_percent="0.2" />
-
-
-                    <TextView
-                        android:id="@+id/collection_title"
-                        style="@style/account_title"
-                        android:layout_width="0dp"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/collection_layout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/collection"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_collection"
-                        app:layout_constraintStart_toEndOf="@id/btn_collection"
-                        app:layout_constraintTop_toTopOf="@id/btn_collection" />
+                        app:layout_constraintTop_toBottomOf="@id/activity_history_layout">
 
-                    <View
-                        android:id="@+id/dividing_line_2"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_collection"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/collection_title" />
-
-                    <ImageButton
-                        android:id="@+id/btn_provide_spots"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_margin="8dp"
-                        android:background="@color/transparent"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/surfboard"
-                        android:text="@string/provide_spots"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/btn_collection"
-                        app:layout_constraintWidth_percent="0.2" />
+                        <ImageButton
+                            android:id="@+id/btn_collection"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_margin="8dp"
+                            android:background="@color/transparent"
+                            android:padding="8dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/save_instagram"
+                            android:text="@string/collection"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/collection_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.15" />
 
 
-                    <TextView
-                        android:id="@+id/provide_spots_title"
-                        style="@style/account_title"
-                        android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/collection_title"
+                            style="@style/account_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:text="@string/collection"
+                            app:layout_constraintBottom_toBottomOf="@id/btn_collection"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/btn_collection"
+                            app:layout_constraintTop_toTopOf="@id/btn_collection" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/provide_spot_layout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/provide_spots"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_provide_spots"
-                        app:layout_constraintStart_toEndOf="@id/btn_provide_spots"
-                        app:layout_constraintTop_toTopOf="@id/btn_provide_spots" />
+                        app:layout_constraintTop_toBottomOf="@id/collection_layout">
 
-                    <View
-                        android:id="@+id/dividing_line_3"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_provide_spots"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/provide_spots_title" />
+                        <ImageButton
+                            android:id="@+id/btn_provide_spots"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_margin="8dp"
+                            android:background="@color/transparent"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/surfboard"
+                            android:text="@string/provide_spots"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/provide_spots_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.13" />
 
-                    <ImageButton
-                        android:id="@+id/btn_contact_us"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_margin="8dp"
-                        android:background="@color/transparent"
-                        android:padding="4dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/support"
-                        android:text="@string/contact_us"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/btn_provide_spots"
-                        app:layout_constraintWidth_percent="0.2" />
 
-                    <TextView
-                        android:id="@+id/contact_us_title"
-                        style="@style/account_title"
-                        android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/provide_spots_title"
+                            style="@style/account_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:text="@string/provide_spots"
+                            app:layout_constraintBottom_toBottomOf="@id/btn_provide_spots"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/btn_provide_spots"
+                            app:layout_constraintTop_toTopOf="@id/btn_provide_spots" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/contact_us_layout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/contact_us"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_contact_us"
-                        app:layout_constraintStart_toEndOf="@id/btn_contact_us"
-                        app:layout_constraintTop_toTopOf="@id/btn_contact_us" />
+                        app:layout_constraintTop_toBottomOf="@id/provide_spot_layout">
 
-                    <View
-                        android:id="@+id/dividing_line_4"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_contact_us"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/contact_us_title" />
+                        <ImageButton
+                            android:id="@+id/btn_contact_us"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_margin="8dp"
+                            android:background="@color/transparent"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/problem"
+                            android:text="@string/contact_us"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/contact_us_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.13" />
 
-
-                    <ImageButton
-                        android:id="@+id/btn_report_problem"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_margin="8dp"
-                        android:background="@color/transparent"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/problem"
-                        android:text="@string/report_problem"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/btn_contact_us"
-                        app:layout_constraintWidth_percent="0.2" />
-
-                    <TextView
-                        android:id="@+id/report_problem_title"
-                        style="@style/account_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/report_problem"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_report_problem"
-                        app:layout_constraintStart_toEndOf="@id/btn_report_problem"
-                        app:layout_constraintTop_toTopOf="@id/btn_report_problem" />
-
-                    <View
-                        android:id="@+id/dividing_line_5"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_report_problem"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/report_problem_title" />
-
-                    <ImageView
-                        android:id="@+id/btn_edit_name"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_margin="8dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/edit_profile"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/btn_report_problem"
-                        app:layout_constraintWidth_percent="0.2" />
-
-                    <TextView
-                        android:id="@+id/edit_name_title"
-                        style="@style/account_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/edit_name"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_edit_name"
-                        app:layout_constraintStart_toEndOf="@id/btn_edit_name"
-                        app:layout_constraintTop_toTopOf="@id/btn_edit_name" />
-
-                    <View
-                        android:id="@+id/dividing_line_6"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/primary_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_edit_name"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/edit_name_title" />
-
+                        <TextView
+                            android:id="@+id/contact_us_title"
+                            style="@style/account_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="32dp"
+                            android:text="@string/contact_us"
+                            app:layout_constraintBottom_toBottomOf="@id/btn_contact_us"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/btn_contact_us"
+                            app:layout_constraintTop_toTopOf="@id/btn_contact_us" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            </androidx.cardview.widget.CardView>
-
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/submit_anim"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintWidth_percent="0.3"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:elevation="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_rawRes="@raw/animation_submitted" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

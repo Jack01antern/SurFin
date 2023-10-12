@@ -14,29 +14,33 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         tools:context=".detail.DetailDialog">
 
         <ImageView
             android:id="@+id/btn_starred"
-            android:layout_width="50dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/baseline_turned_in_24"
             app:layout_constraintBottom_toBottomOf="@id/location"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/location" />
+            app:layout_constraintTop_toTopOf="@id/location"
+            app:layout_constraintWidth_percent="0.1"
+            app:tint="@color/primary_navy" />
 
         <ImageView
             android:id="@+id/btn_unstarred"
-            android:layout_width="50dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/outline_turned_in_not_24"
             app:layout_constraintBottom_toBottomOf="@id/location"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/location" />
+            app:layout_constraintTop_toTopOf="@id/location"
+            app:layout_constraintWidth_percent="0.1" />
 
 
         <TextView
@@ -46,7 +50,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:text="@{viewModel.selectedDetail.title}"
-            android:textColor="@color/primary_navy"
+            android:textColor="@color/primary_darker_gray"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -59,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@{viewModel.selectedDetail.content}"
-            android:textColor="@color/primary_navy"
+            android:textColor="@color/primary_darker_gray"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/detail_recycler_view"
             app:layout_constraintStart_toStartOf="@id/location"

@@ -26,7 +26,6 @@ class CollectionFragment : Fragment() {
         binding = FragmentCollectionBinding.inflate(inflater)
 
         val adapter = CollectionAdapter(CollectionAdapter.OnClickListener{
-            findNavController().navigate(CollectionFragmentDirections.actionNavigateToExploreFragment())
             findNavController().navigate(CollectionFragmentDirections.actionNavigateToDetailFragment(it))
         })
         binding.collectionRecyclerView.adapter = adapter

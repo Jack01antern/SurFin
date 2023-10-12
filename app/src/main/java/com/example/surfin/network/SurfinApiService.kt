@@ -4,6 +4,7 @@ import com.example.surfin.BuildConfig
 import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
+import com.example.surfin.data.CwaWaveResult
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -22,7 +23,7 @@ private const val CWA_BASE_URL = "https://$CWA_HOST_NAME/api/$CWA_API_VERSION/"
 private const val CWA_TIDE_SOURCE = "F-A0021-001"
 private const val CWA_TEMP_SOURCE = "O-A0001-001"
 private const val CWA_UVI_SOURCE = "O-A0005-001"
-
+private const val CWA_WAVE_SOURCE = "O-B0075-001"
 
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
@@ -74,6 +75,14 @@ interface SurfinApiService {
         @Query("Authorization") apiKey: String = CWA_KEY,
         @Query("locationCode") locationCode: String
     ): CwaUviResult
+
+    @GET("rest/datastore/$CWA_WAVE_SOURCE")
+    suspend fun getCwaWave(
+        @Query("Authorization") apiKey: String = CWA_KEY,
+        @Query("StationID") StationId: String,
+        @Query("WeatherElement") weatherElement: String = "WaveHeight",
+        @Query("sort") sort: String = "DateTime"
+    ): CwaWaveResult
 
 }
 

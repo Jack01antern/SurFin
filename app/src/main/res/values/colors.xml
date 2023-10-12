@@ -9,12 +9,30 @@
     <color name="primary_navy">#003366</color>
     <color name="primary_carolina">#99CCFF</color>
 
-<!--    Dialog background-->
+    <!--    Dialog background-->
     <color name="translucent_40">#66000000</color>
-    <color name="red">#DD3333</color>
+    <color name="burgundy">#994444</color>
 
     <color name="background_light_gray">#FFEEEEEE</color>
-    <color name="line_chart_gradient" tools:ignore="ResourceCycle">@color/line_chart_gradient</color>
+    <color name="line_chart_gradient" tools:ignore="ResourceCycle">@color/line_chart_gradient
+    </color>
     <color name="hint_middle_gray">#888888</color>
+
+    <color name="card_view_background">#AAFFFFFF</color>
+
+    <color name="btn_gray">#888888</color>
+
+    <color name="uvi_green">#00BA71</color>
+    <color name="uvi_yellow">#FAD717</color>
+    <color name="uvi_orange">#FF8901</color>
+    <color name="uvi_red">#F54656</color>
+    <color name="uvi_purple">#A021A7</color>
+
+    <color name="weather_red">#F68AAF</color>
+    <color name="weather_blue">#7E91F3</color>
+    <color name="weather_green">#6FDA8D</color>
+    <color name="weather_yellow">#FFD786</color>
+
+    <color name="line_chart_blue">#EEA4DEFF</color>
 
 </resources>

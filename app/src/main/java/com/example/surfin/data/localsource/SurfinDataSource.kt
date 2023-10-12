@@ -6,6 +6,7 @@ import com.example.surfin.data.UserActivityHistory
 import com.example.surfin.data.CwaTempResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
+import com.example.surfin.data.CwaWaveResult
 import com.example.surfin.data.Spots
 import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.UserInfo
@@ -37,7 +38,12 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         return super.getCwaUvi(apiKey, locationName)
     }
 
-//    override suspend fun getCwaEarthquake(locationName: String): CwaEarthquakeResult {
+    override suspend fun getCwaWave(apiKey: String, locationName: String): CwaWaveResult {
+        return super.getCwaWave(apiKey, locationName)
+    }
+
+
+    //    override suspend fun getCwaEarthquake(locationName: String): CwaEarthquakeResult {
 //        return super.getCwaEarthquake(locationName)
 //    }
 
@@ -117,7 +123,7 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         }
     }
 
-    override fun getUserInfo(): LiveData<UserInfo> {
+    override fun getUserInfo(): LiveData<UserInfo?> {
         return dao.getUserInfo()
     }
 }

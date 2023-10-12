@@ -17,7 +17,7 @@ data class UserInfo(
     @PrimaryKey(autoGenerate = false)
     val id: Long = 1L,
     @ColumnInfo(name = "selfie")
-    val selfie: String,
+    val selfie: String? = null,
     @ColumnInfo(name = "name")
     val name: String
 ) : Parcelable

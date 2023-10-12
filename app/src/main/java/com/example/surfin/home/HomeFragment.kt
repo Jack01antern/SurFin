@@ -2,6 +2,8 @@ package com.example.surfin.home
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,9 +32,16 @@ class HomeFragment : Fragment() {
 
         val adapter = HomeAdapter(HomeAdapter.OnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigateToWeatherFragment(it))
-            Log.i("cwa args","${it}")
+            Log.i("cwa args", "${it}")
         })
 
+
+        viewModel.isLoading.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                true -> binding.loadingAnim.visibility = View.VISIBLE
+                false -> binding.loadingAnim.visibility = View.GONE
+            }
+        })
 
         binding.homeRecyclerView.adapter = adapter
         viewModel.fireResult.observe(viewLifecycleOwner, Observer {
@@ -41,18 +50,35 @@ class HomeFragment : Fragment() {
 
 
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                viewModel.searchFirebase(p0!!)
-                Log.i("fire store","p0: $p0")
-                return false
-            }
+        binding.searchCardView.setOnClickListener {
+            binding.searchView.isIconified = false
+            binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                return false
-            }
-        })
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    viewModel.searchFirebase(query!!)
+                    Log.i("fire store", "p0: $query")
+                    return false
+                }
 
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    val searchHandler = Handler(Looper.getMainLooper())
+                    searchHandler.removeCallbacksAndMessages(null)
+                    searchHandler.postDelayed({
+                        if (newText != "") {
+                            viewModel.searchFirebase(newText.toString())
+                        }
+                        Log.i("Firestore", "Debounced query: $newText")
+                    }, 500)
+                    return false
+                }
+            })
+        }
+
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getFirebase()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
 
         return binding.root
     }

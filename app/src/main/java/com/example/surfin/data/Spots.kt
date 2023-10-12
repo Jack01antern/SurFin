@@ -38,6 +38,9 @@ data class Spots(
     @ColumnInfo(name = "uvi_station_id")
     var uviStationId: String = "",
 
+    @ColumnInfo(name = "wave_station_id")
+    var waveStationId: String = "",
+
     @ColumnInfo(name = "title")
     var title: String = "",
 

@@ -10,8 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:padding="16dp"
         tools:context=".emergency.EmergencyFragment">
-
 
         <ImageView
             android:id="@+id/img_phone"
@@ -23,7 +24,8 @@
             app:layout_constraintHeight_percent="0.2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.7" />
+            app:layout_constraintWidth_percent="0.7"
+            app:tint="@color/primary_darker_gray"/>
 
         <TextView
             android:id="@+id/emergeny_hint"
@@ -32,14 +34,14 @@
             android:layout_height="0dp"
             android:layout_margin="16dp"
             android:text="@string/emergency_hint"
-            android:textColor="@color/primary_navy"
-            app:layout_constraintBottom_toTopOf="@id/btn_locate"
+            android:textColor="@color/primary_darker_gray"
+            app:layout_constraintBottom_toTopOf="@id/location_text_view"
             app:layout_constraintTop_toBottomOf="@id/img_phone" />
 
         <TextView
             android:id="@+id/location_text_view"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_margin="16dp"
             android:padding="16dp"
             android:text=""
@@ -47,9 +49,9 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@id/btn_call_118"
             app:layout_constraintEnd_toStartOf="@id/btn_locate"
-            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintHeight_percent="0.15"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="25.1313,121.43523" />
+            tools:text="25.1313,121.4352" />
 
         <View
             android:id="@+id/emergency_divider"
@@ -72,53 +74,58 @@
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/location_text_view"
-            app:layout_constraintWidth_percent="0.15" />
+            app:layout_constraintTop_toTopOf="@id/location_text_view"
+            app:layout_constraintWidth_percent="0.15"
+            app:tint="@color/primary_darker_gray" />
 
 
         <TextView
             android:id="@+id/locate_myself"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/locate_myself"
             android:textAlignment="center"
-            android:textColor="@color/hint_middle_gray"
+            android:textColor="@color/primary_darker_gray"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/location_text_view"
             app:layout_constraintEnd_toEndOf="@id/btn_locate"
-            app:layout_constraintStart_toStartOf="@id/btn_locate" />
+            app:layout_constraintStart_toStartOf="@id/btn_locate"
+            app:layout_constraintTop_toBottomOf="@id/btn_locate" />
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_call_118"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:background="@drawable/round_btn"
+            android:background="@drawable/btn_emergency"
             android:text="@string/call_118"
+            android:textColor="@color/white"
             android:textSize="25sp"
             app:layout_constraintBottom_toTopOf="@id/btn_call_112" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_call_112"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:background="@drawable/round_btn"
+            android:background="@drawable/btn_emergency"
             android:text="@string/call_112"
+            android:textColor="@color/white"
             android:textSize="25sp"
             app:layout_constraintBottom_toTopOf="@id/btn_call_119" />
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_call_119"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:background="@drawable/round_btn"
-            android:text="撥打119"
+            android:background="@drawable/btn_emergency"
+            android:text="@string/call_119"
+            android:textColor="@color/white"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

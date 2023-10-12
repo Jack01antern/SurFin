@@ -28,9 +28,9 @@ interface SurfinRepository {
     }
 
 
-//    suspend fun getCwaEarthquake(locationName: String): CwaEarthquakeResult {
-//        return SurfinApi.retrofitService.getCwaEarthquake()
-//    }
+    suspend fun getCwaWave(apiKey: String, locationName: String): CwaWaveResult {
+        return SurfinApi.retrofitService.getCwaWave(apiKey, locationName)
+    }
 
     //firebase
     fun getFirebaseSpotData()
@@ -68,6 +68,6 @@ interface SurfinRepository {
 
     suspend fun updateUserInfo(userInfo: UserInfo)
 
-    fun getUserInfo():LiveData<UserInfo>
+    fun getUserInfo():LiveData<UserInfo?>
 
 }

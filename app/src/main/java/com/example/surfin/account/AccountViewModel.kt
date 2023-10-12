@@ -1,7 +1,6 @@
 package com.example.surfin.account
 
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.surfin.data.SurfinRepository
@@ -25,9 +24,11 @@ class AccountViewModel(repository: SurfinRepository) : ViewModel() {
     }
 
 
-    fun provideSpots(text: String) {
+    fun provideSpots(address:String,content: String) {
         db.collection("New Spots").document()
-            .set(hashMapOf("content" to text))
+            .set(hashMapOf(
+                "address" to address,
+                "content" to content))
             .addOnSuccessListener {
                 Log.d(
                     "provide spots",
@@ -39,9 +40,13 @@ class AccountViewModel(repository: SurfinRepository) : ViewModel() {
 
 
 
-    fun contactUs(text: String) {
+    fun contactUs(category:String,userName:String,userEmail:String,content: String) {
         db.collection("contact us").document()
-            .set(hashMapOf("content" to text))
+            .set(hashMapOf(
+                "category" to category,
+                "user_name" to userName,
+                "user_email" to userEmail,
+                "content" to content))
             .addOnSuccessListener {
                 Log.d(
                     "provide spots",
@@ -51,15 +56,4 @@ class AccountViewModel(repository: SurfinRepository) : ViewModel() {
             .addOnFailureListener { e -> Log.w("provide spots", "Error writing document", e) }
     }
 
-    fun reportProblem(text: String) {
-        db.collection("report problem").document()
-            .set(hashMapOf("content" to text))
-            .addOnSuccessListener {
-                Log.d(
-                    "provide spots",
-                    "DocumentSnapshot successfully written!"
-                )
-            }
-            .addOnFailureListener { e -> Log.w("provide spots", "Error writing document", e) }
-    }
 }
