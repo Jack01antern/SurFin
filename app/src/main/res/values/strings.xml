@@ -18,7 +18,7 @@
     <!--    weather-->
     <string name="tide_title">潮汐</string>
     <string name="degree">°C</string>
-    <string name="ms">㎧</string>
+    <string name="ms">m/s</string>
     <string name="m">m</string>
 
     <string name="uvi_low">低量級，無需特別注意防曬</string>
