@@ -10,40 +10,92 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.surfin.R
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.Spots
 import com.example.surfin.factory.ExploreFactory
-import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.firebase.firestore.FirebaseFirestore
 
 
 private const val REQUEST_CODE_LOCATION_PERMISSION = 0x00
+private const val ZOOM_IN = 10F
 
 
 class ExploreFragment : Fragment() {
 
+    private val db = FirebaseFirestore.getInstance()
+    private var spotsInfo = mutableListOf<Spots>()
     private lateinit var viewModel: ExploreViewModel
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private lateinit var autocomplete: AutocompleteSupportFragment
+
+    val callback = OnMapReadyCallback { googleMap ->
+
+        //mock data for zoom in
+        val school = LatLng(25.0385, 121.5324)
+        googleMap.addMarker(
+            MarkerOptions().position(school).title("Marker in School")
+                .snippet("The Best School Ever")
+        )
+
+
+        //get data from firebase and add marker
+        try {
+            db.collection("spots").addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Log.w("retrieve??", e)
+                    return@addSnapshotListener
+                }
+                googleMap.clear()
+                spotsInfo.clear()
+                spotsInfo.addAll(snapshot!!.toObjects(Spots::class.java))
+
+                for (spot in spotsInfo) {
+                    val latLong = LatLng(spot.lat, spot.longitude)
+                    googleMap.addMarker(
+                        MarkerOptions().position(latLong).title(spot.title).snippet(spot.content)
+                    )
+                }
+                Log.i("retrieve!!", " MSG: $spotsInfo")
+            }
+
+        } catch (e: Exception) {
+            Log.i("retrieve failed", " MSG: ${e.message}")
+        }
+
+        var safeArgs = Spots()
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school, ZOOM_IN))
+        googleMap.setOnMarkerClickListener {
+            for (spot in spotsInfo) {
+                if (spot.title == it.title) {
+                    safeArgs = spot
+                }
+            }
+
+            findNavController().navigate(
+                ExploreFragmentDirections.actionNavigateToDetailFragment(
+                    safeArgs
+                )
+            )
+            Log.i("explore", "${safeArgs}")
+            true
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
 
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -62,13 +114,8 @@ class ExploreFragment : Fragment() {
         ).get(ExploreViewModel::class.java)
 
 
-//        Places.initialize(requireContext(),getString(R.string.google_maps_api_key))
-//        autocomplete = childFragmentManager.findFragmentById(R.id.search_map) as AutocompleteSupportFragment
-//        autocomplete.setPlaceFields(listOf(Place.Field.ID, Place.Field.ADDRESS,Place.Field.LAT_LNG))
-
-
         val mapFragment = childFragmentManager.findFragmentById(R.id.explore) as SupportMapFragment?
-        mapFragment?.getMapAsync(viewModel.callback)
+        mapFragment?.getMapAsync(callback)
 
     }
 
@@ -102,5 +149,6 @@ class ExploreFragment : Fragment() {
             }
         }
     }
+
 
 }

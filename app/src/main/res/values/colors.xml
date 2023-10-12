@@ -6,4 +6,8 @@
     <color name="primary_gray">#CCCCCC</color>
     <color name="primary_navy">#003366</color>
     <color name="primary_carolina">#99CCFF</color>
+
+<!--    Dialog background-->
+    <color name="translucent_40">#66000000</color>
+
 </resources>

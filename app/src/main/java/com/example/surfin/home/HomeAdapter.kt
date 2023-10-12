@@ -30,7 +30,7 @@ class HomeAdapter(private val onClickListener: OnClickListener) :
         override fun areItemsTheSame(
             oldItem: Spots, newItem: Spots
         ): Boolean {
-            return oldItem.lat == newItem.lat && oldItem.long == newItem.long
+            return oldItem.lat == newItem.lat && oldItem.longitude == newItem.longitude
         }
 
         override fun areContentsTheSame(

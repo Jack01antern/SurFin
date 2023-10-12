@@ -41,17 +41,46 @@
             app:nullable="false" />
     </fragment>
 
-    <fragment
+    <dialog
+        android:id="@+id/detailDialog"
+        android:name="com.example.surfin.detail.DetailDialog"
+        android:label="dialog_detail"
+        tools:layout="@layout/dialog_detail">
+        <argument
+            android:name="spotInfo"
+            app:argType="com.example.surfin.data.Spots"
+            app:nullable="false" />
+    </dialog>
+
+    <dialog
         android:id="@+id/addHistoryFragment"
-        android:name="com.example.surfin.history.AddHistoryFragment"
+        android:name="com.example.surfin.history.AddHistoryDialog"
         android:label="AddHistoryFragment"
-        tools:layout="@layout/fragment_add_history" />
+        tools:layout="@layout/dialog_add_history" />
 
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.surfin.history.HistoryFragment"
         android:label="HistoryFragment"
         tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="com.example.surfin.collection.CollectionFragment"
+        android:label="fragment_collection"
+        tools:layout="@layout/fragment_collection" />
+
+    <dialog
+        android:id="@+id/languageFragment"
+        android:name="com.example.surfin.language.LanguageDialog"
+        android:label="fragment_language"
+        tools:layout="@layout/dialog_language" />
+
+    <dialog
+        android:id="@+id/recommendDialog"
+        android:name="com.example.surfin.account.RecommendDialog"
+        android:label="fragment_provide"
+        tools:layout="@layout/dialog_recommend"/>
 
     <action
         android:id="@+id/action_navigate_to_home_fragment"
@@ -88,5 +117,21 @@
     <action
         android:id="@+id/action_navigate_to_add_history_fragment"
         app:destination="@id/addHistoryFragment" />
+
+    <action
+        android:id="@+id/action_navigate_to_collection_fragment"
+        app:destination="@id/collectionFragment" />
+
+    <action
+        android:id="@+id/action_navigate_to_language_fragment"
+        app:destination="@id/languageFragment" />
+
+    <action
+        android:id="@+id/action_navigate_to_detail_fragment"
+        app:destination="@id/detailDialog" />
+
+    <action
+        android:id="@+id/action_navigate_to_recommend_fragment"
+        app:destination="@id/recommendDialog" />
 
 </navigation>

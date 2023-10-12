@@ -28,6 +28,33 @@
             android:text="@string/call_112"
             app:layout_constraintTop_toBottomOf="@id/btn_call_118" />
 
+        <TextView
+            android:id="@+id/location_text_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/emergency_divider"
+            app:layout_constraintEnd_toStartOf="@id/btn_locate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_call_112" />
+
+        <View
+            android:id="@+id/emergency_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/primary_gray"
+            app:layout_constraintEnd_toEndOf="@id/location_text_view"
+            app:layout_constraintStart_toStartOf="@id/location_text_view"
+            app:layout_constraintTop_toBottomOf="@id/location_text_view" />
+
+        <Button
+            android:id="@+id/btn_locate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_navy"
+            android:text="@string/locate_myself"
+            app:layout_constraintBottom_toBottomOf="@id/emergency_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/location_text_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".language.LanguageDialog">
+
+    <TextView
+        android:id="@+id/traditional_chinese"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/traditional_chinese"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/english"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/english"
+        app:layout_constraintTop_toBottomOf="@id/traditional_chinese"/>
+
+    <TextView
+        android:id="@+id/simplified_chinese"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/simplified_chinese"
+        app:layout_constraintTop_toBottomOf="@id/english"/>
+
+    <TextView
+        android:id="@+id/japanese"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/japanese"
+        app:layout_constraintTop_toBottomOf="@id/simplified_chinese"/>
+
+    <TextView
+        android:id="@+id/thai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/thai"
+        app:layout_constraintTop_toBottomOf="@id/japanese"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

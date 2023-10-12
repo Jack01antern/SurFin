@@ -22,7 +22,7 @@ class AddHistoryViewModel(private val repository: SurfinRepository) : ViewModel(
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    repository.insert(history)
+                    repository.insertHistory(history)
                 }
             } catch (e: Exception) {
                 Log.i("db failed", "${e.message}")
@@ -34,7 +34,7 @@ class AddHistoryViewModel(private val repository: SurfinRepository) : ViewModel(
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    repository.clear()
+                    repository.clearHistory()
                 }
             } catch (e: Exception) {
                 Log.i("db failed", "${e.message}")
