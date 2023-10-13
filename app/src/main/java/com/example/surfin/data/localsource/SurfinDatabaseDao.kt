@@ -46,7 +46,7 @@ interface SurfinDatabaseDao {
     fun updateUserInfo(userInfo: UserInfo)
 
 
-    @Query("SELECT * FROM user_info")
-    fun getUserInfo(): LiveData<UserInfo?>
+    @Query("SELECT * FROM user_info WHERE id = :id")
+    fun getUserInfo(id:Int): LiveData<UserInfo?>
 
 }

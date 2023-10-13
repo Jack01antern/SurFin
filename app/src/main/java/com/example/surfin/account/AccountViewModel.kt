@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class AccountViewModel(repository: SurfinRepository) : ViewModel() {
 
-    val userInfo = repository.getUserInfo()
+    val userInfo = repository.getUserInfo(1)
     private val db = FirebaseFirestore.getInstance()
 
     fun updateUserInfo(userInfo: UserInfo, repository: SurfinRepository) {

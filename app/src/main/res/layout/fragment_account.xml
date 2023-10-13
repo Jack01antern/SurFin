@@ -35,7 +35,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/thumbnail"
+                    android:id="@+id/user_photo"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
@@ -56,9 +56,9 @@
                     android:background="@drawable/btm_sheet_background"
                     android:padding="4dp"
                     android:src="@drawable/gallery"
-                    app:layout_constraintBottom_toBottomOf="@id/thumbnail"
+                    app:layout_constraintBottom_toBottomOf="@id/user_photo"
                     app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="@id/thumbnail"
+                    app:layout_constraintEnd_toEndOf="@id/user_photo"
                     app:layout_constraintWidth_percent="0.1" />
 
                 <com.google.android.material.card.MaterialCardView
@@ -68,9 +68,9 @@
                     android:layout_margin="30dp"
                     app:cardBackgroundColor="@color/card_view_background"
                     app:cardCornerRadius="20dp"
-                    app:layout_constraintEnd_toEndOf="@id/thumbnail"
-                    app:layout_constraintStart_toStartOf="@id/thumbnail"
-                    app:layout_constraintTop_toBottomOf="@id/thumbnail"
+                    app:layout_constraintEnd_toEndOf="@id/user_photo"
+                    app:layout_constraintStart_toStartOf="@id/user_photo"
+                    app:layout_constraintTop_toBottomOf="@id/user_photo"
                     app:strokeWidth="0dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout

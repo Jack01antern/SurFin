@@ -1,6 +1,5 @@
 package com.example.surfin.data
 
-import android.graphics.Bitmap
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -15,9 +14,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class UserInfo(
     @PrimaryKey(autoGenerate = false)
-    val id: Long = 1L,
+    val id: Int = 1,
     @ColumnInfo(name = "selfie")
-    val selfie: String? = null,
-    @ColumnInfo(name = "name")
-    val name: String
+    val userPhoto: ByteArray? = null
 ) : Parcelable

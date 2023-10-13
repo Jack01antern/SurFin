@@ -1,6 +1,5 @@
 package com.example.surfin.account
 
-import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.Context
@@ -22,12 +21,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.surfin.R
 import com.example.surfin.databinding.FragmentAccountBinding
 import android.content.SharedPreferences
-import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
 import android.widget.EditText
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import com.example.surfin.SurfinApplication
@@ -35,14 +32,12 @@ import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.UserInfo
 import com.example.surfin.factory.AccountFactory
 import com.google.android.material.chip.ChipGroup
-import java.net.URI
 
-private const val PICK_IMAGE_REQUEST = 1
-lateinit var contentUri: Uri
+private const val PICK_IMAGE_REQUEST = 0x00
 
 class AccountFragment : Fragment() {
 
-
+    private lateinit var contentUri: Uri
     private lateinit var viewModel: AccountViewModel
     private lateinit var binding: FragmentAccountBinding
     private lateinit var repository: SurfinRepository
@@ -58,7 +53,7 @@ class AccountFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        contentUri = Uri.parse("content://abc")
+//        contentUri = Uri.parse("content://abc")
 
         binding.activityHistoryLayout.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_history_fragment)
@@ -90,35 +85,12 @@ class AccountFragment : Fragment() {
         binding.accountName.setText(userName)
 
 
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                PICK_IMAGE_REQUEST
-            )
-        }
-
 
         viewModel.userInfo.observe(viewLifecycleOwner, Observer {
-            it?.selfie.let { selfie ->
-                if (selfie != null) {
-                    contentUri = Uri.parse(selfie)
-                }
-            }
-            Log.i("uri", "$contentUri")
-            it?.selfie.let {
-                try {
-                    if (contentUri != null) {
-                        binding.thumbnail.setImageURI(contentUri)
-                    }
-                } catch (e: Exception) {
-                    Log.i("uri", "failed: ${e.message}")
-                }
+
+            it?.let {
+                val bitmap = BitmapFactory.decodeByteArray(viewModel.userInfo.value?.userPhoto,0,viewModel.userInfo.value?.userPhoto!!.size)
+                binding.userPhoto.setImageBitmap(bitmap)
             }
         })
 
@@ -255,11 +227,13 @@ class AccountFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             val selectedImageUri = data.data
+            binding.userPhoto.setImageURI(selectedImageUri)
 
-            val imagePath = selectedImageUri?.path!!
-            val userInfo = UserInfo(0L, selectedImageUri.toString(), "Gemma")
-            viewModel.updateUserInfo(userInfo, repository)
-            Log.d("Image Path", "Image Path: $imagePath")
+            val inputStream = requireActivity().contentResolver.openInputStream(selectedImageUri!!)
+            val byteArray = inputStream?.readBytes()
+
+            val userInfo = UserInfo(1,byteArray!!)
+            viewModel.updateUserInfo(userInfo,repository)
         }
     }
 
