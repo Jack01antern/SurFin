@@ -99,7 +99,7 @@ class AccountFragment : Fragment() {
             binding.accountEditName.setText(latestName)
         }
 
-        
+
         var inputContent = userName
         binding.accountEditName.doAfterTextChanged { inputContent = it.toString() }
         binding.btnFinishEditName.setOnClickListener {

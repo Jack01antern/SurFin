@@ -83,7 +83,7 @@
 
     <fragment
         android:id="@+id/zoomDialog"
-        android:name="com.example.surfin.detail.ZoomDialog"
+        android:name="com.example.surfin.detail.ZoomFragment"
         android:label="dialog_zoom"
         tools:layout="@layout/dialog_zoom">
         <argument

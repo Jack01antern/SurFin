@@ -1,20 +1,17 @@
 package com.example.surfin.explore
 
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import android.graphics.Color
-import android.os.Build
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.surfin.MainViewModel
 import com.example.surfin.R
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.Spots
@@ -22,11 +19,9 @@ import com.example.surfin.factory.ExploreFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -76,20 +71,22 @@ class ExploreFragment : Fragment() {
             Log.i("retrieve failed", " MSG: ${e.message}")
         }
 
-        var safeArgs = Spots()
-
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, ZOOM_IN))
+
+        val mainViewModel: MainViewModel by activityViewModels()
+
+        var safeArgs = Spots()
         googleMap.setOnMarkerClickListener {
             for (spot in spotsInfo) {
                 if (spot.title == it.title) {
                     safeArgs = spot
+                    mainViewModel.selectedSpotDetail = safeArgs
+                    Log.i("explore", "Main ViewModel:${mainViewModel.selectedSpotDetail}")
                 }
             }
 
             findNavController().navigate(
-                ExploreFragmentDirections.actionNavigateToDetailFragment(
-                    safeArgs
-                )
+                ExploreFragmentDirections.actionNavigateToDetailFragment(safeArgs)
             )
             Log.i("explore", "${safeArgs}")
             true
