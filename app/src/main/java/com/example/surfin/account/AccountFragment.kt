@@ -37,7 +37,6 @@ private const val PICK_IMAGE_REQUEST = 0x00
 
 class AccountFragment : Fragment() {
 
-    private lateinit var contentUri: Uri
     private lateinit var viewModel: AccountViewModel
     private lateinit var binding: FragmentAccountBinding
     private lateinit var repository: SurfinRepository
@@ -53,7 +52,10 @@ class AccountFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-//        contentUri = Uri.parse("content://abc")
+
+        sharedPreferences = requireContext().getSharedPreferences("user_info", Context.MODE_PRIVATE)
+        val userName = sharedPreferences.getString("user_name", "Please Enter Your Name")
+        binding.accountName.text = userName
 
         binding.activityHistoryLayout.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_history_fragment)
@@ -73,23 +75,51 @@ class AccountFragment : Fragment() {
         binding.btnChangeThumbnail.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, PICK_IMAGE_REQUEST)
-
         }
+
+
+        viewModel.isEditing.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.btnFinishEditName.visibility = View.VISIBLE
+                binding.accountEditName.visibility = View.VISIBLE
+                binding.accountName.visibility = View.GONE
+                binding.btnEditName.visibility = View.GONE
+            } else {
+                binding.btnFinishEditName.visibility = View.GONE
+                binding.accountEditName.visibility = View.GONE
+                binding.accountName.visibility = View.VISIBLE
+                binding.btnEditName.visibility = View.VISIBLE
+            }
+        })
+
 
         binding.btnEditName.setOnClickListener {
-            showEditNameDialog()
+            viewModel.isEditing.value = true
+            val latestName = sharedPreferences.getString("user_name", "Please enter your name")
+            binding.accountEditName.setText(latestName)
         }
 
-        sharedPreferences = requireContext().getSharedPreferences("user_info", Context.MODE_PRIVATE)
-        val userName = sharedPreferences.getString("user_name", "Please Enter Your Name")
-        binding.accountName.setText(userName)
+        
+        var inputContent = userName
+        binding.accountEditName.doAfterTextChanged { inputContent = it.toString() }
+        binding.btnFinishEditName.setOnClickListener {
+            val editor = sharedPreferences.edit()
+            editor.putString("user_name", inputContent)
+            editor.apply()
+            binding.accountName.text = inputContent
+            viewModel.isEditing.value = false
+        }
 
 
 
         viewModel.userInfo.observe(viewLifecycleOwner, Observer {
 
             it?.let {
-                val bitmap = BitmapFactory.decodeByteArray(viewModel.userInfo.value?.userPhoto,0,viewModel.userInfo.value?.userPhoto!!.size)
+                val bitmap = BitmapFactory.decodeByteArray(
+                    viewModel.userInfo.value?.userPhoto,
+                    0,
+                    viewModel.userInfo.value?.userPhoto!!.size
+                )
                 binding.userPhoto.setImageBitmap(bitmap)
             }
         })
@@ -190,50 +220,15 @@ class AccountFragment : Fragment() {
     }
 
 
-    private fun showEditNameDialog() {
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.dialog_edit_name)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        Log.i("account provide btn", "clicked")
-
-        val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
-        btnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        var inputContent = ""
-        dialog.findViewById<EditText>(R.id.input_name)
-            .doAfterTextChanged { inputContent = it.toString() }
-
-
-        val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
-        btnSubmit.setOnClickListener {
-            sharedPreferences =
-                requireContext().getSharedPreferences("user_info", Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.putString("user_name", inputContent)
-            editor.apply()
-            binding.accountName.setText(inputContent)
-            Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-        }
-        dialog.show()
-
-    }
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             val selectedImageUri = data.data
             binding.userPhoto.setImageURI(selectedImageUri)
-
             val inputStream = requireActivity().contentResolver.openInputStream(selectedImageUri!!)
             val byteArray = inputStream?.readBytes()
-
-            val userInfo = UserInfo(1,byteArray!!)
-            viewModel.updateUserInfo(userInfo,repository)
+            val userInfo = UserInfo(1, byteArray!!)
+            viewModel.updateUserInfo(userInfo, repository)
         }
     }
 

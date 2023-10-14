@@ -85,11 +85,22 @@
                             android:id="@+id/account_name"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:text=""
-                            app:layout_constraintStart_toStartOf="parent"
                             android:maxWidth="300dp"
+                            android:text=""
                             android:textColor="@color/primary_darker_gray"
                             android:textSize="20sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:text="Gemma Ward" />
+
+                        <EditText
+                            android:id="@+id/account_edit_name"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:maxWidth="300dp"
+                            android:text=""
+                            android:textColor="@color/primary_darker_gray"
+                            android:textSize="20sp"
+                            app:layout_constraintStart_toStartOf="parent"
                             tools:text="Gemma Ward" />
 
                         <ImageView
@@ -104,6 +115,21 @@
                             app:layout_constraintStart_toEndOf="@id/account_name"
                             app:layout_constraintTop_toTopOf="@id/account_name"
                             app:layout_constraintWidth_percent="0.15" />
+
+                        <ImageView
+                            android:id="@+id/btn_finish_edit_name"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="16dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/baseline_check_24"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/account_edit_name"
+                            app:layout_constraintTop_toTopOf="@id/account_edit_name"
+                            app:layout_constraintBottom_toBottomOf="@id/account_edit_name"
+                            app:layout_constraintWidth_percent="0.15" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -284,13 +310,13 @@
                 android:id="@+id/submit_anim"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintWidth_percent="0.3"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:elevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.3"
                 app:lottie_rawRes="@raw/animation_submitted" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
