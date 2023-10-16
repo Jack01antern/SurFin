@@ -46,7 +46,7 @@ class WeatherFragment : Fragment() {
     private lateinit var binding: FragmentWeatherBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val args by navArgs<WeatherFragmentArgs>()
         Log.i("cwa safe args", args.tempId.tempStationId)
         binding = FragmentWeatherBinding.inflate(inflater)
@@ -66,50 +66,50 @@ class WeatherFragment : Fragment() {
         }
 
 
-        viewModel.cwaUviResult.observe(viewLifecycleOwner, Observer {
+        viewModel.cwaUviResult.observe(viewLifecycleOwner) {
             binding.uviValue.text = viewModel.cwaUviResult.value.toString()
             val uvi = it!!.toFloat()
             when {
                 uvi in 0f..2.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_green))
-                    binding.uviDescription.setText(getString(R.string.uvi_low))
+                    binding.uviDescription.text = getString(R.string.uvi_low)
                 }
 
                 uvi in 3f..5.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_yellow))
-                    binding.uviDescription.setText(getString(R.string.uvi_mod))
+                    binding.uviDescription.text = getString(R.string.uvi_mod)
                 }
 
                 uvi in 6f..7.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_orange))
-                    binding.uviDescription.setText(getString(R.string.uvi_high))
+                    binding.uviDescription.text = getString(R.string.uvi_high)
                 }
 
                 uvi in 8f..10.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_red))
-                    binding.uviDescription.setText(getString(R.string.uvi_over))
+                    binding.uviDescription.text = getString(R.string.uvi_over)
                 }
 
                 uvi >= 11f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_purple))
-                    binding.uviDescription.setText(getString(R.string.uvi_extreme))
+                    binding.uviDescription.text = getString(R.string.uvi_extreme)
                 }
             }
-        })
+        }
 
-        viewModel.cwaTempResult.observe(viewLifecycleOwner, Observer {
+        viewModel.cwaTempResult.observe(viewLifecycleOwner) {
             binding.tempValue.text = it.toString()
-        })
+        }
 
-        viewModel.cwaWdsdResult.observe(viewLifecycleOwner, Observer {
+        viewModel.cwaWdsdResult.observe(viewLifecycleOwner) {
             binding.wdsdValue.text = it.toString()
-        })
+        }
 
-        viewModel.cwaWaveResult.observe(viewLifecycleOwner, Observer {
+        viewModel.cwaWaveResult.observe(viewLifecycleOwner) {
             binding.waveValue.text = it.toString()
-        })
+        }
 
-        viewModel.cwaWeatherResult.observe(viewLifecycleOwner, Observer {
+        viewModel.cwaWeatherResult.observe(viewLifecycleOwner) {
             when (it) {
                 "晴" -> binding.weatherValue.setAnimation(R.raw.animation_sunny)
                 "多雲" -> binding.weatherValue.setAnimation(R.raw.animation_sunny_cloud)
@@ -118,13 +118,12 @@ class WeatherFragment : Fragment() {
                 "陰有雨" -> binding.weatherValue.setAnimation(R.raw.animation_rainy)
                 else -> binding.weatherValue.setAnimation(R.raw.animation_sunny_cloud)
             }
-        })
+        }
 
 
-        viewModel.cwaTideResult.observe(viewLifecycleOwner, Observer {
+        viewModel.cwaTideResult.observe(viewLifecycleOwner) {
             viewModel.cwaTideResult.value?.let { setLineChartData(it) }
-
-        })
+        }
 
         binding.backKey.setOnClickListener {
             findNavController().navigateUp()
@@ -166,6 +165,7 @@ class WeatherFragment : Fragment() {
         binding.lineChart.description.isEnabled = false
 
         xAxis.valueFormatter = object : IAxisValueFormatter {
+            @SuppressLint("ConstantLocale")
             private val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
             override fun getFormattedValue(value: Float, axis: AxisBase?): String {
                 val millis = value.toLong()
