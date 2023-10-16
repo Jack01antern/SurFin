@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.example.surfin.MainViewModel
 import com.example.surfin.SurfinApplication
 import com.example.surfin.databinding.FragmentCollectionBinding
 import com.example.surfin.factory.CollectionFactory
@@ -25,8 +27,12 @@ class CollectionFragment : Fragment() {
         viewModel = ViewModelProvider(this,CollectionFactory(repository)).get(CollectionViewModel::class.java)
         binding = FragmentCollectionBinding.inflate(inflater)
 
+
+        val mainViewModel: MainViewModel by activityViewModels()
+
         val adapter = CollectionAdapter(CollectionAdapter.OnClickListener{
             findNavController().navigate(CollectionFragmentDirections.actionNavigateToDetailFragment(it))
+            mainViewModel.selectedSpotDetail = it
         })
         binding.collectionRecyclerView.adapter = adapter
 
