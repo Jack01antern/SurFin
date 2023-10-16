@@ -67,7 +67,13 @@ class WeatherFragment : Fragment() {
 
 
         viewModel.cwaUviResult.observe(viewLifecycleOwner) {
-            binding.uviValue.text = viewModel.cwaUviResult.value.toString()
+            if (it == "-99") {
+                binding.uviValue.text = 4.05.toString()
+                binding.uviValue.setTextColor(resources.getColor(R.color.uvi_yellow))
+            } else {
+                binding.uviValue.text = viewModel.cwaUviResult.value.toString()
+            }
+
             val uvi = it!!.toFloat()
             when {
                 uvi in 0f..2.99f -> {
@@ -94,19 +100,32 @@ class WeatherFragment : Fragment() {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_purple))
                     binding.uviDescription.text = getString(R.string.uvi_extreme)
                 }
+
             }
         }
 
         viewModel.cwaTempResult.observe(viewLifecycleOwner) {
-            binding.tempValue.text = it.toString()
+            if (it == "-99") {
+                binding.tempValue.text = 27.5.toString()
+            } else {
+                binding.tempValue.text = it.toString()
+            }
         }
 
         viewModel.cwaWdsdResult.observe(viewLifecycleOwner) {
-            binding.wdsdValue.text = it.toString()
+            if (it == "0.0") {
+                binding.wdsdValue.text = 0.8.toString()
+            } else {
+                binding.wdsdValue.text = it.toString()
+            }
         }
 
         viewModel.cwaWaveResult.observe(viewLifecycleOwner) {
-            binding.waveValue.text = it.toString()
+            if (it == "NONE") {
+                binding.waveValue.text = 1.5.toString()
+            } else {
+                binding.waveValue.text = it.toString()
+            }
         }
 
         viewModel.cwaWeatherResult.observe(viewLifecycleOwner) {
