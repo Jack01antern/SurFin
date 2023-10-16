@@ -24,23 +24,37 @@ class CollectionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
-        viewModel = ViewModelProvider(this,CollectionFactory(repository)).get(CollectionViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            CollectionFactory(repository)
+        ).get(CollectionViewModel::class.java)
         binding = FragmentCollectionBinding.inflate(inflater)
-
 
         val mainViewModel: MainViewModel by activityViewModels()
 
-        val adapter = CollectionAdapter(CollectionAdapter.OnClickListener{
-            findNavController().navigate(CollectionFragmentDirections.actionNavigateToDetailFragment(it))
+        val adapter = CollectionAdapter(CollectionAdapter.OnClickListener {
+            findNavController().navigate(
+                CollectionFragmentDirections.actionNavigateToDetailFragment(
+                    it
+                )
+            )
             mainViewModel.selectedSpotDetail = it
         })
         binding.collectionRecyclerView.adapter = adapter
 
-        //haven't submitted list yet!!!!!!!
-        viewModel.spotCollection.observe(viewLifecycleOwner, Observer {
+        viewModel.spotCollection.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-            Log.i("collection overview","$it")
-        })
+            Log.i("collection overview", "$it")
+        }
+
+        viewModel.spotCollection.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
+                binding.collectionHint.visibility = View.VISIBLE
+            } else {
+                binding.collectionHint.visibility = View.GONE
+            }
+        }
+
         return binding.root
     }
 

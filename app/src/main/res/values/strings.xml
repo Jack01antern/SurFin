@@ -63,5 +63,7 @@
     <string name="please_enter_email">請填入電子郵件</string>
     <string name="please_enter_address">請輸入浪點地址</string>
     <string name="please_eneter_your_name">請輸入名字</string>
+    <string name="no_collection_hint">目前尚無收藏浪點</string>
+    <string name="no_history_hint">點擊右下方按鈕新增日誌</string>
 
 </resources>
