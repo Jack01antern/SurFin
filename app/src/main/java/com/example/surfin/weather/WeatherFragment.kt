@@ -33,9 +33,11 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.IFillFormatter
+import com.github.mikephil.charting.formatter.IValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.github.mikephil.charting.utils.ViewPortHandler
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -113,7 +115,7 @@ class WeatherFragment : Fragment() {
         }
 
         viewModel.cwaWdsdResult.observe(viewLifecycleOwner) {
-            if (it == "0.0") {
+            if (it == "0.0" || it == "-99") {
                 binding.wdsdValue.text = 0.8.toString()
             } else {
                 binding.wdsdValue.text = it.toString()
@@ -148,7 +150,6 @@ class WeatherFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.locationTitle.text = args.tempId.title
-        binding.lineChart.setPinchZoom(true)
 
         return binding.root
     }
@@ -165,7 +166,6 @@ class WeatherFragment : Fragment() {
 
 
         //set line chart style
-        val xAxis = binding.lineChart.xAxis
         lineDataSet.setDrawFilled(true)
         lineDataSet.fillDrawable =
             ContextCompat.getDrawable(requireContext(), R.drawable.line_chart_gradient)
@@ -176,13 +176,19 @@ class WeatherFragment : Fragment() {
         lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.line_chart_blue)
         lineDataSet.valueTextSize = 14f
         lineDataSet.setValueTextColors(listOf(resources.getColor(R.color.primary_navy)))
+        lineDataSet.fillFormatter = IFillFormatter { _, dataProvider ->
+            dataProvider.yChartMin
+        }
 
 
         binding.lineChart.legend.isEnabled = false
         binding.lineChart.axisLeft.isEnabled = false
         binding.lineChart.axisRight.isEnabled = false
         binding.lineChart.description.isEnabled = false
+        binding.lineChart.animateY(2000, Easing.EasingOption.EaseInOutCubic)
+        binding.lineChart.setPinchZoom(true)
 
+        val xAxis = binding.lineChart.xAxis
         xAxis.valueFormatter = object : IAxisValueFormatter {
             @SuppressLint("ConstantLocale")
             private val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
@@ -195,12 +201,5 @@ class WeatherFragment : Fragment() {
 
         xAxis.setDrawGridLines(false)
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-
-        binding.lineChart.animateY(2000, Easing.EasingOption.EaseInOutCubic)
-        lineDataSet.fillFormatter = IFillFormatter { _, dataProvider ->
-            dataProvider.yChartMin
-        }
     }
-
-
 }

@@ -76,14 +76,14 @@ class EmergencyFragment : Fragment() {
         }
     }
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint("MissingPermission", "SetTextI18n")
     private fun getLocations() {
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
-        fusedLocationProviderClient.lastLocation?.addOnSuccessListener {
+        fusedLocationProviderClient.lastLocation.addOnSuccessListener {
             if (it == null) {
                 sequenceOf(
-                    Toast.makeText(requireContext(), "Sorry can't get location", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), "Sorry can't get location", Toast.LENGTH_SHORT).show()
                 )
             } else it.apply {
                 val latitude = String.format("%.7f", it.latitude)
