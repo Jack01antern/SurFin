@@ -16,17 +16,16 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.surfin.R
 import com.example.surfin.databinding.FragmentAccountBinding
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.provider.MediaStore
+import android.util.DisplayMetrics
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.Observer
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.UserInfo
@@ -43,7 +42,7 @@ class AccountFragment : Fragment() {
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAccountBinding.inflate(inflater)
         repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
         viewModel = ViewModelProvider(
@@ -78,7 +77,7 @@ class AccountFragment : Fragment() {
         }
 
 
-        viewModel.isEditing.observe(viewLifecycleOwner, Observer {
+        viewModel.isEditing.observe(viewLifecycleOwner) {
             if (it) {
                 binding.btnFinishEditName.visibility = View.VISIBLE
                 binding.accountEditName.visibility = View.VISIBLE
@@ -90,7 +89,7 @@ class AccountFragment : Fragment() {
                 binding.accountName.visibility = View.VISIBLE
                 binding.btnEditName.visibility = View.VISIBLE
             }
-        })
+        }
 
 
         binding.btnEditName.setOnClickListener {
@@ -108,11 +107,14 @@ class AccountFragment : Fragment() {
             editor.apply()
             binding.accountName.text = inputContent
             viewModel.isEditing.value = false
+            val inputMethodManager =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(requireView().windowToken, 0)
         }
 
 
 
-        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
+        viewModel.userInfo.observe(viewLifecycleOwner) {
 
             it?.let {
                 val bitmap = BitmapFactory.decodeByteArray(
@@ -122,14 +124,9 @@ class AccountFragment : Fragment() {
                 )
                 binding.userPhoto.setImageBitmap(bitmap)
             }
-        })
+        }
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
     }
 
     private fun showRecommendDialog() {
@@ -137,7 +134,15 @@ class AccountFragment : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_provide_spot)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        Log.i("account provide btn", "clicked")
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val displayWidth = displayMetrics.widthPixels
+        val width = (displayWidth * 0.95).toInt()
+        layoutParams?.width = width
+        window?.attributes = layoutParams
 
         val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
         btnCancel.setOnClickListener {
@@ -171,7 +176,15 @@ class AccountFragment : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_contact_us)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        Log.i("account provide btn", "clicked")
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val displayWidth = displayMetrics.widthPixels
+        val width = (displayWidth * 0.95).toInt()
+        layoutParams?.width = width
+        window?.attributes = layoutParams
 
         val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
         btnCancel.setOnClickListener {
@@ -193,8 +206,8 @@ class AccountFragment : Fragment() {
 
         val chipGroup = dialog.findViewById<ChipGroup>(R.id.chip_group)
         var category = ""
-        chipGroup.setOnCheckedChangeListener { group, checkedId ->
-            checkedId?.let {
+        chipGroup.setOnCheckedChangeListener { _, checkedId ->
+            checkedId.let {
                 when (it) {
                     R.id.option_1 -> category = "recommendation"
                     R.id.option_2 -> category = "issue report"
@@ -220,10 +233,10 @@ class AccountFragment : Fragment() {
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            val selectedImageUri = data.data
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && intent != null) {
+            val selectedImageUri = intent.data
             binding.userPhoto.setImageURI(selectedImageUri)
             val inputStream = requireActivity().contentResolver.openInputStream(selectedImageUri!!)
             val byteArray = inputStream?.readBytes()
