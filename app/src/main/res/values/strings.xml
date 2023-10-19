@@ -31,7 +31,7 @@
 
     <!--    emergency-->
     <string name="call_118">撥打 118 海巡署</string>
-    <string name="call_112">撥打 112 緊急救難專線</string>
+    <string name="call_112">撥打 112 救難專線</string>
     <string name="call_119">撥打 119</string>
     <string name="emergency_hint">點擊下方按鈕後\n跳轉撥號頁面</string>
     <string name="locate_myself">我的定位</string>
