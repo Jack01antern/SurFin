@@ -33,7 +33,7 @@ private const val ZOOM_IN = 8F
 class ExploreFragment : Fragment() {
 
     private val db = FirebaseFirestore.getInstance()
-    private var spotsInfo = mutableListOf<Spots>()
+//    private var spotsInfo = mutableListOf<Spots>()
     private lateinit var viewModel: ExploreViewModel
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
@@ -48,28 +48,7 @@ class ExploreFragment : Fragment() {
 
 
         //get data from firebase and add marker
-        try {
-            db.collection("spots").addSnapshotListener { snapshot, e ->
-                if (e != null) {
-                    Log.w("retrieve??", e)
-                    return@addSnapshotListener
-                }
-                googleMap.clear()
-                spotsInfo.clear()
-                spotsInfo.addAll(snapshot!!.toObjects(Spots::class.java))
-
-                for (spot in spotsInfo) {
-                    val latLong = LatLng(spot.lat, spot.longitude)
-                    googleMap.addMarker(
-                        MarkerOptions().position(latLong).title(spot.title).snippet(spot.content)
-                    )
-                }
-                Log.i("retrieve!!", " MSG: $spotsInfo")
-            }
-
-        } catch (e: Exception) {
-            Log.i("retrieve failed", " MSG: ${e.message}")
-        }
+       viewModel.getFirebase(googleMap)
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, ZOOM_IN))
 
@@ -77,7 +56,7 @@ class ExploreFragment : Fragment() {
 
         var safeArgs = Spots()
         googleMap.setOnMarkerClickListener {
-            for (spot in spotsInfo) {
+            for (spot in viewModel.spotsInfo.value!!) {
                 if (spot.title == it.title) {
                     safeArgs = spot
                     mainViewModel.selectedSpotDetail = safeArgs
