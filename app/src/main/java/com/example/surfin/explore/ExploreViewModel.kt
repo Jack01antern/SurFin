@@ -28,11 +28,9 @@ class ExploreViewModel(private val repository: SurfinRepository) : ViewModel() {
     private fun getFirebase() {
         db.collection("spots").get().addOnSuccessListener { document ->
 
-            if (document != null) {
+            document?.let {
                 val spots = document.toObjects(Spots::class.java)
                 _spotsInfo.postValue(spots.toMutableList())
-            } else {
-                Log.d("explore viewModel", "document is empty")
             }
             Log.i("explore viewModel", "spotsInfo: ${spotsInfo.value}")
         }.addOnFailureListener { e ->
