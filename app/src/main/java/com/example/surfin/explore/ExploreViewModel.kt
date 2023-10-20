@@ -16,35 +16,27 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ExploreViewModel(private val repository: SurfinRepository) : ViewModel() {
 
-
-
     private val db = FirebaseFirestore.getInstance()
     private var _spotsInfo = MutableLiveData(mutableListOf<Spots>())
     val spotsInfo: LiveData<MutableList<Spots>>
         get() = _spotsInfo
 
-    private var _googleMap = MutableLiveData<GoogleMap>()
-    val googleMap: LiveData<GoogleMap>
-        get() = _googleMap
+    init {
+        getFirebase()
+    }
 
-
-    fun getFirebase(googleMap: GoogleMap) {
+    private fun getFirebase() {
         db.collection("spots").get().addOnSuccessListener { document ->
-            Log.i("explore", "spots info1: ${document.documents}")
+
             if (document != null) {
-                Log.i("explore", "spots info2: ${document.documents}")
-                _spotsInfo.value?.addAll(document.toObjects(Spots::class.java))
-                for (spot in _spotsInfo.value!!) {
-                    val latLong = LatLng(spot.lat, spot.longitude)
-                    googleMap.addMarker(
-                        MarkerOptions().position(latLong)
-                    )
-                }
+                val spots = document.toObjects(Spots::class.java)
+                _spotsInfo.postValue(spots.toMutableList())
             } else {
-                Log.d("explore", "document is empty")
+                Log.d("explore viewModel", "document is empty")
             }
+            Log.i("explore viewModel", "spotsInfo: ${spotsInfo.value}")
         }.addOnFailureListener { e ->
-            Log.d("explore", "get failed : ${e.message}")
+            Log.d("explore viewModel", "get failed : ${e.message}")
         }
     }
 

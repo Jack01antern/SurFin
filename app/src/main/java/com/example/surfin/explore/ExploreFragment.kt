@@ -19,6 +19,7 @@ import com.example.surfin.factory.ExploreFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -32,45 +33,17 @@ private const val ZOOM_IN = 8F
 
 class ExploreFragment : Fragment() {
 
-    private val db = FirebaseFirestore.getInstance()
-//    private var spotsInfo = mutableListOf<Spots>()
+    private val mainViewModel: MainViewModel by activityViewModels()
     private lateinit var viewModel: ExploreViewModel
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private var map: GoogleMap? = null
 
     val callback = OnMapReadyCallback { googleMap ->
+        map = googleMap
 
         //mock data for zoom in
         val center = LatLng(23.716, 121.0564)
-        googleMap.addMarker(
-            MarkerOptions().position(center).title("Marker in School")
-                .snippet("The Best School Ever")
-        )
-
-
-        //get data from firebase and add marker
-       viewModel.getFirebase(googleMap)
-
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, ZOOM_IN))
-
-        val mainViewModel: MainViewModel by activityViewModels()
-
-        var safeArgs = Spots()
-        googleMap.setOnMarkerClickListener {
-            for (spot in viewModel.spotsInfo.value!!) {
-                if (spot.title == it.title) {
-                    safeArgs = spot
-                    mainViewModel.selectedSpotDetail = safeArgs
-                    Log.i("explore", "Main ViewModel:${mainViewModel.selectedSpotDetail}")
-                }
-            }
-
-            findNavController().navigate(
-                ExploreFragmentDirections.actionNavigateToDetailFragment(safeArgs)
-            )
-            Log.i("explore", "${safeArgs}")
-            true
-        }
-
     }
 
     override fun onCreateView(
@@ -78,9 +51,6 @@ class ExploreFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-//        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -98,19 +68,26 @@ class ExploreFragment : Fragment() {
             ExploreFactory(repository)
         ).get(ExploreViewModel::class.java)
 
+        viewModel.spotsInfo.observe(viewLifecycleOwner) { spots ->
+            spots.forEach { spot ->
+                val latLong = LatLng(spot.lat, spot.longitude)
+                map?.addMarker(
+                    MarkerOptions().position(latLong).title(spot.title)
+                )
+            }
 
+            if (spots.isNotEmpty()) {
+                setMarkerClickListener(spots)
+            }
+        }
         val mapFragment = childFragmentManager.findFragmentById(R.id.explore) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
-
     }
 
-
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//
-//    }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        map = null
+    }
 
     //get user's current location
     private fun fetchLocation() {
@@ -140,5 +117,24 @@ class ExploreFragment : Fragment() {
 //                ).show()
 //            }
 //        }
+    }
+    private fun setMarkerClickListener(spots: MutableList<Spots>) {
+        map?.setOnMarkerClickListener { marker ->
+            var safeArgs = Spots()
+            for (spot in spots) {
+                if (spot.title == marker.title) {
+                    safeArgs = spot
+                    mainViewModel.selectedSpotDetail = safeArgs
+                    Log.i("explore fragment", "Main ViewModel:${mainViewModel.selectedSpotDetail}")
+                    break
+                }
+            }
+
+            findNavController().navigate(
+                ExploreFragmentDirections.actionNavigateToDetailFragment(safeArgs)
+            )
+            Log.i("explore fragment", "safeArgs: ${safeArgs}")
+            true
+        }
     }
 }
