@@ -9,11 +9,12 @@ import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.TideTime
 import kotlinx.coroutines.launch
 import java.security.KeyStore.Entry
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class WeatherViewModel(
+open class WeatherViewModel(
     private val args: WeatherFragmentArgs,
     private val repository: SurfinRepository
 ) : ViewModel() {
@@ -45,12 +46,10 @@ class WeatherViewModel(
     val cwaWaveResult: LiveData<String>
         get() = _cwaWaveResult
 
-    private fun List<TideTime>.toEntryList(): List<com.github.mikephil.charting.data.Entry> {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-
+    fun List<TideTime>.toEntryList(): List<com.github.mikephil.charting.data.Entry> {
         return this.map {
-            val dateTime = dateFormat.parse(it.dateTime)
-            val dateTimeMillis = dateTime.time.toFloat()
+            val dateTime = stringToDate(it.dateTime)
+            val dateTimeMillis = dateToMillis(dateTime)
             com.github.mikephil.charting.data.Entry(
                 dateTimeMillis,
                 it.tideHeights.aboveTWVD.toFloat()
@@ -158,6 +157,19 @@ class WeatherViewModel(
         getCwaUvi()
         getCwaWeather()
         getCwaWave()
+    }
+
+    companion object {
+        const val DEFAULT_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss"
+        private val formatter = SimpleDateFormat(DEFAULT_DATE_FORMAT, Locale.getDefault())
+
+        fun stringToDate(dateString: String): Date {
+            return formatter.parse(dateString) ?: throw ParseException("Invalid date format", 0)
+        }
+
+        fun dateToMillis(date: Date): Float {
+            return date.time.toFloat()
+        }
     }
 }
 
