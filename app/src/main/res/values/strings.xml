@@ -68,4 +68,12 @@
     <string name="no_collection_hint">尚無收藏浪點</string>
     <string name="no_history_hint">尚無運動日誌</string>
 
+
+<!--    weather value-->
+    <string name="sunny">晴</string>
+    <string name="sunny_cloud">多雲</string>
+    <string name="cloudy">陰</string>
+    <string name="cloudy_rain">多雲有雨</string>
+    <string name="rainy">陰有雨</string>
+
 </resources>

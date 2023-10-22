@@ -25,6 +25,7 @@ import com.example.surfin.R
 import com.example.surfin.SurfinApplication
 import com.example.surfin.databinding.FragmentWeatherBinding
 import com.example.surfin.factory.WeatherFactory
+import com.example.surfin.util.WeatherValue
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
@@ -131,15 +132,20 @@ class WeatherFragment : Fragment() {
             }
         }
 
-        viewModel.cwaWeatherResult.observe(viewLifecycleOwner) {
-            when (it) {
-                "晴" -> binding.weatherValue.setAnimation(R.raw.animation_sunny)
-                "多雲" -> binding.weatherValue.setAnimation(R.raw.animation_sunny_cloud)
-                "陰" -> binding.weatherValue.setAnimation(R.raw.animation_cloudy)
-                "多雲有雨" -> binding.weatherValue.setAnimation(R.raw.animation_cloudy_rain)
-                "陰有雨" -> binding.weatherValue.setAnimation(R.raw.animation_rainy)
-                else -> binding.weatherValue.setAnimation(R.raw.animation_sunny_cloud)
+        viewModel.cwaWeatherResult.observe(viewLifecycleOwner) { description ->
+            val matchedWeatherValue =
+                WeatherValue.values().find { getString(it.descriptionResId) == description }
+
+            val animationResId = when (matchedWeatherValue) {
+                WeatherValue.SUNNY -> R.raw.animation_sunny
+                WeatherValue.SUNNY_CLOUD -> R.raw.animation_sunny_cloud
+                WeatherValue.CLOUDY -> R.raw.animation_cloudy
+                WeatherValue.CLOUDY_RAIN -> R.raw.animation_cloudy_rain
+                WeatherValue.RAINY -> R.raw.animation_rainy
+                else -> R.raw.animation_sunny_cloud
             }
+
+            binding.weatherValue.setAnimation(animationResId)
         }
 
 
