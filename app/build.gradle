@@ -158,6 +158,11 @@ dependencies {
     // Declare the dependency for the Cloud Firestore library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-firestore-ktx")
+    testImplementation 'com.google.firebase:firebase-admin:8.0.1'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation "org.powermock:powermock-api-mockito2:2.0.9"
+    testImplementation "org.powermock:powermock-module-junit4:2.0.9"
+
 
     //line chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'

@@ -118,7 +118,7 @@ class WeatherViewModel(
     }
 
 
-    private fun getCwaWeather() {
+    fun getCwaWeather() {
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaWeather(

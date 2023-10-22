@@ -5,18 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.surfin.data.Spots
-import com.example.surfin.data.SurfinRepository
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
 
-class ExploreViewModel(private val repository: SurfinRepository) : ViewModel() {
+class ExploreViewModel(private val firestore: FirebaseFirestore) : ViewModel() {
 
-    private val db = FirebaseFirestore.getInstance()
     private var _spotsInfo = MutableLiveData(mutableListOf<Spots>())
     val spotsInfo: LiveData<MutableList<Spots>>
         get() = _spotsInfo
@@ -26,16 +20,20 @@ class ExploreViewModel(private val repository: SurfinRepository) : ViewModel() {
     }
 
     private fun getFirebase() {
-        db.collection("spots").get().addOnSuccessListener { document ->
+        firestore.collection("spots").get()
+            .addOnSuccessListener(this::handleSuccess)
+            .addOnFailureListener(this::handleFailure)
+    }
 
-            document?.let {
-                val spots = document.toObjects(Spots::class.java)
-                _spotsInfo.postValue(spots.toMutableList())
-            }
+    private fun handleSuccess(document: QuerySnapshot?) {
+        document?.let {
+            val spots = it.toObjects(Spots::class.java)
+            _spotsInfo.postValue(spots.toMutableList())
             Log.i("explore viewModel", "spotsInfo: ${spotsInfo.value}")
-        }.addOnFailureListener { e ->
-            Log.d("explore viewModel", "get failed : ${e.message}")
         }
     }
 
+    private fun handleFailure(e: Exception) {
+        Log.d("explore viewModel", "get failed : ${e.message}")
+    }
 }

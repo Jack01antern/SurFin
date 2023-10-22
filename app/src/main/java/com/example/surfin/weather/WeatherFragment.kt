@@ -64,6 +64,7 @@ class WeatherFragment : Fragment() {
             viewModel.getCwaTide()
             viewModel.getCwaTemp()
             viewModel.getCwaWave()
+            viewModel.getCwaWeather()
             binding.swipeRefreshLayout.isRefreshing = false
         }
 

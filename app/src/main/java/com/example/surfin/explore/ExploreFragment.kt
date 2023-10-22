@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.surfin.MainViewModel
 import com.example.surfin.R
-import com.example.surfin.SurfinApplication
 import com.example.surfin.data.Spots
 import com.example.surfin.factory.ExploreFactory
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -62,11 +61,8 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
-        viewModel = ViewModelProvider(
-            this,
-            ExploreFactory(repository)
-        ).get(ExploreViewModel::class.java)
+        val firestore = FirebaseFirestore.getInstance()
+        viewModel = ViewModelProvider(this,ExploreFactory(firestore)).get(ExploreViewModel::class.java)
 
         viewModel.spotsInfo.observe(viewLifecycleOwner) { spots ->
             spots.forEach { spot ->
@@ -77,7 +73,7 @@ class ExploreFragment : Fragment() {
             }
 
             if (spots.isNotEmpty()) {
-                setMarkerClickListener(spots)
+                setMarkerClickListener(spots,mainViewModel)
             }
         }
         val mapFragment = childFragmentManager.findFragmentById(R.id.explore) as SupportMapFragment?
@@ -118,23 +114,35 @@ class ExploreFragment : Fragment() {
 //            }
 //        }
     }
-    private fun setMarkerClickListener(spots: MutableList<Spots>) {
+
+    private fun setMarkerClickListener(spots: MutableList<Spots>, viewModel: MainViewModel) {
         map?.setOnMarkerClickListener { marker ->
-            var safeArgs = Spots()
-            for (spot in spots) {
-                if (spot.title == marker.title) {
-                    safeArgs = spot
-                    mainViewModel.selectedSpotDetail = safeArgs
-                    Log.i("explore fragment", "Main ViewModel:${mainViewModel.selectedSpotDetail}")
-                    break
-                }
+            val selectedSpot = marker.title?.let { findSpotByTitle(spots, it) }
+            if (selectedSpot != null) {
+                viewModel.selectedSpotDetail = selectedSpot
             }
 
-            findNavController().navigate(
-                ExploreFragmentDirections.actionNavigateToDetailFragment(safeArgs)
-            )
-            Log.i("explore fragment", "safeArgs: ${safeArgs}")
+            navigateToDetailFragment(selectedSpot)
+            Log.i("explore fragment", "safeArgs: ${selectedSpot}")
             true
+        }
+    }
+
+
+    private fun findSpotByTitle(spots: List<Spots>, title: String): Spots? {
+        for (spot in spots) {
+            if (spot.title == title) {
+                return spot
+            }
+        }
+        return null
+    }
+
+    private fun navigateToDetailFragment(spot: Spots?) {
+        spot?.let {
+            findNavController().navigate(
+                ExploreFragmentDirections.actionNavigateToDetailFragment(it)
+            )
         }
     }
 }
