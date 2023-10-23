@@ -26,14 +26,4 @@ class SurfinConverters {
         return null
     }
 
-    @TypeConverter
-    fun fromByteArray(byteArray: ByteArray?): String? {
-        return byteArray?.toString(Charset.defaultCharset())
-    }
-
-    @TypeConverter
-    fun toByteArray(data: String?): ByteArray? {
-        return data?.toByteArray(Charset.defaultCharset())
-    }
-
 }
