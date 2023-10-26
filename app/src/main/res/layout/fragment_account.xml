@@ -101,7 +101,7 @@
                             android:maxWidth="300dp"
                             android:text=""
                             android:textColor="@color/primary_darker_gray"
-                            android:textSize="20sp"
+                            android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="parent"
                             tools:text="Gemma Ward" />
 
@@ -112,7 +112,7 @@
                             android:maxWidth="300dp"
                             android:text=""
                             android:textColor="@color/primary_darker_gray"
-                            android:textSize="20sp"
+                            android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="parent"
                             tools:text="Gemma Ward" />
 

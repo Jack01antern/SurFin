@@ -1,5 +1,6 @@
 package com.example.surfin.account
 
+import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.Context
@@ -20,11 +21,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.surfin.R
 import com.example.surfin.databinding.FragmentAccountBinding
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.SurfinRepository
@@ -72,8 +76,19 @@ class AccountFragment : Fragment() {
         }
 
         binding.btnChangeThumbnail.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, PICK_IMAGE_REQUEST)
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    PICK_IMAGE_REQUEST
+                )
+            } else {
+                openImagePicker()
+            }
         }
 
 
@@ -95,7 +110,13 @@ class AccountFragment : Fragment() {
         binding.btnEditName.setOnClickListener {
             viewModel.isEditing.value = true
             val latestName = sharedPreferences.getString("user_name", "Please enter your name")
-            binding.accountEditName.setText(latestName)
+            if (latestName == "Please enter your name") {
+                binding.accountEditName.setText("")
+            } else {
+                binding.accountEditName.setText(latestName)
+            }
+            val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
         }
 
 
@@ -117,16 +138,25 @@ class AccountFragment : Fragment() {
         viewModel.userInfo.observe(viewLifecycleOwner) {
 
             it?.let {
-                val bitmap = BitmapFactory.decodeByteArray(
-                    viewModel.userInfo.value?.userPhoto,
-                    0,
-                    viewModel.userInfo.value?.userPhoto!!.size
-                )
-                binding.userPhoto.setImageBitmap(bitmap)
+                try {
+                    val bitmap = BitmapFactory.decodeByteArray(
+                        viewModel.userInfo.value?.userPhoto,
+                        0,
+                        viewModel.userInfo.value?.userPhoto!!.size
+                    )
+                    binding.userPhoto.setImageBitmap(bitmap)
+                } catch (e: Exception) {
+                    Log.i("Account picture", "error:${e.message}")
+                }
             }
         }
 
         return binding.root
+    }
+
+    private fun openImagePicker() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
 
     private fun showRecommendDialog() {

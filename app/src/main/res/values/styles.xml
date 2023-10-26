@@ -33,15 +33,15 @@
 
     <style name="weather_element_value">
         <item name="fontFamily">rounded</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">8dp</item>
         <item name="android:textColor">@color/primary_darker_gray</item>
         <!--        <item name="android:padding">8dp</item>-->
     </style>
 
     <style name="weather_quantity">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/primary_darker_gray</item>
-        <item name="android:layout_marginStart">8dp</item>
         <item name="android:textAlignment">center</item>
     </style>
 
@@ -61,7 +61,7 @@
 
     <style name="emergency_hint">
         <item name="fontFamily">rounded</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/primary_navy</item>
         <item name="android:padding">2dp</item>
         <item name="android:textAlignment">center</item>
@@ -72,7 +72,7 @@
 
     <style name="account_title">
         <item name="fontFamily">rounded</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/primary_darker_gray</item>
         <item name="android:padding">2dp</item>
         <item name="android:textAlignment">center</item>
