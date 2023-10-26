@@ -219,17 +219,19 @@
 
                         <TextView
                             android:id="@+id/uvi_value"
-                            style="@style/weather_element_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            android:layout_marginBottom="16dp"
+                            android:textSize="20sp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="rounded"
                             android:text=""
                             android:textAlignment="center"
                             app:layout_constraintBottom_toBottomOf="@id/uvi_description"
                             app:layout_constraintEnd_toStartOf="@id/uvi_description"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@id/uvi_description"
+                            app:layout_goneMarginStart="32dp"
                             tools:text="11.05" />
 
                         <TextView

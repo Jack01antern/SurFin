@@ -56,6 +56,7 @@
                 android:id="@+id/emergency_divider"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
+                android:lineSpacingExtra="8dp"
                 android:foreground="@color/primary_gray"
                 app:layout_constraintEnd_toEndOf="@id/location_text_view"
                 app:layout_constraintStart_toStartOf="@id/location_text_view"

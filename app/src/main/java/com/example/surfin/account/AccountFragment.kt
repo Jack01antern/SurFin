@@ -27,6 +27,7 @@ import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
@@ -44,6 +45,8 @@ class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
     private lateinit var repository: SurfinRepository
     private lateinit var sharedPreferences: SharedPreferences
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -91,6 +94,8 @@ class AccountFragment : Fragment() {
             }
         }
 
+        checkPermission()
+
 
         viewModel.isEditing.observe(viewLifecycleOwner) {
             if (it) {
@@ -115,7 +120,8 @@ class AccountFragment : Fragment() {
             } else {
                 binding.accountEditName.setText(latestName)
             }
-            val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val inputMethodManager =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
         }
 
@@ -154,10 +160,6 @@ class AccountFragment : Fragment() {
         return binding.root
     }
 
-    private fun openImagePicker() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, PICK_IMAGE_REQUEST)
-    }
 
     private fun showRecommendDialog() {
         val dialog = Dialog(requireContext())
@@ -275,5 +277,28 @@ class AccountFragment : Fragment() {
         }
     }
 
+    private fun openImagePicker() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+
+    private fun checkPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requirePermission()
+        }
+    }
+
+    private fun requirePermission() {
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            PICK_IMAGE_REQUEST
+        )
+    }
 
 }
