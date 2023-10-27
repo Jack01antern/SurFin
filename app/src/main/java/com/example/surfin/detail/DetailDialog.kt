@@ -37,7 +37,7 @@ class DetailDialog : BottomSheetDialogFragment() {
 
         //photo recycler view
         val adapter = DetailAdapter(DetailAdapter.OnClickListener{
-            findNavController().navigate(ZoomDialogDirections.actionNavigateToZoomDialog(it))
+            findNavController().navigate(ZoomFragmentDirections.actionNavigateToZoomDialog(it))
         })
         binding.detailRecyclerView.adapter = adapter
         viewModel.selectedDetail.observe(viewLifecycleOwner, Observer {

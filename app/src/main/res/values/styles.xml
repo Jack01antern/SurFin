@@ -10,7 +10,7 @@
 
     <style name="round_image_view">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
+        <item name="cornerSize">12dp</item>
         <item name="color">@color/translucent_40</item>
         <item name="android:animation">@null</item>
     </style>
@@ -33,15 +33,15 @@
 
     <style name="weather_element_value">
         <item name="fontFamily">rounded</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">8dp</item>
         <item name="android:textColor">@color/primary_darker_gray</item>
-<!--        <item name="android:padding">8dp</item>-->
+        <!--        <item name="android:padding">8dp</item>-->
     </style>
 
     <style name="weather_quantity">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/primary_darker_gray</item>
-        <item name="android:layout_marginStart">8dp</item>
         <item name="android:textAlignment">center</item>
     </style>
 
@@ -61,8 +61,9 @@
 
     <style name="emergency_hint">
         <item name="fontFamily">rounded</item>
-        <item name="android:textSize">25sp</item>
-        <item name="android:textColor">@color/hint_middle_gray</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/primary_navy</item>
         <item name="android:padding">2dp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:gravity">center</item>
@@ -72,7 +73,7 @@
 
     <style name="account_title">
         <item name="fontFamily">rounded</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/primary_darker_gray</item>
         <item name="android:padding">2dp</item>
         <item name="android:textAlignment">center</item>
@@ -86,7 +87,7 @@
         <item name="android:elevation" tools:ignore="NewApi">
             @dimen/dimen_1
         </item>
-        <item name="android:stateListAnimator" tools:ignore="NewApi">
+        <item name="android:stateListAnimator" tools:ignore="NewApi,PrivateResource">
             @animator/m3_elevated_chip_state_list_anim
         </item>
         <item name="chipStrokeColor">@color/transparent</item>
@@ -94,4 +95,12 @@
     </style>
 
     <dimen name="dimen_1">1dp</dimen>
+
+    <style name="empty_list_hint">
+        <item name="android:textColor">@color/primary_darker_gray</item>
+        <item name="android:letterSpacing">0.35</item>
+        <item name="android:textSize">20sp</item>
+        <item name="chipBackgroundColor">@color/background_light_gray</item>
+    </style>
+
 </resources>

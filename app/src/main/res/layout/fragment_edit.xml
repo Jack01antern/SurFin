@@ -70,7 +70,8 @@
                     android:id="@+id/input_location_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/input_location_title" />
+                    android:hint="@string/input_location_title"
+                    android:maxLines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,7 +90,9 @@
                     android:id="@+id/input_heart_rate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/input_heart_rate" />
+                    android:hint="@string/input_heart_rate"
+                    android:inputType="number"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -107,7 +110,8 @@
                     android:id="@+id/input_time_duration"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/input_time_duration" />
+                    android:hint="@string/input_time_duration"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -125,7 +129,9 @@
                     android:id="@+id/input_calories"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/input_calories" />
+                    android:hint="@string/input_calories"
+                    android:inputType="number"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

@@ -1,22 +1,18 @@
 package com.example.surfin.explore
 
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import android.graphics.Color
-import android.os.Build
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.surfin.MainViewModel
 import com.example.surfin.R
-import com.example.surfin.SurfinApplication
 import com.example.surfin.data.Spots
 import com.example.surfin.factory.ExploreFactory
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -26,7 +22,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -37,64 +32,17 @@ private const val ZOOM_IN = 8F
 
 class ExploreFragment : Fragment() {
 
-    private val db = FirebaseFirestore.getInstance()
-    private var spotsInfo = mutableListOf<Spots>()
+    private val mainViewModel: MainViewModel by activityViewModels()
     private lateinit var viewModel: ExploreViewModel
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private var map: GoogleMap? = null
 
     val callback = OnMapReadyCallback { googleMap ->
+        map = googleMap
 
         //mock data for zoom in
         val center = LatLng(23.716, 121.0564)
-        googleMap.addMarker(
-            MarkerOptions().position(center).title("Marker in School")
-                .snippet("The Best School Ever")
-        )
-
-
-        //get data from firebase and add marker
-        try {
-            db.collection("spots").addSnapshotListener { snapshot, e ->
-                if (e != null) {
-                    Log.w("retrieve??", e)
-                    return@addSnapshotListener
-                }
-                googleMap.clear()
-                spotsInfo.clear()
-                spotsInfo.addAll(snapshot!!.toObjects(Spots::class.java))
-
-                for (spot in spotsInfo) {
-                    val latLong = LatLng(spot.lat, spot.longitude)
-                    googleMap.addMarker(
-                        MarkerOptions().position(latLong).title(spot.title).snippet(spot.content)
-                    )
-                }
-                Log.i("retrieve!!", " MSG: $spotsInfo")
-            }
-
-        } catch (e: Exception) {
-            Log.i("retrieve failed", " MSG: ${e.message}")
-        }
-
-        var safeArgs = Spots()
-
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, ZOOM_IN))
-        googleMap.setOnMarkerClickListener {
-            for (spot in spotsInfo) {
-                if (spot.title == it.title) {
-                    safeArgs = spot
-                }
-            }
-
-            findNavController().navigate(
-                ExploreFragmentDirections.actionNavigateToDetailFragment(
-                    safeArgs
-                )
-            )
-            Log.i("explore", "${safeArgs}")
-            true
-        }
-
     }
 
     override fun onCreateView(
@@ -102,9 +50,6 @@ class ExploreFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-//        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -116,25 +61,29 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
-        viewModel = ViewModelProvider(
-            this,
-            ExploreFactory(repository)
-        ).get(ExploreViewModel::class.java)
+        val firestore = FirebaseFirestore.getInstance()
+        viewModel = ViewModelProvider(this,ExploreFactory(firestore)).get(ExploreViewModel::class.java)
 
+        viewModel.spotsInfo.observe(viewLifecycleOwner) { spots ->
+            spots.forEach { spot ->
+                val latLong = LatLng(spot.lat, spot.longitude)
+                map?.addMarker(
+                    MarkerOptions().position(latLong).title(spot.title)
+                )
+            }
 
+            if (spots.isNotEmpty()) {
+                setMarkerClickListener(spots,mainViewModel)
+            }
+        }
         val mapFragment = childFragmentManager.findFragmentById(R.id.explore) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
-
     }
 
-
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//
-//    }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        map = null
+    }
 
     //get user's current location
     private fun fetchLocation() {
@@ -164,5 +113,36 @@ class ExploreFragment : Fragment() {
 //                ).show()
 //            }
 //        }
+    }
+
+    private fun setMarkerClickListener(spots: MutableList<Spots>, viewModel: MainViewModel) {
+        map?.setOnMarkerClickListener { marker ->
+            val selectedSpot = marker.title?.let { findSpotByTitle(spots, it) }
+            if (selectedSpot != null) {
+                viewModel.selectedSpotDetail = selectedSpot
+            }
+
+            navigateToDetailFragment(selectedSpot)
+            Log.i("explore fragment", "safeArgs: ${selectedSpot}")
+            true
+        }
+    }
+
+
+    private fun findSpotByTitle(spots: List<Spots>, title: String): Spots? {
+        for (spot in spots) {
+            if (spot.title == title) {
+                return spot
+            }
+        }
+        return null
+    }
+
+    private fun navigateToDetailFragment(spot: Spots?) {
+        spot?.let {
+            findNavController().navigate(
+                ExploreFragmentDirections.actionNavigateToDetailFragment(it)
+            )
+        }
     }
 }

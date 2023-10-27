@@ -42,7 +42,8 @@ class HomeViewModel(private val repository: SurfinRepository) : ViewModel() {
 
     fun searchFirebase(spotName: String) {
         db.collection("spots")
-            .whereEqualTo("title", spotName)
+            .whereGreaterThanOrEqualTo("title", spotName)
+            .whereLessThan("title", spotName + "\uf8ff")
             .get()
             .addOnSuccessListener { documents ->
                 val resultList = mutableListOf<Spots>()

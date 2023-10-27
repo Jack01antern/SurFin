@@ -1,6 +1,8 @@
 package com.example.surfin.account
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.surfin.data.SurfinRepository
@@ -10,8 +12,10 @@ import kotlinx.coroutines.launch
 
 class AccountViewModel(repository: SurfinRepository) : ViewModel() {
 
-    val userInfo = repository.getUserInfo()
+    val userInfo = repository.getUserInfo(1)
     private val db = FirebaseFirestore.getInstance()
+
+    var isEditing = MutableLiveData(false)
 
     fun updateUserInfo(userInfo: UserInfo, repository: SurfinRepository) {
         viewModelScope.launch {

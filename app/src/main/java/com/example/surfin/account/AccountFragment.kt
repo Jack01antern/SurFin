@@ -17,39 +17,39 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.surfin.R
 import com.example.surfin.databinding.FragmentAccountBinding
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.net.Uri
+import android.graphics.BitmapFactory
 import android.provider.MediaStore
+import android.util.DisplayMetrics
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.Observer
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.SurfinRepository
 import com.example.surfin.data.UserInfo
 import com.example.surfin.factory.AccountFactory
 import com.google.android.material.chip.ChipGroup
-import java.net.URI
 
-private const val PICK_IMAGE_REQUEST = 1
-lateinit var contentUri: Uri
+private const val PICK_IMAGE_REQUEST = 0x00
 
 class AccountFragment : Fragment() {
-
 
     private lateinit var viewModel: AccountViewModel
     private lateinit var binding: FragmentAccountBinding
     private lateinit var repository: SurfinRepository
     private lateinit var sharedPreferences: SharedPreferences
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAccountBinding.inflate(inflater)
         repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
         viewModel = ViewModelProvider(
@@ -58,7 +58,10 @@ class AccountFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        contentUri = Uri.parse("content://abc")
+
+        sharedPreferences = requireContext().getSharedPreferences("user_info", Context.MODE_PRIVATE)
+        val userName = sharedPreferences.getString("user_name", "Please Enter Your Name")
+        binding.accountName.text = userName
 
         binding.activityHistoryLayout.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_history_fragment)
@@ -76,66 +79,102 @@ class AccountFragment : Fragment() {
         }
 
         binding.btnChangeThumbnail.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, PICK_IMAGE_REQUEST)
-
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    PICK_IMAGE_REQUEST
+                )
+            } else {
+                openImagePicker()
+            }
         }
+
+        checkPermission()
+
+
+        viewModel.isEditing.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.btnFinishEditName.visibility = View.VISIBLE
+                binding.accountEditName.visibility = View.VISIBLE
+                binding.accountName.visibility = View.GONE
+                binding.btnEditName.visibility = View.GONE
+            } else {
+                binding.btnFinishEditName.visibility = View.GONE
+                binding.accountEditName.visibility = View.GONE
+                binding.accountName.visibility = View.VISIBLE
+                binding.btnEditName.visibility = View.VISIBLE
+            }
+        }
+
 
         binding.btnEditName.setOnClickListener {
-            showEditNameDialog()
-        }
-
-        sharedPreferences = requireContext().getSharedPreferences("user_info", Context.MODE_PRIVATE)
-        val userName = sharedPreferences.getString("user_name", "Please Enter Your Name")
-        binding.accountName.setText(userName)
-
-
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                PICK_IMAGE_REQUEST
-            )
-        }
-
-
-        viewModel.userInfo.observe(viewLifecycleOwner, Observer {
-            it?.selfie.let { selfie ->
-                if (selfie != null) {
-                    contentUri = Uri.parse(selfie)
-                }
+            viewModel.isEditing.value = true
+            val latestName = sharedPreferences.getString("user_name", "Please enter your name")
+            if (latestName == "Please enter your name") {
+                binding.accountEditName.setText("")
+            } else {
+                binding.accountEditName.setText(latestName)
             }
-            Log.i("uri", "$contentUri")
-            it?.selfie.let {
+            val inputMethodManager =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        }
+
+
+        var inputContent = userName
+        binding.accountEditName.doAfterTextChanged { inputContent = it.toString() }
+        binding.btnFinishEditName.setOnClickListener {
+            val editor = sharedPreferences.edit()
+            editor.putString("user_name", inputContent)
+            editor.apply()
+            binding.accountName.text = inputContent
+            viewModel.isEditing.value = false
+            val inputMethodManager =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(requireView().windowToken, 0)
+        }
+
+
+
+        viewModel.userInfo.observe(viewLifecycleOwner) {
+
+            it?.let {
                 try {
-                    if (contentUri != null) {
-                        binding.thumbnail.setImageURI(contentUri)
-                    }
+                    val bitmap = BitmapFactory.decodeByteArray(
+                        viewModel.userInfo.value?.userPhoto,
+                        0,
+                        viewModel.userInfo.value?.userPhoto!!.size
+                    )
+                    binding.userPhoto.setImageBitmap(bitmap)
                 } catch (e: Exception) {
-                    Log.i("uri", "failed: ${e.message}")
+                    Log.i("Account picture", "error:${e.message}")
                 }
             }
-        })
+        }
 
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
-    }
 
     private fun showRecommendDialog() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_provide_spot)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        Log.i("account provide btn", "clicked")
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val displayWidth = displayMetrics.widthPixels
+        val width = (displayWidth * 0.95).toInt()
+        layoutParams?.width = width
+        window?.attributes = layoutParams
 
         val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
         btnCancel.setOnClickListener {
@@ -169,7 +208,15 @@ class AccountFragment : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_contact_us)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        Log.i("account provide btn", "clicked")
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val displayWidth = displayMetrics.widthPixels
+        val width = (displayWidth * 0.95).toInt()
+        layoutParams?.width = width
+        window?.attributes = layoutParams
 
         val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
         btnCancel.setOnClickListener {
@@ -191,8 +238,8 @@ class AccountFragment : Fragment() {
 
         val chipGroup = dialog.findViewById<ChipGroup>(R.id.chip_group)
         var category = ""
-        chipGroup.setOnCheckedChangeListener { group, checkedId ->
-            checkedId?.let {
+        chipGroup.setOnCheckedChangeListener { _, checkedId ->
+            checkedId.let {
                 when (it) {
                     R.id.option_1 -> category = "recommendation"
                     R.id.option_2 -> category = "issue report"
@@ -218,50 +265,40 @@ class AccountFragment : Fragment() {
     }
 
 
-    private fun showEditNameDialog() {
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.dialog_edit_name)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        Log.i("account provide btn", "clicked")
-
-        val btnCancel = dialog.findViewById<ImageView>(R.id.btn_cancel)
-        btnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        var inputContent = ""
-        dialog.findViewById<EditText>(R.id.input_name)
-            .doAfterTextChanged { inputContent = it.toString() }
-
-
-        val btnSubmit = dialog.findViewById<Button>(R.id.btn_submit)
-        btnSubmit.setOnClickListener {
-            sharedPreferences =
-                requireContext().getSharedPreferences("user_info", Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.putString("user_name", inputContent)
-            editor.apply()
-            binding.accountName.setText(inputContent)
-            Toast.makeText(requireContext(), "submitted", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-        }
-        dialog.show()
-
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            val selectedImageUri = data.data
-
-            val imagePath = selectedImageUri?.path!!
-            val userInfo = UserInfo(0L, selectedImageUri.toString(), "Gemma")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && intent != null) {
+            val selectedImageUri = intent.data
+            binding.userPhoto.setImageURI(selectedImageUri)
+            val inputStream = requireActivity().contentResolver.openInputStream(selectedImageUri!!)
+            val byteArray = inputStream?.readBytes()
+            val userInfo = UserInfo(1, byteArray!!)
             viewModel.updateUserInfo(userInfo, repository)
-            Log.d("Image Path", "Image Path: $imagePath")
         }
     }
 
+    private fun openImagePicker() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+
+    private fun checkPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requirePermission()
+        }
+    }
+
+    private fun requirePermission() {
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            PICK_IMAGE_REQUEST
+        )
+    }
 
 }

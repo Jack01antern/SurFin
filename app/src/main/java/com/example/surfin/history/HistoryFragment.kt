@@ -21,24 +21,34 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 class HistoryFragment : Fragment() {
 
     private lateinit var viewModel: HistoryViewModel
-
+    private lateinit var binding: FragmentHistoryBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentHistoryBinding.inflate(inflater)
+        binding = FragmentHistoryBinding.inflate(inflater)
         val repository = (requireContext().applicationContext as SurfinApplication).surfinRepository
         viewModel =
             ViewModelProvider(this, HistoryFactory(repository)).get(HistoryViewModel::class.java)
 
         val adapter = HistoryAdapter(HistoryAdapter.OnClickListener {
             findNavController().navigate(EditFragmentDirections.actionNavigateToEditFragment(it))
-        Log.i("history edit btn","clicked: $it")})
+            Log.i("history edit btn", "clicked: $it")
+        })
+
+
         binding.historyRecyclerView.adapter = adapter
         viewModel.activityHistory.observe(viewLifecycleOwner, Observer {
             adapter.submitList(viewModel.activityHistory.value)
         })
 
+        viewModel.activityHistory.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
+                binding.collectionHint.visibility = View.VISIBLE
+            } else {
+                binding.collectionHint.visibility = View.GONE
+            }
+        }
 
         binding.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_navigate_to_add_history_fragment)

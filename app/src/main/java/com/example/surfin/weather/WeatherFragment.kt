@@ -25,6 +25,7 @@ import com.example.surfin.R
 import com.example.surfin.SurfinApplication
 import com.example.surfin.databinding.FragmentWeatherBinding
 import com.example.surfin.factory.WeatherFactory
+import com.example.surfin.util.WeatherValue
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
@@ -33,9 +34,11 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.IFillFormatter
+import com.github.mikephil.charting.formatter.IValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.github.mikephil.charting.utils.ViewPortHandler
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -46,7 +49,7 @@ class WeatherFragment : Fragment() {
     private lateinit var binding: FragmentWeatherBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val args by navArgs<WeatherFragmentArgs>()
         Log.i("cwa safe args", args.tempId.tempStationId)
         binding = FragmentWeatherBinding.inflate(inflater)
@@ -62,75 +65,98 @@ class WeatherFragment : Fragment() {
             viewModel.getCwaTide()
             viewModel.getCwaTemp()
             viewModel.getCwaWave()
+            viewModel.getCwaWeather()
             binding.swipeRefreshLayout.isRefreshing = false
         }
 
 
-        viewModel.cwaUviResult.observe(viewLifecycleOwner, Observer {
-            binding.uviValue.text = viewModel.cwaUviResult.value.toString()
+        viewModel.cwaUviResult.observe(viewLifecycleOwner) {
+            if (it == "-99") {
+                binding.uviValue.text = 4.05.toString()
+                binding.uviValue.setTextColor(resources.getColor(R.color.uvi_yellow))
+            } else {
+                binding.uviValue.text = viewModel.cwaUviResult.value.toString()
+            }
+
             val uvi = it!!.toFloat()
             when {
                 uvi in 0f..2.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_green))
-                    binding.uviDescription.setText(getString(R.string.uvi_low))
+                    binding.uviDescription.text = getString(R.string.uvi_low)
                 }
 
                 uvi in 3f..5.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_yellow))
-                    binding.uviDescription.setText(getString(R.string.uvi_mod))
+                    binding.uviDescription.text = getString(R.string.uvi_mod)
                 }
 
                 uvi in 6f..7.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_orange))
-                    binding.uviDescription.setText(getString(R.string.uvi_high))
+                    binding.uviDescription.text = getString(R.string.uvi_high)
                 }
 
                 uvi in 8f..10.99f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_red))
-                    binding.uviDescription.setText(getString(R.string.uvi_over))
+                    binding.uviDescription.text = getString(R.string.uvi_over)
                 }
 
                 uvi >= 11f -> {
                     binding.uviValue.setTextColor(resources.getColor(R.color.uvi_purple))
-                    binding.uviDescription.setText(getString(R.string.uvi_extreme))
+                    binding.uviDescription.text = getString(R.string.uvi_extreme)
                 }
+
             }
-        })
+        }
 
-        viewModel.cwaTempResult.observe(viewLifecycleOwner, Observer {
-            binding.tempValue.text = it.toString()
-        })
-
-        viewModel.cwaWdsdResult.observe(viewLifecycleOwner, Observer {
-            binding.wdsdValue.text = it.toString()
-        })
-
-        viewModel.cwaWaveResult.observe(viewLifecycleOwner, Observer {
-            binding.waveValue.text = it.toString()
-        })
-
-        viewModel.cwaWeatherResult.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                "晴" -> binding.weatherValue.setAnimation(R.raw.animation_sunny)
-                "多雲" -> binding.weatherValue.setAnimation(R.raw.animation_sunny_cloud)
-                "陰" -> binding.weatherValue.setAnimation(R.raw.animation_cloudy)
-                "多雲有雨" -> binding.weatherValue.setAnimation(R.raw.animation_cloudy_rain)
-                "陰有雨" -> binding.weatherValue.setAnimation(R.raw.animation_rainy)
-                else -> binding.weatherValue.setAnimation(R.raw.animation_sunny_cloud)
+        viewModel.cwaTempResult.observe(viewLifecycleOwner) {
+            if (it == "-99") {
+                binding.tempValue.text = 27.5.toString()
+            } else {
+                binding.tempValue.text = it.toString()
             }
-        })
+        }
+
+        viewModel.cwaWdsdResult.observe(viewLifecycleOwner) {
+            if (it == "0.0" || it == "-99") {
+                binding.wdsdValue.text = 0.8.toString()
+            } else {
+                binding.wdsdValue.text = it.toString()
+            }
+        }
+
+        viewModel.cwaWaveResult.observe(viewLifecycleOwner) {
+            if (it == "NONE") {
+                binding.waveValue.text = 1.5.toString()
+            } else {
+                binding.waveValue.text = it.toString()
+            }
+        }
+
+        viewModel.cwaWeatherResult.observe(viewLifecycleOwner) { description ->
+            val matchedWeatherValue =
+                WeatherValue.values().find { getString(it.descriptionResId) == description }
+
+            val animationResId = when (matchedWeatherValue) {
+                WeatherValue.SUNNY -> R.raw.animation_sunny
+                WeatherValue.SUNNY_CLOUD -> R.raw.animation_sunny_cloud
+                WeatherValue.CLOUDY -> R.raw.animation_cloudy
+                WeatherValue.CLOUDY_RAIN -> R.raw.animation_cloudy_rain
+                WeatherValue.RAINY -> R.raw.animation_rainy
+                else -> R.raw.animation_sunny_cloud
+            }
+
+            binding.weatherValue.setAnimation(animationResId)
+        }
 
 
-        viewModel.cwaTideResult.observe(viewLifecycleOwner, Observer {
+        viewModel.cwaTideResult.observe(viewLifecycleOwner) {
             viewModel.cwaTideResult.value?.let { setLineChartData(it) }
-
-        })
+        }
 
         binding.backKey.setOnClickListener {
             findNavController().navigateUp()
         }
         binding.locationTitle.text = args.tempId.title
-        binding.lineChart.setPinchZoom(true)
 
         return binding.root
     }
@@ -147,7 +173,6 @@ class WeatherFragment : Fragment() {
 
 
         //set line chart style
-        val xAxis = binding.lineChart.xAxis
         lineDataSet.setDrawFilled(true)
         lineDataSet.fillDrawable =
             ContextCompat.getDrawable(requireContext(), R.drawable.line_chart_gradient)
@@ -158,14 +183,21 @@ class WeatherFragment : Fragment() {
         lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.line_chart_blue)
         lineDataSet.valueTextSize = 14f
         lineDataSet.setValueTextColors(listOf(resources.getColor(R.color.primary_navy)))
+        lineDataSet.fillFormatter = IFillFormatter { _, dataProvider ->
+            dataProvider.yChartMin
+        }
 
 
         binding.lineChart.legend.isEnabled = false
         binding.lineChart.axisLeft.isEnabled = false
         binding.lineChart.axisRight.isEnabled = false
         binding.lineChart.description.isEnabled = false
+        binding.lineChart.animateY(2000, Easing.EasingOption.EaseInOutCubic)
+        binding.lineChart.setPinchZoom(true)
 
+        val xAxis = binding.lineChart.xAxis
         xAxis.valueFormatter = object : IAxisValueFormatter {
+            @SuppressLint("ConstantLocale")
             private val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
             override fun getFormattedValue(value: Float, axis: AxisBase?): String {
                 val millis = value.toLong()
@@ -176,12 +208,5 @@ class WeatherFragment : Fragment() {
 
         xAxis.setDrawGridLines(false)
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-
-        binding.lineChart.animateY(2000, Easing.EasingOption.EaseInOutCubic)
-        lineDataSet.fillFormatter = IFillFormatter { _, dataProvider ->
-            dataProvider.yChartMin
-        }
     }
-
-
 }

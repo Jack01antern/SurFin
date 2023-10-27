@@ -123,7 +123,7 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         }
     }
 
-    override fun getUserInfo(): LiveData<UserInfo?> {
-        return dao.getUserInfo()
+    override fun getUserInfo(id:Int): LiveData<UserInfo?> {
+        return dao.getUserInfo(id)
     }
 }

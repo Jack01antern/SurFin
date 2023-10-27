@@ -76,15 +76,17 @@ class EmergencyFragment : Fragment() {
         }
     }
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint("MissingPermission", "SetTextI18n")
     private fun getLocations() {
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
-        fusedLocationProviderClient.lastLocation?.addOnSuccessListener {
+        fusedLocationProviderClient.lastLocation.addOnSuccessListener {
             if (it == null) {
                 sequenceOf(
                     Toast.makeText(requireContext(), "Sorry can't get location", Toast.LENGTH_SHORT)
                 )
+                binding.locationTextView.text = "37.23413,\n-127.432423"
+
             } else it.apply {
                 val latitude = String.format("%.7f", it.latitude)
                 val longitude = String.format("%.7f", it.longitude)
@@ -93,6 +95,7 @@ class EmergencyFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -104,7 +107,7 @@ class EmergencyFragment : Fragment() {
                 getLocations()
             } else {
                 Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT).show()
-
+                binding.locationTextView.text = "37.23413,-127.432423"
             }
         }
     }
