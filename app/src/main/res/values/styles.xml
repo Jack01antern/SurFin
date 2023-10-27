@@ -1,2 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AddHistoryDialog">
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+        <item name="android:windowBackground">@color/translucent_40</item>
+        <item name="android:animation">@null</item>
+    </style>
+
+    <style name="round_image_view">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+        <item name="color">@color/translucent_40</item>
+        <item name="android:animation">@null</item>
+    </style>
+
+    <style name="weather_element_title">
+        <item name="fontFamily">rounded</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/primary_darker_gray</item>
+        <item name="android:layout_margin">32dp</item>
+    </style>
+
+    <style name="weather_element_location_title">
+        <item name="fontFamily">rounded</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/primary_darker_gray</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="weather_element_value">
+        <item name="fontFamily">rounded</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textColor">@color/primary_darker_gray</item>
+        <!--        <item name="android:padding">8dp</item>-->
+    </style>
+
+    <style name="weather_quantity">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/primary_darker_gray</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="history_item_value">
+        <item name="fontFamily">rounded</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/primary_darker_gray</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+
+    <style name="circular">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="emergency_hint">
+        <item name="fontFamily">rounded</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/primary_navy</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:letterSpacing">0.4</item>
+    </style>
+
+
+    <style name="account_title">
+        <item name="fontFamily">rounded</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/primary_darker_gray</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:letterSpacing">0.4</item>
+    </style>
+
+
+    <style name="Widget.Material3.Chip.Filter.Elevated">
+        <item name="android:elevation" tools:ignore="NewApi">
+            @dimen/dimen_1
+        </item>
+        <item name="android:stateListAnimator" tools:ignore="NewApi,PrivateResource">
+            @animator/m3_elevated_chip_state_list_anim
+        </item>
+        <item name="chipStrokeColor">@color/transparent</item>
+        <item name="chipBackgroundColor">@color/background_light_gray</item>
+    </style>
+
+    <dimen name="dimen_1">1dp</dimen>
+
+    <style name="empty_list_hint">
+        <item name="android:textColor">@color/primary_darker_gray</item>
+        <item name="android:letterSpacing">0.35</item>
+        <item name="android:textSize">20sp</item>
+        <item name="chipBackgroundColor">@color/background_light_gray</item>
+    </style>
+
+</resources>

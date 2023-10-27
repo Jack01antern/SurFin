@@ -24,6 +24,7 @@ local.properties
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 /.idea/androidTestResultsUserPreferences.xml
+/app/src/main/res/values/strings.xml
 .DS_Store
 /build
 /captures
@@ -56,6 +57,8 @@ render.experimental.xml
 *.jks
 *.keystore
 
+# Google Services (e.g. APIs or Firebase)
+google-services.json
 
 # Android Profiling
 *.hprof
