@@ -22,3 +22,24 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
                  cursor: pointer;">
       Click me to download
     </button></a></p>
+## Features
+
+- **Integrated Google Maps SDK:** Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.
+- **Firebase Cloud Firestore:** Leveraged to store vital information sourced from government APIs.
+- **User-friendly Visual Elements:** Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.
+- 
+
+
+
+## Required APK
+
+| File Name | Description | Download Link |
+|-----------|-------------|---------------|
+| App-Release.apk | The release version of the application | [Download](link_to_release_apk) |
+| App-Debug.apk | The debug version of the application | [Download](link_to_debug_apk) |
+
+## Thrid-Party Libraries
+- [Firestore](https://firebase.google.com/products/firestore?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ynVqh2xVTgG6WIKFSfdCN4x9lHJrit2kdCT99IfZPNxPPbbtPHr6qsaAv4lEALw_wcB&gclsrc=aw.ds)
+- [lottie](https://lottiefiles.com)
+- [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
+- [TouchImageView](https://github.com/MikeOrtiz/TouchImageView)
