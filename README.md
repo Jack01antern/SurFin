@@ -27,18 +27,25 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 ## How to Use This Project
 
 
-You can use Android Studio to work with this repository.
-You will need to replace your Google Maps SDK API Key with below in `app/src/main/AndroidManifest.xml` 
-  
-  ```xml
- <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="${YOUR_GOOGLE_MAP_API_KEY}"/>
-```
+To begin working with this repository in Android Studio, kindly follow these instructions:
 
-and add CWA (Central Weather Administration of Taiwan) API Key in your `local.properties`
-- [How to get your own CWA API Key](https://opendata.cwa.gov.tw/userLogin)<br>
-- [How to get your own Google Maps SDK API Key]()<br>
+1. In the `app/src/main/AndroidManifest.xml` file, please update your Google Maps SDK API Key with the following configuration:
+
+    ```xml
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="${YOUR_GOOGLE_MAP_API_KEY}"/>
+    ```
+
+2. Additionally, ensure you add your CWA (Central Weather Administration of Taiwan) API Key in the `local.properties` file using the format:
+
+    ```
+    API_KEY = YOUR_CWA_API_KEY
+    ```
+
+
+- [To get your own CWA API Key](https://opendata.cwa.gov.tw/userLogin)<br>
+- [To get your own Google Maps SDK API Key]()<br>
 
 
 ## Features
