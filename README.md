@@ -24,7 +24,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
     </button></a></p>
 
     
-## How to Use his Project
+## How to Use This Project
 
 
 You can use Android Studio to work with this repository.
@@ -36,9 +36,9 @@ You will need to replace your Google Maps SDK API Key with below in `app/src/mai
             android:value="${YOUR_GOOGLE_MAP_API_KEY}"/>
 ```
 
-and add CWA (Central Weather Administration of Taiwan) API Key in your `local.properties` <br>
-How to get your own CWA API Key<br>
-How to get your own Google Maps SDK API Key<br>
+and add CWA (Central Weather Administration of Taiwan) API Key in your `local.properties`
+- [How to get your own CWA API Key](https://opendata.cwa.gov.tw/userLogin)<br>
+- [How to get your own Google Maps SDK API Key]()<br>
 
 
 ## Features
