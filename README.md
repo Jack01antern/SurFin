@@ -22,6 +22,25 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
                  cursor: pointer;">
       Click me to download
     </button></a></p>
+
+    
+## How to Use his Project
+
+
+You can use Android Studio to work with this repository.
+You will need to replace your Google Maps SDK API Key with below in `app/src/main/AndroidManifest.xml` 
+  
+  ```xml
+ <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${YOUR_GOOGLE_MAP_API_KEY}"/>
+```
+
+and add CWA (Central Weather Administration of Taiwan) API Key in your `local.properties` <br>
+How to get your own CWA API Key<br>
+How to get your own Google Maps SDK API Key<br>
+
+
 ## Features
 
 - **Integrated Google Maps SDK:** Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.
@@ -31,12 +50,10 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 
 
 
-## Required APK
+## Requirement
 
-| File Name | Description | Download Link |
-|-----------|-------------|---------------|
-| App-Release.apk | The release version of the application | [Download](link_to_release_apk) |
-| App-Debug.apk | The debug version of the application | [Download](link_to_debug_apk) |
+- SDK 28 (Android 9.0) or later
+
 
 ## Thrid-Party Libraries
 - [Firestore](https://firebase.google.com/products/firestore?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ynVqh2xVTgG6WIKFSfdCN4x9lHJrit2kdCT99IfZPNxPPbbtPHr6qsaAv4lEALw_wcB&gclsrc=aw.ds)
