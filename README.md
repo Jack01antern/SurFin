@@ -15,6 +15,8 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 </a></p>
 
 
+---
+
 ## Features
 
 <table>
@@ -23,8 +25,8 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
      <th>Explore Page</th>
   </tr> 
   <tr>
-     <th>**User-friendly Visual Elements:** Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.</th>
-     <th>**Integrated Google Maps SDK:** Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.</th>
+     <th align="left">Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.</th>
+     <th align="left">Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.</th>
   </tr>
 
   <tr>
@@ -40,7 +42,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
      <th>Account Page</th>
   </tr> 
    <tr>
-     <th>Emergency Page</th>
+     <th align="left">Emergency.</th>
      <th>Account Page</th>
   </tr>
    <td>
