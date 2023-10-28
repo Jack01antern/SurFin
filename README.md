@@ -23,8 +23,16 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
       Click me to download
     </button></a></p>
 
-    
-## How to Use This Project
+
+## Features
+
+- **Integrated Google Maps SDK:** Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.
+- **Firebase Cloud Firestore:** Leveraged to store vital information sourced from government APIs.
+- **User-friendly Visual Elements:** Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.
+- 
+
+
+## Installation
 
 
 To begin working with this repository in Android Studio, kindly follow these instructions:
@@ -45,15 +53,12 @@ To begin working with this repository in Android Studio, kindly follow these ins
 
 
 - [To get your own CWA API Key](https://opendata.cwa.gov.tw/userLogin)<br>
-- [To get your own Google Maps SDK API Key]()<br>
+- [To get your own Google Maps SDK API Key](https://developers.google.com/maps?hl=zh-tw)<br>
 
 
 ## Features
 
-- **Integrated Google Maps SDK:** Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.
-- **Firebase Cloud Firestore:** Leveraged to store vital information sourced from government APIs.
-- **User-friendly Visual Elements:** Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.
-- 
+
 
 
 
@@ -67,3 +72,7 @@ To begin working with this repository in Android Studio, kindly follow these ins
 - [lottie](https://lottiefiles.com)
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 - [TouchImageView](https://github.com/MikeOrtiz/TouchImageView)
+
+
+## Contact
+
