@@ -29,7 +29,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 - Observer Pattern
 - Room
 - SharedPreferences
-- MPAndroid
+- MPAndroidChart
 - Android Material Components
 - Corountine
 - Unit test
@@ -37,7 +37,6 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 - Moshi
 - Glide
 - Firebase Cloud Firestore
-- 
 
 
 
@@ -45,7 +44,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 
 ## Installation
 
-To begin working with this repository in **Android Studio**, kindly follow these instructions:
+To begin working with this repository in **Android Studio**, kindly follow below instructions.
 
 1. Connect to Firebase Cloud Firestore with your own API key
 
