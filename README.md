@@ -43,7 +43,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
   </tr> 
    <tr>
      <th align="left">Offering expedited dialing and displays the user's location, ensuring precise emergency response in crucial moments.</th>
-     <th align="left">Allowing users to update profile pictures and names. It provides direct navigation to the Exercise Log and Collection pages and includes an options menu for additional functionalities.</th>
+     <th align="left">Allowing users to update profile pictures and names. It provides direct navigation to the Exercise Log and Collection pages and includes an options menu for recommending additional functionalities.</th>
   </tr>
    <td align="center">
            <img src="img_ref/RecordEmergency.png" width="250"   alt="Emergency Page">
