@@ -57,7 +57,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
   </tr> 
 
    <tr>
-     <th align="left">Providing users a space to record their surfing experiences, ensuring they can document specifics and track their sessions over time.</th>
+     <th align="left">Providing users a space to record their surfing experiences, ensuring they can document specifics and track their sessions.</th>
      <th align="left">Allowing users to catalog and preserve their favored surfing locations, offering a specialized area to view their highlighted spots.</th>
   </tr>
     <tr>
