@@ -37,7 +37,9 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 
 To begin working with this repository in Android Studio, kindly follow these instructions:
 
-1. In the `app/src/main/AndroidManifest.xml` file, please update your Google Maps SDK API Key with the following configuration:
+1. Connect to Firebase Cloud Firestore with your API key
+
+2. In the `app/src/main/AndroidManifest.xml` file, please update your Google Maps SDK API key with the following configuration:
 
     ```xml
     <meta-data
@@ -45,15 +47,16 @@ To begin working with this repository in Android Studio, kindly follow these ins
         android:value="${YOUR_GOOGLE_MAP_API_KEY}"/>
     ```
 
-2. Additionally, ensure you add your CWA (Central Weather Administration of Taiwan) API Key in the `local.properties` file using the format:
+3. Additionally, ensure you add your CWA (Central Weather Administration of Taiwan) API key in the `local.properties` file using the format:
 
     ```
     API_KEY = YOUR_CWA_API_KEY
     ```
 
 
-- [To get your own CWA API Key](https://opendata.cwa.gov.tw/userLogin)<br>
-- [To get your own Google Maps SDK API Key](https://developers.google.com/maps?hl=zh-tw)<br>
+- [Get your own CWA API key](https://opendata.cwa.gov.tw/userLogin)<br>
+- [Get your own Google Maps SDK API key](https://developers.google.com/maps?hl=zh-tw)<br>
+- [Get your own Firebase Cloud Firestore API key](https://console.firebase.google.com/u/0/)<br>
 
 
 ## Features
