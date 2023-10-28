@@ -19,42 +19,58 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 
 <table>
   <tr>
-     <th>Home Page</th>
      <th>Weather Page</th>
      <th>Explore Page</th>
-     <th>Emergency Page</th>
-     <th>Account Page</th>
-     <th>Log Page</th>
-     <th>Collection Page</th>
-  </tr>
- <tr>
-    <th>Home Page</th>
-     <th>Weather Page</th>
-     <th>Explore Page</th>
-     <th>Emergency Page</th>
-     <th>Account Page</th>
-     <th>Log Page</th>
-     <th>Collection Page</th>
+  </tr> 
+  <tr>
+     <th>**User-friendly Visual Elements:** Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.</th>
+     <th>**Integrated Google Maps SDK:** Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.</th>
   </tr>
 
   <tr>
     <td>
-           <img src="previews/main.jpg" width="400" height="500" alt="Main Page">
+           <img src="img_ref/RecordWeather.gif" style="max-width: 100%; height: auto;"  alt="Weather Page">
    </td>
    <td>
-           <img src="previews/details.jpg" width="400" height="500" alt="Detail Page">
+           <img src="img_ref/RecordExplore.gif"  style="max-width: 100%; height: auto;" alt="Explore Page">
    </td>
+
+   <tr>
+     <th>Emergency Page</th>
+     <th>Account Page</th>
+  </tr> 
+   <tr>
+     <th>Emergency Page</th>
+     <th>Account Page</th>
+  </tr>
    <td>
-           <img src="previews/search.jpg" width="400" height="500" alt="Search Page">
+           <img src="img_ref/RecordEmergency.png" style="max-width: 200%; height: auto;"  alt="Emergency Page">
    </td>
   </tr>
+
+ <tr>
+     <th>Log Page</th>
+     <th>Collection Page</th>
+  </tr> 
+
+   <tr>
+     <th>Log Page</th>
+     <th>Collection Page</th>
+  </tr>
+    <tr>
+    <td>
+           <img src="img_ref/RecordWeather.gif" style="max-width: 100%; height: auto;"  alt="Weather Page">
+   </td>
+   <td>
+           <img src="img_ref/RecordExplore.gif"  style="max-width: 100%; height: auto;" alt="Explore Page">
+   </td>
 
  </table>
 
 
-- **Integrated Google Maps SDK:** Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.
+- 
 - **Firebase Cloud Firestore:** Utilized to store vital information sourced from government APIs.
-- **User-friendly Visual Elements:** Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.
+- 
 - 
 
 
