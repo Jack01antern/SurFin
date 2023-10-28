@@ -17,6 +17,41 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 
 ## Features
 
+<table>
+  <tr>
+     <th>Home Page</th>
+     <th>Weather Page</th>
+     <th>Explore Page</th>
+     <th>Emergency Page</th>
+     <th>Account Page</th>
+     <th>Log Page</th>
+     <th>Collection Page</th>
+  </tr>
+ <tr>
+    <th>Home Page</th>
+     <th>Weather Page</th>
+     <th>Explore Page</th>
+     <th>Emergency Page</th>
+     <th>Account Page</th>
+     <th>Log Page</th>
+     <th>Collection Page</th>
+  </tr>
+
+  <tr>
+    <td>
+           <img src="previews/main.jpg" width="400" height="500" alt="Main Page">
+   </td>
+   <td>
+           <img src="previews/details.jpg" width="400" height="500" alt="Detail Page">
+   </td>
+   <td>
+           <img src="previews/search.jpg" width="400" height="500" alt="Search Page">
+   </td>
+  </tr>
+
+ </table>
+
+
 - **Integrated Google Maps SDK:** Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.
 - **Firebase Cloud Firestore:** Utilized to store vital information sourced from government APIs.
 - **User-friendly Visual Elements:** Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.
