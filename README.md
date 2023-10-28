@@ -74,9 +74,10 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 
 ## Skills
 
-- VVM (Model-View-ViewModel)
+- MVVM 
 - Observer Pattern
-- Corountine
+- Singleton Pattern
+- Coroutine
 - Room
 - SharedPreferences
 - Google Maps SDK
@@ -128,5 +129,6 @@ To begin working with this repository in **Android Studio**, kindly follow below
 
 
 ## Contact
-[Email](jack.yu4041@gmail.com)
-[LinkedIn](https://www.linkedin.com/in/tzuchieh-yu)
+
+Email: jack.yu4041@gmail.com
+LinkedIn: https://www.linkedin.com/in/tzuchieh-yu
