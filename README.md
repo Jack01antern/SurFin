@@ -96,27 +96,25 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 To begin working with this repository in **Android Studio**, kindly follow below instructions.
 
 
-1. **Firebase Cloud Firestore**: Connect with your API key. [Get it here](https://console.firebase.google.com/u/0/).
+1. **Firebase Cloud Firestore**: Connect with your API key. <br>
+[Get it here](https://console.firebase.google.com/u/0/).
    
 2. **Google Maps SDK**:
-   Replace the placeholder with your API key in `app/src/main/AndroidManifest.xml`.  [Get it here](https://developers.google.com/maps?hl=en)
+   Replace the placeholder with your API key in `app/src/main/AndroidManifest.xml`.  <br>
+   [Get it here](https://developers.google.com/maps?hl=en)
    ```xml
     <meta-data
         android:name="com.google.android.geo.API_KEY"
         android:value="${YOUR_GOOGLE_MAP_API_KEY}"/>
     ```
 
-3. **CWA**:
-   Insert your API key in the `local.properties` file. [Get it here](https://opendata.cwa.gov.tw/userLogin)
-
-- [Get your own Firebase Cloud Firestore API key](https://console.firebase.google.com/u/0/)<br>
-- [Get your own Google Maps SDK API key](https://developers.google.com/maps?hl=zh-tw)<br>
-- [Get your own CWA API key](https://opendata.cwa.gov.tw/userLogin)<br>
-
+4. **CWA**:
+   Insert your API key in the `local.properties` file. <br>
+   [Get it here](https://opendata.cwa.gov.tw/userLogin)
 
 ## Requirement
 
-- SDK 28 (Android 9.0) or later
+- Compatible with SDK 28 (Android 9.0) or later.
 
 
 ## Third-Party Libraries
@@ -128,5 +126,5 @@ To begin working with this repository in **Android Studio**, kindly follow below
 
 ## Contact
 
-Email: jack.yu4041@gmail.com
-LinkedIn: https://www.linkedin.com/in/tzuchieh-yu
+- **Email**: jack.yu4041@gmail.com
+- **LinkedIn**: [Tzuchieh Yu](https://www.linkedin.com/in/tzuchieh-yu)
