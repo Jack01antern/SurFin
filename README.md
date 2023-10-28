@@ -46,10 +46,12 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
      <th>Account Page</th>
   </tr>
    <td>
-           <img src="img_ref/RecordEmergency.png" style="max-width: 200%; height: auto;"  alt="Emergency Page">
+           <img src="img_ref/RecordEmergency.png" style="max-width: 100%; height: auto;"  alt="Emergency Page">
    </td>
   </tr>
-
+  <td>
+           <img src="img_ref/RecordAccount.png" style="max-width: 100%; height: auto;"  alt="Emergency Page">
+   </td>
  <tr>
      <th>Log Page</th>
      <th>Collection Page</th>
@@ -61,10 +63,10 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
   </tr>
     <tr>
     <td>
-           <img src="img_ref/RecordWeather.gif" style="max-width: 100%; height: auto;"  alt="Weather Page">
+           <img src="img_ref/RecordLog.png" style="max-width: 100%; height: auto;"  alt="Weather Page">
    </td>
    <td>
-           <img src="img_ref/RecordExplore.gif"  style="max-width: 100%; height: auto;" alt="Explore Page">
+           <img src="img_ref/RecordCollection.gif"  style="max-width: 100%; height: auto;" alt="Explore Page">
    </td>
 
  </table>
