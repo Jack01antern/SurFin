@@ -25,16 +25,16 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
      <th>Explore Page</th>
   </tr> 
   <tr>
-     <th align="left">Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.</th>
-     <th align="left">Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.</th>
+     <th align="left" width="250" >Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.</th>
+     <th align="left" width="250" >Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.</th>
   </tr>
 
   <tr>
     <td>
-           <img src="img_ref/RecordWeather.gif" style="max-width: 100%; height: auto;"  alt="Weather Page">
+           <img src="img_ref/RecordWeather.gif" width="250"  alt="Weather Page">
    </td>
    <td>
-           <img src="img_ref/RecordExplore.gif"  style="max-width: 100%; height: auto;" alt="Explore Page">
+           <img src="img_ref/RecordExplore.gif" width="250"  alt="Explore Page">
    </td>
 
    <tr>
@@ -46,11 +46,10 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
      <th>Account Page</th>
   </tr>
    <td>
-           <img src="img_ref/RecordEmergency.png" style="max-width: 100%; height: auto;"  alt="Emergency Page">
+           <img src="img_ref/RecordEmergency.png" width="250"   alt="Emergency Page">
    </td>
-  </tr>
   <td>
-           <img src="img_ref/RecordAccount.png" style="max-width: 100%; height: auto;"  alt="Emergency Page">
+           <img src="img_ref/RecordAccount.png" width="250"   alt="Emergency Page">
    </td>
  <tr>
      <th>Log Page</th>
@@ -63,10 +62,10 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
   </tr>
     <tr>
     <td>
-           <img src="img_ref/RecordLog.png" style="max-width: 100%; height: auto;"  alt="Weather Page">
+           <img src="img_ref/RecordLog.png" width="250"   alt="Weather Page">
    </td>
    <td>
-           <img src="img_ref/RecordCollection.gif"  style="max-width: 100%; height: auto;" alt="Explore Page">
+           <img src="img_ref/RecordCollection.gif"  width="250"  alt="Explore Page">
    </td>
 
  </table>
