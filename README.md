@@ -95,21 +95,19 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 
 To begin working with this repository in **Android Studio**, kindly follow below instructions.
 
-1. Connect to Firebase Cloud Firestore with your own API key
 
-2. In the `app/src/main/AndroidManifest.xml` file, please update your Google Maps SDK API key with the following configuration:
-
-    ```xml
+1. **Firebase Cloud Firestore**: Connect with your API key. [Get it here](https://console.firebase.google.com/u/0/).
+   
+2. **Google Maps SDK**:
+   Replace the placeholder with your API key in `app/src/main/AndroidManifest.xml`.  [Get it here](https://developers.google.com/maps?hl=en)
+   ```xml
     <meta-data
         android:name="com.google.android.geo.API_KEY"
         android:value="${YOUR_GOOGLE_MAP_API_KEY}"/>
     ```
 
-3. Additionally, ensure you add your CWA (Central Weather Administration of Taiwan) API key in the `local.properties` file using the format:
-
-    ```
-    API_KEY = YOUR_CWA_API_KEY
-    ```
+3. **CWA**:
+   Insert your API key in the `local.properties` file. [Get it here](https://opendata.cwa.gov.tw/userLogin)
 
 - [Get your own Firebase Cloud Firestore API key](https://console.firebase.google.com/u/0/)<br>
 - [Get your own Google Maps SDK API key](https://developers.google.com/maps?hl=zh-tw)<br>
@@ -121,7 +119,7 @@ To begin working with this repository in **Android Studio**, kindly follow below
 - SDK 28 (Android 9.0) or later
 
 
-## Thrid-Party Libraries
+## Third-Party Libraries
 - [Firestore](https://firebase.google.com/products/firestore?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ynVqh2xVTgG6WIKFSfdCN4x9lHJrit2kdCT99IfZPNxPPbbtPHr6qsaAv4lEALw_wcB&gclsrc=aw.ds)
 - [lottie](https://lottiefiles.com)
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
