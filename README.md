@@ -53,10 +53,9 @@ To begin working with this repository in Android Studio, kindly follow these ins
     API_KEY = YOUR_CWA_API_KEY
     ```
 
-
-- [Get your own CWA API key](https://opendata.cwa.gov.tw/userLogin)<br>
-- [Get your own Google Maps SDK API key](https://developers.google.com/maps?hl=zh-tw)<br>
 - [Get your own Firebase Cloud Firestore API key](https://console.firebase.google.com/u/0/)<br>
+- [Get your own Google Maps SDK API key](https://developers.google.com/maps?hl=zh-tw)<br>
+- [Get your own CWA API key](https://opendata.cwa.gov.tw/userLogin)<br>
 
 
 ## Features
