@@ -10,7 +10,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
 
 <p><a href="https://drive.google.com/file/d/1fNcjAQN6MoF56KwMzYYFkQtj4jvAloU_/view?usp=share_link">
 <button >
-      Click me to download
+     Download APK
     </button>
 </a></p>
 
@@ -119,12 +119,17 @@ To begin working with this repository in **Android Studio**, kindly follow below
 
 ## Third-Party Libraries
 - [Firestore](https://firebase.google.com/products/firestore?gclid=Cj0KCQiA-qGNBhD3ARIsAO_o7ynVqh2xVTgG6WIKFSfdCN4x9lHJrit2kdCT99IfZPNxPPbbtPHr6qsaAv4lEALw_wcB&gclsrc=aw.ds)
-- [lottie](https://lottiefiles.com)
+- [Lottie](https://lottiefiles.com)
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 - [TouchImageView](https://github.com/MikeOrtiz/TouchImageView)
 
 
 ## Contact
 
+Jack Yu
 - **Email**: jack.yu4041@gmail.com
 - **LinkedIn**: [Tzuchieh Yu](https://www.linkedin.com/in/tzuchieh-yu)
+
+
+## License
+Distributed under the MIT License.
