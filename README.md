@@ -25,7 +25,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
      <th>Explore Page</th>
   </tr> 
   <tr>
-     <th align="left" width="250" >Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.</th>
+     <th align="left" width="250" >Weather and tide variations are represented through engaging visual elements.</th>
      <th align="left" width="250" >Offering easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.</th>
   </tr>
 
