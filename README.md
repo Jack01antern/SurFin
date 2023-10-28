@@ -4,40 +4,50 @@
 <img src="img_ref/surfin_square.png" width="256" height="256"/>
 </p>
 
-<p align="center">
+<p>
   <b>
 SurFin welcomes you to a heartwarming journey through cherished surf spots, accompanied by cozy weather updates and delightful snapshots.  </b> 
 
-<p align="center"><a href="https://drive.google.com/file/d/1fNcjAQN6MoF56KwMzYYFkQtj4jvAloU_/view?usp=share_link">
-<button style="background-color: #4CAF50; /* Green */
-                 border: none;
-                 color: white;
-                 padding: 15px 32px;
-                 text-align: center;
-                 text-decoration: none;
-                 display: inline-block;
-                 font-size: 16px;
-                 margin: 4px 2px;
-                 transition-duration: 0.4s;
-                 cursor: pointer;">
+<p><a href="https://drive.google.com/file/d/1fNcjAQN6MoF56KwMzYYFkQtj4jvAloU_/view?usp=share_link">
+<button >
       Click me to download
-    </button></a></p>
+    </button>
+</a></p>
 
 
 ## Features
 
 - **Integrated Google Maps SDK:** Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.
-- **Firebase Cloud Firestore:** Leveraged to store vital information sourced from government APIs.
+- **Firebase Cloud Firestore:** Utilized to store vital information sourced from government APIs.
 - **User-friendly Visual Elements:** Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.
 - 
 
 
+## Skills
+
+- MVVM (Model-View-ViewModel)
+- Observer Pattern
+- Room
+- SharedPreferences
+- MPAndroid
+- Android Material Components
+- Corountine
+- Unit test
+- Retrofit
+- Moshi
+- Glide
+- Firebase Cloud Firestore
+- 
+
+
+
+
+
 ## Installation
 
+To begin working with this repository in **Android Studio**, kindly follow these instructions:
 
-To begin working with this repository in Android Studio, kindly follow these instructions:
-
-1. Connect to Firebase Cloud Firestore with your API key
+1. Connect to Firebase Cloud Firestore with your own API key
 
 2. In the `app/src/main/AndroidManifest.xml` file, please update your Google Maps SDK API key with the following configuration:
 
@@ -56,12 +66,6 @@ To begin working with this repository in Android Studio, kindly follow these ins
 - [Get your own Firebase Cloud Firestore API key](https://console.firebase.google.com/u/0/)<br>
 - [Get your own Google Maps SDK API key](https://developers.google.com/maps?hl=zh-tw)<br>
 - [Get your own CWA API key](https://opendata.cwa.gov.tw/userLogin)<br>
-
-
-## Features
-
-
-
 
 
 ## Requirement
