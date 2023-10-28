@@ -26,7 +26,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
   </tr> 
   <tr>
      <th align="left" width="250" >Weather and tide variations are represented through engaging visual elements, incorporating tools like Lottie and MPAndroidChart.</th>
-     <th align="left" width="250" >Offers easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.</th>
+     <th align="left" width="250" >Offering easy browsing of surf spots. Tapping on each marker provides detailed insights which are complemented with pinch-to-zoom photos.</th>
   </tr>
 
   <tr>
@@ -42,8 +42,8 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
      <th>Account Page</th>
   </tr> 
    <tr>
-     <th align="left">Emergency.</th>
-     <th>Account Page</th>
+     <th align="left">Offering expedited dialing and displays the user's location, ensuring precise emergency response in crucial moments.</th>
+     <th align="left">Allowing users to update profile pictures and names. It provides direct navigation to the Exercise Log and Collection pages and includes an options menu for additional functionalities.</th>
   </tr>
    <td>
            <img src="img_ref/RecordEmergency.png" width="250"   alt="Emergency Page">
@@ -57,8 +57,8 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
   </tr> 
 
    <tr>
-     <th>Log Page</th>
-     <th>Collection Page</th>
+     <th align="left">Providing users a space to record their surfing experiences, ensuring they can document specifics and track their sessions over time.</th>
+     <th align="left">Allowing users to catalog and preserve their favored surfing locations, offering a specialized area to view their highlighted spots.</th>
   </tr>
     <tr>
     <td>
