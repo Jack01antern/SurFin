@@ -43,7 +43,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
   </tr> 
    <tr>
      <th align="left">Offering expedited dialing and displays the user's location, ensuring precise emergency response in crucial moments.</th>
-     <th align="left">Allowing users to update profile pictures and names. It provides direct navigation to the Exercise Log and Collection pages and includes an options menu for recommending additional functionalities.</th>
+     <th align="left">Allowing users to update profile pictures and names. It provides direct navigation to the Exercise Journal and Collection pages and includes an options menu for recommending additional functionalities.</th>
   </tr>
    <td align="center">
            <img src="img_ref/RecordEmergency.png" width="250"   alt="Emergency Page">
@@ -52,7 +52,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
            <img src="img_ref/RecordAccount.png" width="250"   alt="Emergency Page">
    </td>
  <tr>
-     <th>Log Page</th>
+     <th>Journal Page</th>
      <th>Collection Page</th>
   </tr> 
 
@@ -62,7 +62,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
   </tr>
     <tr>
      <td align="center">
-           <img src="img_ref/RecordLog.png" width="250"   alt="Weather Page">
+           <img src="img_ref/RecordJournal.png" width="250"   alt="Weather Page">
     </td>
    <td align="center">
            <img src="img_ref/RecordCollection.gif"  width="250"  alt="Explore Page">
