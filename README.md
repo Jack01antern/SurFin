@@ -49,7 +49,7 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
            <img src="img_ref/RecordEmergency.png" width="250"   alt="Emergency Page">
    </td>
   <td align="center">
-           <img src="img_ref/RecordAccount.png" width="250"   alt="Emergency Page">
+           <img src="img_ref/RecordAccount.png" width="250"   alt="Account Page">
    </td>
  <tr>
      <th>Journal Page</th>
@@ -62,10 +62,10 @@ SurFin welcomes you to a heartwarming journey through cherished surf spots, acco
   </tr>
     <tr>
      <td align="center">
-           <img src="img_ref/RecordJournal.png" width="250"   alt="Weather Page">
+           <img src="img_ref/RecordJournal.png" width="250"   alt="Journal Page">
     </td>
    <td align="center">
-           <img src="img_ref/RecordCollection.gif"  width="250"  alt="Explore Page">
+           <img src="img_ref/RecordCollection.gif"  width="250"  alt="Collection Page">
    </td>
 
  </table>
