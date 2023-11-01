@@ -1,14 +1,6 @@
 package com.example.surfin.weather
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.LinearGradient
-import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.Shader
-import android.graphics.drawable.BitmapDrawable
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -16,9 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.animation.core.Ease
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.surfin.R
@@ -34,11 +24,6 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.IFillFormatter
-import com.github.mikephil.charting.formatter.IValueFormatter
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.github.mikephil.charting.utils.ViewPortHandler
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -179,7 +164,7 @@ class WeatherFragment : Fragment() {
         lineDataSet.lineWidth = 3f
         lineDataSet.circleColors =
             listOf(ContextCompat.getColor(requireContext(), R.color.primary_gray))
-        lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+        lineDataSet.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
         lineDataSet.color = ContextCompat.getColor(requireContext(), R.color.line_chart_blue)
         lineDataSet.valueTextSize = 14f
         lineDataSet.setValueTextColors(listOf(resources.getColor(R.color.primary_navy)))
