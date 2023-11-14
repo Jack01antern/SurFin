@@ -24,8 +24,4 @@ object ServiceLocator {
             FirebaseFirestore.getInstance())
     }
 
-//    private fun createLocalDataSource(context: Context): SurfinDataSource {
-//        return SurfinDataSource(SurfinDatabase.getInstance(context).surfinDatabaseDao,
-//            FirebaseFirestore.getInstance())
-//    }
 }

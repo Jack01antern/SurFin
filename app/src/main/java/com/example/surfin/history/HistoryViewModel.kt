@@ -12,15 +12,4 @@ import kotlinx.coroutines.launch
 class HistoryViewModel(repository: SurfinRepository) : ViewModel() {
     val activityHistory: LiveData<List<UserActivityHistory>> = repository.getAllHistory()
 
-
-//    fun getAllHistory() {
-//        viewModelScope.launch {
-//            try {
-//                _activityHistory =
-//            } catch (e: Exception) {
-//                Log.i("get data", "failed: ${e.message}")
-//            }
-//        }
-//    }
-
 }

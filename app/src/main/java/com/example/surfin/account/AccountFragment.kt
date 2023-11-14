@@ -9,7 +9,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,20 +21,20 @@ import com.example.surfin.R
 import com.example.surfin.databinding.FragmentAccountBinding
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import com.example.surfin.SurfinApplication
 import com.example.surfin.data.SurfinRepository
-import com.example.surfin.data.UserInfo
 import com.example.surfin.factory.AccountFactory
 import com.google.android.material.chip.ChipGroup
+import java.io.File
 
 private const val PICK_IMAGE_REQUEST = 0x00
 
@@ -139,23 +138,8 @@ class AccountFragment : Fragment() {
             inputMethodManager.hideSoftInputFromWindow(requireView().windowToken, 0)
         }
 
-
-
-        viewModel.userInfo.observe(viewLifecycleOwner) {
-
-            it?.let {
-                try {
-                    val bitmap = BitmapFactory.decodeByteArray(
-                        viewModel.userInfo.value?.userPhoto,
-                        0,
-                        viewModel.userInfo.value?.userPhoto!!.size
-                    )
-                    binding.userPhoto.setImageBitmap(bitmap)
-                } catch (e: Exception) {
-                    Log.i("Account picture", "error:${e.message}")
-                }
-            }
-        }
+        val bitmap = loadImageFromInternalStorage("user_photo.png")
+        bitmap?.let { binding.userPhoto.setImageBitmap(it) }
 
         return binding.root
     }
@@ -270,16 +254,28 @@ class AccountFragment : Fragment() {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && intent != null) {
             val selectedImageUri = intent.data
             binding.userPhoto.setImageURI(selectedImageUri)
-            val inputStream = requireActivity().contentResolver.openInputStream(selectedImageUri!!)
-            val byteArray = inputStream?.readBytes()
-            val userInfo = UserInfo(1, byteArray!!)
-            viewModel.updateUserInfo(userInfo, repository)
+
+            val bitmap = MediaStore.Images.Media.getBitmap(
+                requireActivity().contentResolver,
+                selectedImageUri
+            )
+            val filename = "user_photo.png"
+            saveImageToInternalStorage(bitmap, filename)
+            binding.userPhoto.setImageBitmap(bitmap)
+
         }
     }
 
     private fun openImagePicker() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    private fun saveImageToInternalStorage(bitmap: Bitmap, filename: String): String {
+        val fos = requireContext().openFileOutput(filename, Context.MODE_PRIVATE)
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
+        fos.close()
+        return requireContext().getFileStreamPath(filename).absolutePath
     }
 
 
@@ -299,6 +295,17 @@ class AccountFragment : Fragment() {
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
             PICK_IMAGE_REQUEST
         )
+    }
+
+    private fun loadImageFromInternalStorage(filename: String): Bitmap? {
+        val file = File(requireContext().filesDir, filename)
+
+        if (file.exists()) {
+            val fis = requireContext().openFileInput(filename)
+            return BitmapFactory.decodeStream(fis)
+        }
+
+        return null
     }
 
 }
