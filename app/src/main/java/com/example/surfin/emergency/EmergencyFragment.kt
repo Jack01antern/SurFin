@@ -43,9 +43,6 @@ class EmergencyFragment : Fragment() {
             startActivity(viewModel.dial119())
         }
 
-//        binding.btnLocate.setOnClickListener {
-//            Log.i("emergency", "clicked")
-//        }
         checkPermission()
 
         fusedLocationProviderClient =

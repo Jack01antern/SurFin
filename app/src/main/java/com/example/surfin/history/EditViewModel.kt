@@ -17,10 +17,8 @@ class EditViewModel(args: EditFragmentArgs, repository: SurfinRepository) : View
     fun updateHistory(history: UserActivityHistory, repository: SurfinRepository) {
         try {
             viewModelScope.launch {
-//                withContext(Dispatchers.IO) {
-                    repository.updateHistory(history)
-                    Log.i("Edit ViewModel", "success: ${history}")
-//                }
+                repository.updateHistory(history)
+                Log.i("Edit ViewModel", "success: ${history}")
             }
         } catch (e: Exception) {
             Log.i("Edit ViewModel", "failed: ${e.message}")

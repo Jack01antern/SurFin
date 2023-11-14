@@ -6,8 +6,6 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
-
-
 @BindingAdapter("imageUrl")
 fun bindImageMain(imageView: ImageView, mainImage: String?) {
     Log.i("PhotoBinding","$mainImage ")
