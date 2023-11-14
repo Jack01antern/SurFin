@@ -104,15 +104,6 @@ class ExploreFragment : Fragment() {
             )
             return
         }
-//        task.addOnSuccessListener {
-//            if (it != null) {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "${it.latitude}${it.longitude}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
     }
 
     private fun setMarkerClickListener(spots: MutableList<Spots>, viewModel: MainViewModel) {

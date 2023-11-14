@@ -30,17 +30,4 @@ class AddHistoryViewModel(private val repository: SurfinRepository) : ViewModel(
         }
     }
 
-    fun clearHistory() {
-        viewModelScope.launch {
-            try {
-                withContext(Dispatchers.IO) {
-                    repository.clearHistory()
-                }
-            } catch (e: Exception) {
-                Log.i("db failed", "${e.message}")
-            }
-        }
-    }
-
-
 }

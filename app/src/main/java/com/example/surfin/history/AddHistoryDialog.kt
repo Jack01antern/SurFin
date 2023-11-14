@@ -81,10 +81,6 @@ class AddHistoryDialog : BottomSheetDialogFragment() {
         params?.dimAmount = 0.5f
         dialog?.window?.attributes = params as WindowManager.LayoutParams
 
-//        binding.btnClear.setOnClickListener {
-//            viewModel.clearHistory()
-//        }
-
         return binding.root
     }
 

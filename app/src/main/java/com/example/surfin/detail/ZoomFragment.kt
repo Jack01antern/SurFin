@@ -59,28 +59,7 @@ class ZoomFragment : Fragment() {
                 }
             })
 
-
-//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
-//        {
-//            MainViewModel().selectedSpotDetail.value?.let {
-//                findNavController().navigate(
-//                    DetailDialogDirections.actionNavigateToDetailFragment(it)
-//                )
-//            }
-//        }
         return binding.root
     }
-
-
-//    private val callback = object : OnBackPressedCallback(true) {
-//        override fun handleOnBackPressed() {
-//             mainViewModel.selectedSpotDetail.let {
-//                Log.i("zoom", "$it")
-//                findNavController().navigate(
-//                    DetailDialogDirections.actionNavigateToDetailFragment(it)
-//                )
-//            }
-//        }
-//    }
 
 }
