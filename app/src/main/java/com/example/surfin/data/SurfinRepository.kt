@@ -10,16 +10,16 @@ interface SurfinRepository {
         return SurfinApi.retrofitService.getCwaTide(apiKey, locationName)
     }
 
-    suspend fun getCwaTemp(apiKey: String, locationName: String): CwaTempResult {
+    suspend fun getCwaTemp(apiKey: String, locationName: String): CwaWeatherResult {
         return SurfinApi.retrofitService.getCwaTemp(apiKey, locationName)
     }
 
 
-    suspend fun getCwaWdsd(apiKey: String, locationName: String): CwaTempResult {
+    suspend fun getCwaWdsd(apiKey: String, locationName: String): CwaWeatherResult {
         return SurfinApi.retrofitService.getCwaWdsd(apiKey, locationName)
     }
 
-    suspend fun getCwaWeather(apiKey: String, locationName: String): CwaTempResult {
+    suspend fun getCwaWeather(apiKey: String, locationName: String): CwaWeatherResult {
         return SurfinApi.retrofitService.getCwaWeather(apiKey, locationName)
     }
 
