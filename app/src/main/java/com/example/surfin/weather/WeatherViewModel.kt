@@ -79,7 +79,7 @@ open class WeatherViewModel(
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaTemp(apiKey, args.tempId.tempStationId)
-                _cwaTempResult.value = dataList.records.location[0].weatherElement[0].elementValue
+                _cwaTempResult.value = dataList.records.station[0].weatherElement.airTemperature.toString()
                 Log.i("cwa", "temp success: ${_cwaTempResult.value}")
             } catch (e: Exception) {
                 Log.i("cwa", "temp:fail ${e.message}")
@@ -92,7 +92,7 @@ open class WeatherViewModel(
         viewModelScope.launch {
             try {
                 val dataList = repository.getCwaWdsd(apiKey, args.tempId.wdsdStationId)
-                _cwaWdsdResult.value = dataList.records.location[0].weatherElement[0].elementValue
+                _cwaWdsdResult.value = dataList.records.station[0].weatherElement.windSpeed.toString()
                 Log.i("cwa", "wdsd success: ${_cwaWdsdResult.value}")
             } catch (e: Exception) {
                 Log.i("cwa", "wdsd:fail ${e.message}")
@@ -108,7 +108,7 @@ open class WeatherViewModel(
                     apiKey,
                     args.tempId.uviStationId
                 )
-                _cwaUviResult.value = dataList.records.weatherElement.location[0].value.toString()
+                _cwaUviResult.value = dataList.records.weatherElement.location[0].uvIndex.toString()
                 Log.i("cwa", "uvi success: ${_cwaUviResult.value}")
             } catch (e: Exception) {
                 Log.i("cwa", "uvi:fail ${e.message}")
@@ -125,7 +125,7 @@ open class WeatherViewModel(
                     args.tempId.weatherStationId
                 )
                 _cwaWeatherResult.value =
-                    dataList.records.location[0].weatherElement[0].elementValue
+                    dataList.records.station[0].weatherElement.weather
                 Log.i("cwa", "weather success: ${_cwaWeatherResult.value}")
             } catch (e: Exception) {
                 Log.i("cwa", "weather:fail ${e.message}")
@@ -141,7 +141,7 @@ open class WeatherViewModel(
                     args.tempId.waveStationId
                 )
                 _cwaWaveResult.value =
-                    dataList.records.seaSurfaceObs.location[0].stationObsTimes.stationObsTime.first().weatherElements.waveHeight
+                    dataList.records.seaSurfaceObs.location[0].stationObsTimes.stationObsTime.last().weatherElements.waveHeight
                 Log.i("cwa", "wave success: ${_cwaWaveResult.value}")
             } catch (e: Exception) {
                 Log.i("cwa", "wave:fail ${e.message}")

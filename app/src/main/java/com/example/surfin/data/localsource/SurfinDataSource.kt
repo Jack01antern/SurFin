@@ -3,7 +3,7 @@ package com.example.surfin.data.localsource
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.surfin.data.UserActivityHistory
-import com.example.surfin.data.CwaTempResult
+import com.example.surfin.data.CwaWeatherResult
 import com.example.surfin.data.CwaTideResult
 import com.example.surfin.data.CwaUviResult
 import com.example.surfin.data.CwaWaveResult
@@ -22,15 +22,15 @@ class SurfinDataSource(private val dao: SurfinDatabaseDao, private val db: Fireb
         return super.getCwaTide(apiKey, locationName)
     }
 
-    override suspend fun getCwaTemp(apiKey: String, locationName: String): CwaTempResult {
+    override suspend fun getCwaTemp(apiKey: String, locationName: String): CwaWeatherResult {
         return super.getCwaTemp(apiKey, locationName)
     }
 
-    override suspend fun getCwaWdsd(apiKey: String, locationName: String): CwaTempResult {
+    override suspend fun getCwaWdsd(apiKey: String, locationName: String): CwaWeatherResult {
         return super.getCwaWdsd(apiKey, locationName)
     }
 
-    override suspend fun getCwaWeather(apiKey: String, locationName: String): CwaTempResult {
+    override suspend fun getCwaWeather(apiKey: String, locationName: String): CwaWeatherResult {
         return super.getCwaWeather(apiKey, locationName)
     }
 

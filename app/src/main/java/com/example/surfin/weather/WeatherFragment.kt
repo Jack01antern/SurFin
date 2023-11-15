@@ -94,7 +94,7 @@ class WeatherFragment : Fragment() {
         }
 
         viewModel.cwaTempResult.observe(viewLifecycleOwner) {
-            if (it == "-99") {
+            if (it == "-99.0") {
                 binding.tempValue.text = 27.5.toString()
             } else {
                 binding.tempValue.text = it.toString()
@@ -102,7 +102,7 @@ class WeatherFragment : Fragment() {
         }
 
         viewModel.cwaWdsdResult.observe(viewLifecycleOwner) {
-            if (it == "0.0" || it == "-99") {
+            if (it == "0.0" || it == "-99.0") {
                 binding.wdsdValue.text = 0.8.toString()
             } else {
                 binding.wdsdValue.text = it.toString()
