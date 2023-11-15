@@ -23,6 +23,8 @@ data class UviWeatherElement(
 
 @Parcelize
 data class UviLocation(
-    val locationCode: String,
-    val value: Float
+    @Json(name = "StationID")
+    val stationId: String,
+    @Json(name = "UVIndex")
+    val uvIndex: Float
 ):Parcelable
